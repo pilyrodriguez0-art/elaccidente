@@ -1,19 +1,76 @@
-<button id="entrar" type="button">
-  Entrar
-</button>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<p class="credito-foto">
-  Foto de
-  <a href="https://unsplash.com/es/@anyachernykh" target="_blank" rel="noopener noreferrer">
-    Anya Chernykh
-  </a>
-  en
-  <a href="https://unsplash.com/es/fotos/una-puerta-azul-con-una-cerradura-oxidada-tvotQu_jd68" target="_blank" rel="noopener noreferrer">
-    Unsplash
-  </a>.
-</p>
+  <title>El accidente</title>
 
-<section class="escena" id="mapa">
-  <h2>Recorrido hacia el hospital</h2>
-  <p>Aquí aparecerá el mapa.</p>
-</section>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <main>
+
+    <!-- ESCENA 1: EL PORTÓN -->
+    <section class="escena escena-activa" id="porton">
+
+      <div class="contenido-porton">
+
+        <h1>El portón</h1>
+
+        <p>
+          Aquí comienza el recorrido.
+        </p>
+
+        <button id="entrar" type="button">
+          Entrar
+        </button>
+
+      </div>
+
+      <p class="credito-foto">
+        Foto de
+        <a
+          href="https://unsplash.com/es/@anyachernykh"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Anya Chernykh
+        </a>
+        en
+        <a
+          href="https://unsplash.com/es/fotos/una-puerta-azul-con-una-cerradura-oxidada-tvotQu_jd68"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Unsplash
+        </a>.
+      </p>
+
+    </section>
+
+
+    <!-- ESCENA 2: MAPA -->
+    <section class="escena" id="mapa">
+
+      <div class="contenido-mapa">
+
+        <h2>Recorrido hacia el hospital</h2>
+
+        <p>
+          Aquí aparecerá el mapa.
+        </p>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <script src="script.js"></script>
+
+</body>
+</html>
