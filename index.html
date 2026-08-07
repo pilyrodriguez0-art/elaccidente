@@ -81,16 +81,12 @@
       position: absolute;
       right: 18px;
       bottom: 18px;
-
       margin: 0;
       padding: 7px 10px;
-
       border-radius: 6px;
       background: rgba(0, 0, 0, 0.55);
-
       color: white;
       font-size: 12px;
-
       z-index: 20;
     }
 
@@ -159,18 +155,14 @@
     #mapa-real {
       width: 100%;
       height: 72vh;
-
       border: 1px solid #444;
-
       overflow: hidden;
     }
 
     .punto-viajero {
       width: 18px;
       height: 18px;
-
       border-radius: 50%;
-
       background: #a00000;
 
       box-shadow:
@@ -212,7 +204,6 @@
     #quirofano {
       position: relative;
       overflow: hidden;
-
       padding-bottom: 100px;
 
       background-image:
@@ -231,7 +222,6 @@
 
     .contenido-quirofano {
       position: relative;
-
       z-index: 5;
 
       width: min(680px, 90%);
@@ -283,15 +273,12 @@
     .personaje {
       margin-top: 22px !important;
       margin-bottom: 5px !important;
-
       font-weight: bold;
-
       letter-spacing: 0.08em;
     }
 
     .accion {
       margin: 20px 0 !important;
-
       font-style: italic;
     }
 
@@ -305,20 +292,15 @@
       );
 
       text-align: center;
-
       letter-spacing: 0.1em;
     }
 
     .siguiente-quirofano {
       position: absolute;
-
       left: 50%;
       bottom: 32px;
-
       transform: translateX(-50%);
-
       z-index: 30;
-
       white-space: nowrap;
     }
 
@@ -337,11 +319,8 @@
 
     #rompecabezas {
       position: relative;
-
       background: #050505;
-
       color: white;
-
       overflow-x: hidden;
     }
 
@@ -362,28 +341,21 @@
       );
 
       font-weight: 400;
-
       color: white;
     }
 
     .instruccion-rompecabezas {
       margin: 0 auto 30px;
-
       max-width: 560px;
-
       font-size: 15px;
-
-      color: rgba(255, 255, 255, 0.68);
+      color: rgba(255, 255, 255, 0.72);
     }
 
     .zona-rompecabezas {
       display: flex;
-
       align-items: center;
       justify-content: center;
-
       gap: 45px;
-
       width: 100%;
     }
 
@@ -413,7 +385,6 @@
 
     .slot {
       position: relative;
-
       overflow: hidden;
 
       border:
@@ -442,7 +413,6 @@
       position: relative;
 
       width: 100%;
-
       aspect-ratio: 2 / 3;
 
       background-image:
@@ -451,7 +421,6 @@
         );
 
       background-repeat: no-repeat;
-
       background-size: 300% 300%;
 
       border:
@@ -463,9 +432,7 @@
         rgba(0, 0, 0, 0.8);
 
       cursor: grab;
-
       touch-action: none;
-
       user-select: none;
 
       transition:
@@ -484,13 +451,9 @@
 
     .pieza.arrastrando {
       position: fixed;
-
       z-index: 9999;
-
       cursor: grabbing;
-
       pointer-events: none;
-
       margin: 0;
 
       transform:
@@ -504,19 +467,14 @@
     .pieza.colocada {
       width: 100%;
       height: 100%;
-
       aspect-ratio: auto;
-
       border: none;
-
       box-shadow: none;
-
       cursor: default;
-
       transform: none;
     }
 
-    /* POSICIONES */
+    /* POSICIONES DE IMAGEN */
 
     .pieza[data-posicion="0"] {
       background-position: 0% 0%;
@@ -554,8 +512,6 @@
       background-position: 100% 100%;
     }
 
-    /* PIEZA DEL PULGAR */
-
     .pieza-pulgar {
       outline:
         2px solid
@@ -568,20 +524,15 @@
         rgba(120, 0, 0, 0.3);
     }
 
-    /* TEXTO MÉDICO */
-
     .texto-documento {
       min-height: 95px;
-
       margin: 35px auto 0;
 
       display: flex;
-
       align-items: center;
       justify-content: center;
 
       max-width: 750px;
-
       padding: 15px;
 
       font-family: Georgia, serif;
@@ -605,8 +556,6 @@
     .texto-documento.visible {
       opacity: 1;
     }
-
-    /* FINAL ROMPECABEZAS */
 
     .frase-final {
       display: none;
@@ -638,14 +587,12 @@
 
       from {
         opacity: 0;
-
         transform:
           translateY(15px);
       }
 
       to {
         opacity: 1;
-
         transform:
           translateY(0);
       }
@@ -672,13 +619,9 @@
 
     #tiempo {
       position: relative;
-
       min-height: 100vh;
-
       background: #050505;
-
       color: white;
-
       overflow: hidden;
     }
 
@@ -689,12 +632,9 @@
       height: min(620px, 90vw);
 
       display: flex;
-
       align-items: center;
       justify-content: center;
     }
-
-    /* HORA DIGITAL */
 
     .hora-digital {
       position: absolute;
@@ -729,8 +669,6 @@
         opacity 1.5s ease;
     }
 
-    /* RELOJ */
-
     .reloj {
       position: relative;
 
@@ -759,22 +697,14 @@
         rgba(255, 255, 255, 0.12);
     }
 
-    /* MARCAS */
-
     .marca-hora {
       position: absolute;
-
-      left: 50%;
-      top: 50%;
 
       width: 1px;
       height: 12px;
 
       background:
         rgba(255, 255, 255, 0.38);
-
-      transform-origin:
-        50% 0;
 
       pointer-events: none;
     }
@@ -798,7 +728,6 @@
     .numero-12 {
       top: 18px;
       left: 50%;
-
       transform:
         translateX(-50%);
     }
@@ -806,7 +735,6 @@
     .numero-3 {
       top: 50%;
       right: 20px;
-
       transform:
         translateY(-50%);
     }
@@ -814,7 +742,6 @@
     .numero-6 {
       bottom: 18px;
       left: 50%;
-
       transform:
         translateX(-50%);
     }
@@ -822,12 +749,9 @@
     .numero-9 {
       top: 50%;
       left: 20px;
-
       transform:
         translateY(-50%);
     }
-
-    /* CENTRO */
 
     .centro-reloj {
       position: absolute;
@@ -846,12 +770,7 @@
       background: white;
 
       z-index: 8;
-
-      transition:
-        opacity 1.5s ease;
     }
-
-    /* AGUJAS */
 
     .aguja {
       position: absolute;
@@ -917,7 +836,6 @@
         );
 
       display: flex;
-
       align-items: center;
       justify-content: center;
 
@@ -1019,10 +937,6 @@
           scale(0.92)
           rotate(-1deg);
 
-        border-radius:
-          47% 53% 49% 51% /
-          54% 46% 54% 46%;
-
         filter:
           brightness(0.75);
       }
@@ -1032,10 +946,6 @@
           scale(1.12)
           rotate(1deg);
 
-        border-radius:
-          52% 48% 45% 55% /
-          46% 54% 49% 51%;
-
         filter:
           brightness(1.15);
       }
@@ -1043,10 +953,6 @@
       30% {
         transform:
           scale(0.97);
-
-        border-radius:
-          49% 51% 53% 47% /
-          52% 48% 46% 54%;
 
         filter:
           brightness(0.9);
@@ -1064,10 +970,6 @@
         transform:
           scale(0.92)
           rotate(-1deg);
-
-        border-radius:
-          47% 53% 49% 51% /
-          54% 46% 54% 46%;
 
         filter:
           brightness(0.75);
@@ -1135,14 +1037,10 @@
       color:
         rgba(255, 255, 255, 0.42);
 
-      font-size:
-        12px;
+      font-size: 12px;
 
       letter-spacing:
         0.14em;
-
-      text-transform:
-        lowercase;
 
       opacity: 0;
 
@@ -1166,34 +1064,25 @@
       }
 
       #mapa-real {
-        height:
-          68vh;
+        height: 68vh;
       }
 
       #quirofano {
-        padding-bottom:
-          95px;
+        padding-bottom: 95px;
       }
 
       .contenido-quirofano {
-        width:
-          94%;
-
-        max-height:
-          65vh;
+        width: 94%;
+        max-height: 65vh;
       }
 
       .siguiente-quirofano {
-        bottom:
-          26px;
+        bottom: 26px;
       }
 
       .zona-rompecabezas {
-        flex-direction:
-          column;
-
-        gap:
-          25px;
+        flex-direction: column;
+        gap: 25px;
       }
 
       .tablero,
@@ -1214,32 +1103,22 @@
       }
 
       .titulo-rompecabezas {
-        margin-top:
-          20px;
+        margin-top: 20px;
       }
 
       .escena-tiempo {
-        width:
-          92vw;
-
-        height:
-          92vw;
+        width: 92vw;
+        height: 92vw;
       }
 
       .reloj {
-        width:
-          78vw;
-
-        height:
-          78vw;
+        width: 78vw;
+        height: 78vw;
       }
 
       .membrana {
-        width:
-          82px;
-
-        height:
-          82px;
+        width: 82px;
+        height: 82px;
       }
 
     }
@@ -1492,8 +1371,6 @@
 
         <div class="zona-rompecabezas">
 
-          <!-- TABLERO -->
-
           <div
             class="tablero"
             id="tablero"
@@ -1514,57 +1391,31 @@
           </div>
 
 
-          <!-- PIEZAS -->
-
           <div
             class="bandeja"
             id="bandeja"
           >
 
-            <div
-              class="pieza"
-              data-posicion="4"
-            ></div>
+            <div class="pieza" data-posicion="4"></div>
 
             <div
               class="pieza pieza-pulgar"
               data-posicion="5"
             ></div>
 
-            <div
-              class="pieza"
-              data-posicion="0"
-            ></div>
+            <div class="pieza" data-posicion="0"></div>
 
-            <div
-              class="pieza"
-              data-posicion="8"
-            ></div>
+            <div class="pieza" data-posicion="8"></div>
 
-            <div
-              class="pieza"
-              data-posicion="2"
-            ></div>
+            <div class="pieza" data-posicion="2"></div>
 
-            <div
-              class="pieza"
-              data-posicion="6"
-            ></div>
+            <div class="pieza" data-posicion="6"></div>
 
-            <div
-              class="pieza"
-              data-posicion="1"
-            ></div>
+            <div class="pieza" data-posicion="1"></div>
 
-            <div
-              class="pieza"
-              data-posicion="7"
-            ></div>
+            <div class="pieza" data-posicion="7"></div>
 
-            <div
-              class="pieza"
-              data-posicion="3"
-            ></div>
+            <div class="pieza" data-posicion="3"></div>
 
           </div>
 
@@ -1606,7 +1457,7 @@
 
     <!-- =========================
          ESCENA 6
-         RELOJ Y PULSIÓN
+         RELOJ / PULSIÓN
     ========================== -->
 
     <section
@@ -1614,9 +1465,7 @@
       id="tiempo"
     >
 
-      <div
-        class="escena-tiempo"
-      >
+      <div class="escena-tiempo">
 
         <p
           class="hora-digital"
@@ -1625,56 +1474,42 @@
           7:00
         </p>
 
-
         <div
           class="reloj"
           id="reloj"
         >
 
-          <span
-            class="numero-reloj numero-12"
-          >
+          <span class="numero-reloj numero-12">
             12
           </span>
 
-          <span
-            class="numero-reloj numero-3"
-          >
+          <span class="numero-reloj numero-3">
             3
           </span>
 
-          <span
-            class="numero-reloj numero-6"
-          >
+          <span class="numero-reloj numero-6">
             6
           </span>
 
-          <span
-            class="numero-reloj numero-9"
-          >
+          <span class="numero-reloj numero-9">
             9
           </span>
-
 
           <div
             class="aguja aguja-hora"
             id="aguja-hora"
           ></div>
 
-
           <div
             class="aguja aguja-minuto"
             id="aguja-minuto"
           ></div>
 
-
           <div
             class="centro-reloj"
-            id="centro-reloj"
           ></div>
 
         </div>
-
 
         <div
           class="membrana-contenedor"
@@ -1686,7 +1521,6 @@
           ></div>
 
         </div>
-
 
         <p
           class="texto-pulsion"
@@ -1831,8 +1665,7 @@
         L.map(
           "mapa-real",
           {
-            zoomControl:
-              false
+            zoomControl: false
           }
         );
 
@@ -1840,11 +1673,8 @@
       L.tileLayer(
         "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
         {
-          subdomains:
-            "abcd",
-
-          maxZoom:
-            20,
+          subdomains: "abcd",
+          maxZoom: 20,
 
           attribution:
             "&copy; OpenStreetMap contributors &copy; CARTO"
@@ -1875,9 +1705,7 @@
 
 
       mapa.fitBounds(
-        L.latLngBounds(
-          ruta
-        ),
+        L.latLngBounds(ruta),
         {
           padding:
             [50, 50]
@@ -1888,14 +1716,9 @@
       L.polyline(
         ruta,
         {
-          color:
-            "#8b0000",
-
-          weight:
-            3,
-
-          opacity:
-            0.45
+          color: "#8b0000",
+          weight: 3,
+          opacity: 0.45
         }
       ).addTo(
         mapa
@@ -1905,8 +1728,7 @@
       const iconoPunto =
         L.divIcon({
 
-          className:
-            "",
+          className: "",
 
           html:
             '<div class="punto-viajero"></div>',
@@ -1932,14 +1754,11 @@
         );
 
 
-      let tramo =
-        0;
+      let tramo = 0;
 
-      let progreso =
-        0;
+      let progreso = 0;
 
-      const velocidad =
-        0.01;
+      const velocidad = 0.01;
 
 
       function animar() {
@@ -1955,45 +1774,35 @@
           ];
 
 
-        progreso +=
-          velocidad;
+        progreso += velocidad;
 
 
         if (
           progreso > 1
         ) {
 
-          progreso =
-            1;
+          progreso = 1;
 
         }
 
 
         const lat =
-
           inicio[0] +
-
           (
             final[0] -
             inicio[0]
           )
-
           *
-
           progreso;
 
 
         const lng =
-
           inicio[1] +
-
           (
             final[1] -
             inicio[1]
           )
-
           *
-
           progreso;
 
 
@@ -2058,8 +1867,7 @@
 
           tramo++;
 
-          progreso =
-            0;
+          progreso = 0;
 
         }
 
@@ -2083,18 +1891,14 @@
     ) {
 
       const tamaño =
-
         5 +
-
-        Math.random() *
-        7;
+        Math.random() * 7;
 
 
       const iconoMarca =
         L.divIcon({
 
-          className:
-            "",
+          className: "",
 
           html:
             `
@@ -2126,26 +1930,20 @@
         [
 
           lat +
-
           (
             Math.random() -
             0.5
           )
-
           *
-
           0.00035,
 
 
           lng +
-
           (
             Math.random() -
             0.5
           )
-
           *
-
           0.00035
 
         ],
@@ -2186,8 +1984,8 @@
         "#frase-final"
       );
 
-    let piezasCorrectas =
-      0;
+    let rompecabezasCompletado =
+      false;
 
 
     const textos = {
@@ -2211,9 +2009,7 @@
 
 
     piezas.forEach(
-      function (
-        pieza
-      ) {
+      function (pieza) {
 
         pieza.addEventListener(
           "pointerdown",
@@ -2358,7 +2154,6 @@
 
 
         const slot =
-
           elementoDebajo
           ?
           elementoDebajo.closest(
@@ -2373,7 +2168,6 @@
 
 
         const posicionSlot =
-
           slot
           ?
           slot.dataset.posicion
@@ -2386,37 +2180,18 @@
         );
 
 
-        pieza.style.left =
-          "";
-
-
-        pieza.style.top =
-          "";
-
-
-        pieza.style.width =
-          "";
-
-
-        pieza.style.height =
-          "";
+        pieza.style.left = "";
+        pieza.style.top = "";
+        pieza.style.width = "";
+        pieza.style.height = "";
 
 
         if (
-
-          slot
-
-          &&
-
-          posicionPieza ===
-          posicionSlot
-
-          &&
-
+          slot &&
+          posicionPieza === posicionSlot &&
           !slot.classList.contains(
             "correcto"
           )
-
         ) {
 
           colocarPieza(
@@ -2463,32 +2238,40 @@
       );
 
 
-      piezasCorrectas++;
-
-
       const posicion =
         pieza.dataset.posicion;
 
 
       if (
-        textos[
-          posicion
-        ]
+        textos[posicion]
       ) {
 
         mostrarTexto(
-          textos[
-            posicion
-          ]
+          textos[posicion]
         );
 
       }
 
 
+      const piezasColocadas =
+        document.querySelectorAll(
+          ".slot.correcto"
+        ).length;
+
+
+      console.log(
+        "Piezas colocadas:",
+        piezasColocadas
+      );
+
+
       if (
-        piezasCorrectas ===
-        9
+        piezasColocadas === 9 &&
+        !rompecabezasCompletado
       ) {
+
+        rompecabezasCompletado =
+          true;
 
         completarRompecabezas();
 
@@ -2539,7 +2322,7 @@
           );
 
         },
-        700
+        350
       );
 
 
@@ -2551,10 +2334,11 @@
             escenaTiempo
           );
 
+
           iniciarReloj();
 
         },
-        3600
+        2000
       );
 
     }
@@ -2613,46 +2397,9 @@
           "marca-hora";
 
 
-        marca.style.transform =
-          `
-            rotate(
-              ${i * 30}deg
-            )
-            translateY(
-              -50%
-            )
-          `;
-
-
-        marca.style.top =
-          "50%";
-
-
-        marca.style.height =
-          i % 3 === 0
-          ?
-          "17px"
-          :
-          "9px";
-
-
-        marca.style.opacity =
-          i % 3 === 0
-          ?
-          "0.9"
-          :
-          "0.5";
-
-
-        const radio =
-          49;
-
-
         const angulo =
           (
-            i *
-            30
-            -
+            i * 30 -
             90
           )
           *
@@ -2661,14 +2408,16 @@
           180;
 
 
+        const radio =
+          48;
+
+
         marca.style.left =
           (
             50 +
             Math.cos(
               angulo
-            )
-            *
-            radio
+            ) * radio
           )
           +
           "%";
@@ -2679,12 +2428,30 @@
             50 +
             Math.sin(
               angulo
-            )
-            *
-            radio
+            ) * radio
           )
           +
           "%";
+
+
+        marca.style.transform =
+          `
+            translate(
+              -50%,
+              -50%
+            )
+            rotate(
+              ${i * 30}deg
+            )
+          `;
+
+
+        marca.style.height =
+          i % 3 === 0
+          ?
+          "17px"
+          :
+          "9px";
 
 
         reloj.appendChild(
@@ -2718,6 +2485,11 @@
         true;
 
 
+      actualizarReloj(
+        7 * 60
+      );
+
+
       const duracion =
         8500;
 
@@ -2727,13 +2499,11 @@
 
 
       const minutosIniciales =
-        7 *
-        60;
+        7 * 60;
 
 
       const minutosFinales =
-        11 *
-        60;
+        11 * 60;
 
 
       function animarReloj(
@@ -2754,17 +2524,10 @@
           progreso > 1
         ) {
 
-          progreso =
-            1;
+          progreso = 1;
 
         }
 
-
-        /*
-          Esta curva hace que
-          al principio avance despacio
-          y después acelere.
-        */
 
         const acelerado =
           progreso *
@@ -2772,18 +2535,12 @@
 
 
         const minutosActuales =
-
-          minutosIniciales
-
-          +
-
+          minutosIniciales +
           (
             minutosFinales -
             minutosIniciales
           )
-
           *
-
           acelerado;
 
 
@@ -2844,48 +2601,34 @@
         );
 
 
-      const segundosVisuales =
-
-        (
-          minutosTotales -
-          Math.floor(
-            minutosTotales
-          )
-        )
-
-        *
-        60;
+      const parteDecimal =
+        minutosTotales -
+        Math.floor(
+          minutosTotales
+        );
 
 
       const gradosMinuto =
-
         (
           minutos +
-          segundosVisuales /
-          60
+          parteDecimal
         )
-
         *
         6;
 
 
       const gradosHora =
-
         (
           horas %
           12
         )
-
         *
         30
-
         +
-
         (
           minutos /
           60
         )
-
         *
         30;
 
