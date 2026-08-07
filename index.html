@@ -6,6 +6,7 @@
 
   <title>El accidente</title>
 
+  <!-- LEAFLET -->
   <link
     rel="stylesheet"
     href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
@@ -16,6 +17,7 @@
   ></script>
 
   <style>
+
     * {
       box-sizing: border-box;
     }
@@ -35,10 +37,13 @@
 
     .escena {
       display: none;
+
       min-height: 100vh;
       padding: 40px;
+
       align-items: center;
       justify-content: center;
+
       text-align: center;
     }
 
@@ -47,7 +52,70 @@
       flex-direction: column;
     }
 
-    /* PORTÓN */
+    h1,
+    h2,
+    p {
+      margin-top: 0;
+    }
+
+
+    /* ===================================
+       BOTONES
+    =================================== */
+
+    button {
+      margin-top: 20px;
+      padding: 12px 24px;
+
+      border: 1px solid white;
+      border-radius: 999px;
+
+      background: transparent;
+      color: white;
+
+      font-size: 16px;
+
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: white;
+      color: black;
+    }
+
+
+    /* ===================================
+       CRÉDITO DE FOTOS
+    =================================== */
+
+    .credito-foto {
+      position: absolute;
+
+      right: 18px;
+      bottom: 18px;
+
+      margin: 0;
+      padding: 7px 10px;
+
+      border-radius: 6px;
+
+      background: rgba(0, 0, 0, 0.65);
+
+      color: white;
+
+      font-size: 12px;
+
+      z-index: 20;
+    }
+
+    .credito-foto a {
+      color: white;
+    }
+
+
+    /* ===================================
+       ESCENA 1: PORTÓN
+    =================================== */
 
     #porton {
       position: relative;
@@ -70,54 +138,16 @@
       align-items: center;
     }
 
-    h1,
-    h2 {
-      margin: 0 0 12px;
-    }
+    #porton h1 {
+      margin-bottom: 12px;
 
-    h1 {
       font-size: 38px;
     }
 
-    button {
-      margin-top: 20px;
-      padding: 12px 24px;
 
-      border: 1px solid white;
-      border-radius: 999px;
-
-      background: transparent;
-      color: white;
-
-      font-size: 16px;
-      cursor: pointer;
-    }
-
-    button:hover {
-      background: white;
-      color: black;
-    }
-
-    .credito-foto {
-      position: absolute;
-      right: 18px;
-      bottom: 18px;
-
-      margin: 0;
-      padding: 7px 10px;
-
-      border-radius: 6px;
-      background: rgba(0, 0, 0, 0.6);
-
-      color: white;
-      font-size: 12px;
-    }
-
-    .credito-foto a {
-      color: white;
-    }
-
-    /* MAPA */
+    /* ===================================
+       ESCENA 2: MAPA
+    =================================== */
 
     #mapa {
       background: #111;
@@ -128,8 +158,15 @@
       width: min(1150px, 100%);
     }
 
+    .titulo-mapa {
+      margin-bottom: 12px;
+
+      font-size: 30px;
+    }
+
     .texto-mapa {
       margin-bottom: 20px;
+
       opacity: 0.75;
     }
 
@@ -138,8 +175,12 @@
       height: 72vh;
 
       border: 1px solid #444;
+
       overflow: hidden;
     }
+
+
+    /* PUNTO QUE VIAJA */
 
     .punto-viajero {
       width: 18px;
@@ -154,34 +195,231 @@
         0 0 14px rgba(150, 0, 0, 0.7);
     }
 
+
+    /* RASTRO ROJO */
+
     .marca-roja {
       border-radius: 50%;
+
       background: #990000;
+
       opacity: 0.75;
     }
 
-    /* PÉRDIDA DE SUSTANCIA */
+
+    /* ===================================
+       ESCENA 3:
+       PÉRDIDA DE SUSTANCIA
+    =================================== */
 
     #perdida {
       background: #050505;
+
       color: white;
     }
 
     .texto-perdida {
       margin: 0;
 
-      font-size: clamp(2.5rem, 9vw, 7rem);
+      font-size: clamp(
+        2.5rem,
+        9vw,
+        7rem
+      );
+
       font-weight: 400;
+
       letter-spacing: -0.04em;
     }
+
+
+    /* ===================================
+       ESCENA 4:
+       SALA DE OPERACIÓN
+    =================================== */
+
+    #quirofano {
+      position: relative;
+
+      overflow: hidden;
+
+      color: white;
+
+      background-image:
+        linear-gradient(
+          rgba(0, 0, 0, 0.12),
+          rgba(0, 0, 0, 0.48)
+        ),
+        url("quirofano.jpg");
+
+      background-size: cover;
+
+      background-position: center;
+
+      background-repeat: no-repeat;
+    }
+
+
+    /* RESPLANDOR DE LA LUZ */
+
+    .luz-quirofano {
+      position: absolute;
+
+      top: -25vh;
+      left: 50%;
+
+      width: 85vh;
+      height: 85vh;
+
+      transform: translateX(-50%);
+
+      border-radius: 50%;
+
+      background:
+        radial-gradient(
+          circle,
+          rgba(255, 255, 255, 0.92) 0%,
+          rgba(255, 255, 255, 0.45) 18%,
+          rgba(255, 255, 255, 0.12) 38%,
+          rgba(255, 255, 255, 0) 68%
+        );
+
+      pointer-events: none;
+
+      z-index: 1;
+    }
+
+
+    /* CAJA DEL TEXTO */
+
+    .contenido-quirofano {
+      position: relative;
+
+      z-index: 5;
+
+      width: min(760px, 100%);
+
+      max-height: 78vh;
+
+      padding: 30px;
+
+      overflow-y: auto;
+
+      border: 1px solid rgba(255, 255, 255, 0.25);
+
+      border-radius: 14px;
+
+      background: rgba(0, 0, 0, 0.48);
+
+      backdrop-filter: blur(5px);
+
+      text-align: left;
+    }
+
+
+    .titulo-quirofano {
+      margin-bottom: 30px;
+
+      color: white;
+
+      font-size: clamp(
+        1.7rem,
+        4vw,
+        3rem
+      );
+
+      font-weight: 400;
+
+      text-align: center;
+    }
+
+
+    .guion {
+      margin: 0;
+
+      color: white;
+
+      font-size: clamp(
+        1rem,
+        2vw,
+        1.2rem
+      );
+
+      line-height: 1.8;
+    }
+
+
+    .personaje {
+      margin-top: 22px;
+      margin-bottom: 4px;
+
+      font-weight: bold;
+
+      text-transform: uppercase;
+
+      letter-spacing: 0.08em;
+    }
+
+
+    .accion {
+      margin-top: 22px;
+      margin-bottom: 22px;
+
+      font-style: italic;
+
+      opacity: 0.85;
+    }
+
+
+    .cuenta {
+      margin-top: 34px;
+
+      font-size: clamp(
+        1.8rem,
+        5vw,
+        3.5rem
+      );
+
+      letter-spacing: 0.1em;
+
+      text-align: center;
+    }
+
+
+    /* ===================================
+       MÓVIL
+    =================================== */
+
+    @media (max-width: 700px) {
+
+      .escena {
+        padding: 20px;
+      }
+
+      #mapa-real {
+        height: 68vh;
+      }
+
+      .contenido-quirofano {
+        max-height: 82vh;
+
+        padding: 22px;
+      }
+
+    }
+
   </style>
 </head>
+
 
 <body>
 
   <main>
 
-    <!-- ESCENA 1 -->
+
+    <!-- ===================================
+         ESCENA 1: PORTÓN
+    ==================================== -->
 
     <section
       class="escena escena-activa"
@@ -190,7 +428,9 @@
 
       <div class="contenido-porton">
 
-        <h1>El portón</h1>
+        <h1>
+          El portón
+        </h1>
 
         <p>
           Aquí comienza el recorrido.
@@ -233,7 +473,10 @@
     </section>
 
 
-    <!-- ESCENA 2 -->
+
+    <!-- ===================================
+         ESCENA 2: MAPA
+    ==================================== -->
 
     <section
       class="escena"
@@ -242,7 +485,7 @@
 
       <div class="contenido-mapa">
 
-        <h2>
+        <h2 class="titulo-mapa">
           Recorrido
         </h2>
 
@@ -257,7 +500,11 @@
     </section>
 
 
-    <!-- ESCENA 3 -->
+
+    <!-- ===================================
+         ESCENA 3:
+         PÉRDIDA DE SUSTANCIA
+    ==================================== -->
 
     <section
       class="escena"
@@ -270,26 +517,172 @@
 
     </section>
 
+
+
+    <!-- ===================================
+         ESCENA 4:
+         SALA DE OPERACIÓN
+    ==================================== -->
+
+    <section
+      class="escena"
+      id="quirofano"
+    >
+
+      <div class="luz-quirofano"></div>
+
+
+      <div class="contenido-quirofano">
+
+        <h2 class="titulo-quirofano">
+          Sala de operación
+        </h2>
+
+
+        <div class="guion">
+
+          <p class="personaje">
+            YO
+          </p>
+
+          <p>
+            —Hoy no voy a llorar.
+          </p>
+
+
+          <p class="accion">
+            Se lo digo al médico. Él se ríe.
+          </p>
+
+
+          <p class="accion">
+            El anestesista hace lo suyo y me explica algo.
+          </p>
+
+
+          <p class="personaje">
+            YO
+          </p>
+
+          <p>
+            —¿Y tengo que contar?
+          </p>
+
+
+          <p class="personaje">
+            OTRO DOCTOR
+          </p>
+
+          <p>
+            —Ni que fuera película.
+          </p>
+
+
+          <p class="personaje">
+            OTRO DOCTOR
+          </p>
+
+          <p>
+            —Pero cuente.
+          </p>
+
+
+          <p class="accion">
+            Inicio.
+          </p>
+
+
+          <p class="cuenta">
+            10, 9...
+          </p>
+
+
+          <p class="personaje">
+            ANESTESISTA
+          </p>
+
+          <p>
+            —Le va a doler ahora.
+          </p>
+
+
+          <p class="accion">
+            Me quejo.
+          </p>
+
+
+          <p class="accion">
+            Ya no recuerdo nada.
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <p class="credito-foto">
+
+        Foto de
+
+        <a
+          href="https://unsplash.com/es/@xbmpro"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          César Badilla Miranda
+        </a>
+
+        en
+
+        <a
+          href="https://unsplash.com/es/fotos/una-persona-que-opera-una-luz-medica-en-una-habitacion-YzyXrKkTDG0"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Unsplash
+        </a>.
+
+      </p>
+
+    </section>
+
   </main>
+
 
 
   <script>
 
+    /* ===================================
+       ELEMENTOS
+    =================================== */
+
     const botonEntrar =
       document.querySelector("#entrar");
+
 
     const porton =
       document.querySelector("#porton");
 
+
     const escenaMapa =
       document.querySelector("#mapa");
+
 
     const escenaPerdida =
       document.querySelector("#perdida");
 
 
+    const escenaQuirofano =
+      document.querySelector("#quirofano");
+
+
     let mapaInicializado = false;
 
+
+
+    /* ===================================
+       PORTÓN → MAPA
+    =================================== */
 
     botonEntrar.addEventListener(
       "click",
@@ -298,6 +691,7 @@
         porton.classList.remove(
           "escena-activa"
         );
+
 
         escenaMapa.classList.add(
           "escena-activa"
@@ -316,20 +710,63 @@
     );
 
 
+
+    /* ===================================
+       MAPA → PÉRDIDA
+    =================================== */
+
     function mostrarPerdida() {
 
       escenaMapa.classList.remove(
         "escena-activa"
       );
 
+
       escenaPerdida.classList.add(
+        "escena-activa"
+      );
+
+
+      /*
+        Después de mostrar
+        "pérdida de sustancia",
+        esperamos unos segundos.
+      */
+
+      window.setTimeout(
+        mostrarQuirofano,
+        2600
+      );
+
+    }
+
+
+
+    /* ===================================
+       PÉRDIDA → QUIRÓFANO
+    =================================== */
+
+    function mostrarQuirofano() {
+
+      escenaPerdida.classList.remove(
+        "escena-activa"
+      );
+
+
+      escenaQuirofano.classList.add(
         "escena-activa"
       );
 
     }
 
 
+
+    /* ===================================
+       CREAR MAPA
+    =================================== */
+
     function crearMapa() {
+
 
       const coordenadasPorton = [
         14.643277895439471,
@@ -343,6 +780,7 @@
       ];
 
 
+
       const mapa =
         L.map(
           "mapa-real",
@@ -352,17 +790,26 @@
         );
 
 
+
+      /* MAPA CLARO */
+
       L.tileLayer(
         "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
         {
+
           subdomains: "abcd",
+
           maxZoom: 20,
 
           attribution:
             "&copy; OpenStreetMap contributors &copy; CARTO"
+
         }
       ).addTo(mapa);
 
+
+
+      /* RECORRIDO */
 
       const ruta = [
 
@@ -389,7 +836,9 @@
         [14.6065, -90.5560],
 
         coordenadasHospital
+
       ];
+
 
 
       mapa.fitBounds(
@@ -400,15 +849,25 @@
       );
 
 
+
+      /* LÍNEA ROJA */
+
       L.polyline(
         ruta,
         {
+
           color: "#8b0000",
+
           weight: 3,
+
           opacity: 0.45
+
         }
       ).addTo(mapa);
 
+
+
+      /* PUNTO ROJO */
 
       const iconoPunto =
         L.divIcon({
@@ -418,11 +877,18 @@
           html:
             '<div class="punto-viajero"></div>',
 
-          iconSize: [18, 18],
+          iconSize: [
+            18,
+            18
+          ],
 
-          iconAnchor: [9, 9]
+          iconAnchor: [
+            9,
+            9
+          ]
 
         });
+
 
 
       const punto =
@@ -434,6 +900,11 @@
         ).addTo(mapa);
 
 
+
+      /* ===================================
+         ANIMACIÓN
+      =================================== */
+
       let tramo = 0;
 
       let progreso = 0;
@@ -441,10 +912,13 @@
       const velocidad = 0.01;
 
 
+
       function animar() {
+
 
         const inicio =
           ruta[tramo];
+
 
         const final =
           ruta[tramo + 1];
@@ -453,9 +927,13 @@
         progreso += velocidad;
 
 
+
         if (progreso > 1) {
+
           progreso = 1;
+
         }
+
 
 
         const lat =
@@ -467,6 +945,7 @@
           progreso;
 
 
+
         const lng =
           inicio[1] +
           (
@@ -476,10 +955,17 @@
           progreso;
 
 
+
         punto.setLatLng(
-          [lat, lng]
+          [
+            lat,
+            lng
+          ]
         );
 
+
+
+        /* MARCAS */
 
         if (
           Math.random() >
@@ -495,11 +981,16 @@
         }
 
 
-        if (progreso >= 1) {
+
+        /* FINAL DE UN TRAMO */
+
+        if (
+          progreso >= 1
+        ) {
+
 
           /*
-            Si este era el último tramo,
-            termina el mapa.
+            ÚLTIMO TRAMO
           */
 
           if (
@@ -507,7 +998,7 @@
             ruta.length - 2
           ) {
 
-            setTimeout(
+            window.setTimeout(
               mostrarPerdida,
               1000
             );
@@ -524,6 +1015,7 @@
         }
 
 
+
         requestAnimationFrame(
           animar
         );
@@ -531,10 +1023,16 @@
       }
 
 
+
       animar();
 
     }
 
+
+
+    /* ===================================
+       CREAR MARCAS ROJAS
+    =================================== */
 
     function crearMarca(
       mapa,
@@ -542,15 +1040,18 @@
       lng
     ) {
 
+
       const tamaño =
         5 +
         Math.random() * 7;
+
 
 
       const iconoMarca =
         L.divIcon({
 
           className: "",
+
 
           html:
             `
@@ -563,10 +1064,12 @@
               ></div>
             `,
 
+
           iconSize: [
             tamaño,
             tamaño
           ],
+
 
           iconAnchor: [
             tamaño / 2,
@@ -576,8 +1079,10 @@
         });
 
 
+
       L.marker(
         [
+
           lat +
           (
             Math.random() -
@@ -585,17 +1090,24 @@
           ) *
           0.00035,
 
+
           lng +
           (
             Math.random() -
             0.5
           ) *
           0.00035
+
         ],
 
         {
-          icon: iconoMarca,
-          interactive: false
+
+          icon:
+            iconoMarca,
+
+          interactive:
+            false
+
         }
 
       ).addTo(mapa);
