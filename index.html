@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
 
@@ -32,9 +33,9 @@
     }
 
     :root {
-      --corinto: #5f1028;
-      --corinto-medio: #741a33;
-      --corinto-claro: #8c3047;
+      --corinto: #64152e;
+      --corinto-medio: #7d2540;
+      --corinto-claro: #983c57;
     }
 
     body {
@@ -51,10 +52,14 @@
 
     .escena {
       display: none;
+
       min-height: 100vh;
+
       padding: 40px 20px;
+
       align-items: center;
       justify-content: center;
+
       text-align: center;
     }
 
@@ -65,11 +70,16 @@
 
     button {
       padding: 12px 24px;
+
       border: 1px solid white;
       border-radius: 999px;
+
       background: transparent;
+
       color: white;
+
       font-size: 16px;
+
       cursor: pointer;
     }
 
@@ -78,13 +88,20 @@
       color: black;
     }
 
+    /* =========================
+       CRÉDITOS
+    ========================= */
+
     .credito-foto {
       position: absolute;
+
       right: 18px;
       bottom: 18px;
-      z-index: 20;
+
+      z-index: 30;
 
       margin: 0;
+
       padding: 7px 10px;
 
       border-radius: 6px;
@@ -93,6 +110,7 @@
         rgba(0, 0, 0, 0.55);
 
       color: white;
+
       font-size: 12px;
     }
 
@@ -101,7 +119,7 @@
     }
 
     /* =========================
-       PORTÓN
+       1. PORTÓN
     ========================= */
 
     #porton {
@@ -121,6 +139,7 @@
 
     #porton h1 {
       margin: 0 0 12px;
+
       font-size: 38px;
     }
 
@@ -129,7 +148,7 @@
     }
 
     /* =========================
-       MAPA
+       2. MAPA
     ========================= */
 
     #mapa {
@@ -157,8 +176,7 @@
       width: 100%;
       height: 72vh;
 
-      border:
-        1px solid #444;
+      border: 1px solid #444;
 
       overflow: hidden;
     }
@@ -169,25 +187,23 @@
 
       border-radius: 50%;
 
-      background:
-        var(--corinto);
+      background: var(--corinto);
 
       box-shadow:
-        0 0 0 3px rgba(95, 16, 40, 0.25),
-        0 0 14px rgba(95, 16, 40, 0.7);
+        0 0 0 3px rgba(100, 21, 46, 0.25),
+        0 0 14px rgba(100, 21, 46, 0.7);
     }
 
     .marca-roja {
       border-radius: 50%;
 
-      background:
-        var(--corinto);
+      background: var(--corinto);
 
       opacity: 0.7;
     }
 
     /* =========================
-       DIAGNÓSTICO
+       3. DIAGNÓSTICO
     ========================= */
 
     #perdida {
@@ -197,9 +213,7 @@
     .texto-perdida {
       margin: 0;
 
-      font-family:
-        Georgia,
-        serif;
+      font-family: Georgia, serif;
 
       font-size:
         clamp(
@@ -209,14 +223,14 @@
         );
 
       font-weight: 400;
+
       line-height: 1.2;
 
-      letter-spacing:
-        -0.03em;
+      letter-spacing: -0.03em;
     }
 
     /* =========================
-       SALA DE OPERACIÓN
+       4. QUIRÓFANO
     ========================= */
 
     #quirofano {
@@ -226,47 +240,43 @@
 
       padding-bottom: 100px;
 
-      background:
-        #18040a;
+      background: #100207;
     }
 
     /*
-      La fotografía ahora sí tiene
-      una opacidad independiente.
+      La foto ahora es un elemento
+      separado y tiene solo 16 %
+      de opacidad.
     */
 
-    #quirofano::before {
-      content: "";
-
+    .fondo-quirofano {
       position: absolute;
+
       inset: 0;
 
       z-index: 0;
 
-      background-image:
-        url("quirofano.jpg");
+      width: 100%;
+      height: 100%;
 
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
+      object-fit: cover;
 
-      opacity: 0.29;
+      opacity: 0.16;
+
+      filter:
+        brightness(0.72)
+        saturate(0.65);
     }
 
-    /*
-      Velo corinto encima de la foto.
-    */
-
-    #quirofano::after {
-      content: "";
-
+    .velo-quirofano {
       position: absolute;
+
       inset: 0;
 
       z-index: 1;
 
       background:
-        rgba(78, 8, 29, 0.31);
+        rgba(75, 5, 27, 0.35);
 
       pointer-events: none;
     }
@@ -286,19 +296,13 @@
 
       overflow-y: auto;
 
-      padding:
-        20px 10px;
+      padding: 20px 10px;
 
       text-align: left;
-
-      text-shadow:
-        0 1px 2px
-        rgba(255, 255, 255, 0.12);
     }
 
     .titulo-quirofano {
-      margin:
-        0 0 28px;
+      margin: 0 0 28px;
 
       text-align: center;
 
@@ -311,8 +315,7 @@
 
       font-weight: 400;
 
-      color:
-        #781c38;
+      color: #86213f;
     }
 
     .guion {
@@ -325,8 +328,7 @@
 
       line-height: 1.7;
 
-      color:
-        #71172f;
+      color: #7d1d39;
     }
 
     .guion p {
@@ -334,39 +336,30 @@
     }
 
     .personaje {
-      margin-top:
-        22px !important;
-
-      margin-bottom:
-        5px !important;
+      margin-top: 22px !important;
+      margin-bottom: 5px !important;
 
       font-weight: bold;
 
-      letter-spacing:
-        0.08em;
+      letter-spacing: 0.08em;
 
-      color:
-        #5a1026;
+      color: #71142f;
     }
 
     .dialogo {
-      color:
-        #71172f;
+      color: #7d1d39;
     }
 
     .accion {
-      margin:
-        20px 0 !important;
+      margin: 20px 0 !important;
 
       font-style: italic;
 
-      color:
-        #7d2840;
+      color: #8b3049;
     }
 
     .cuenta {
-      margin:
-        32px 0 !important;
+      margin: 32px 0 !important;
 
       text-align: center;
 
@@ -377,11 +370,9 @@
           4rem
         );
 
-      letter-spacing:
-        0.1em;
+      letter-spacing: 0.1em;
 
-      color:
-        #64132c;
+      color: #73152f;
     }
 
     .siguiente-quirofano {
@@ -390,8 +381,7 @@
       left: 50%;
       bottom: 32px;
 
-      transform:
-        translateX(-50%);
+      transform: translateX(-50%);
 
       z-index: 30;
     }
@@ -407,7 +397,7 @@
     }
 
     /* =========================
-       EL MEÑIQUE
+       5. EL MEÑIQUE
     ========================= */
 
     #menique {
@@ -421,17 +411,13 @@
           94vw
         );
 
-      margin:
-        0 auto;
+      margin: 0 auto;
     }
 
     .titulo-menique {
-      margin:
-        0 0 10px;
+      margin: 0 0 10px;
 
-      font-family:
-        Georgia,
-        serif;
+      font-family: Georgia, serif;
 
       font-size:
         clamp(
@@ -444,14 +430,11 @@
     }
 
     .texto-menique {
-      margin:
-        0 auto 26px;
+      margin: 0 auto 26px;
 
       max-width: 850px;
 
-      font-family:
-        Georgia,
-        serif;
+      font-family: Georgia, serif;
 
       font-size:
         clamp(
@@ -467,7 +450,7 @@
     }
 
     /* =========================
-       ESCENARIO DE LA MANO
+       MANO / CANVAS
     ========================= */
 
     .escenario-mano {
@@ -479,249 +462,63 @@
           92vw
         );
 
-      margin:
-        0 auto;
+      aspect-ratio:
+        1542 / 2048;
+
+      margin: 0 auto;
 
       overflow: hidden;
 
-      line-height: 0;
-
-      background:
-        #24050e;
+      background: #24050e;
 
       border:
         1px solid
-        rgba(95, 16, 40, 0.24);
+        rgba(100, 21, 46, 0.25);
     }
 
-    /*
-      FOTO PRINCIPAL:
-      ahora bastante más transparente.
-    */
+    #canvas-mano {
+      position: absolute;
 
-    .mano-base {
-      position: relative;
+      inset: 0;
 
       display: block;
 
       width: 100%;
-      height: auto;
-
-      z-index: 1;
-
-      opacity: 0.31;
-
-      filter:
-        brightness(0.63)
-        contrast(0.87)
-        saturate(0.55);
-    }
-
-    /* =========================
-       PEDAZOS DEL MEÑIQUE
-
-       Son la misma mano.jpg,
-       colocada exactamente encima.
-    ========================= */
-
-    .fragmento-menique {
-      position: absolute;
-
-      inset: 0;
-
-      width: 100%;
       height: 100%;
-
-      object-fit: fill;
-
-      z-index: 3;
-
-      opacity: 0.70;
-
-      filter:
-        brightness(0.67)
-        contrast(0.93)
-        saturate(0.60);
-
-      pointer-events: none;
-
-      will-change:
-        transform;
     }
 
     /*
-      PUNTA DEL MEÑIQUE.
-
-      Estas coordenadas están
-      recalculadas a partir de
-      la posición real de tu dedo.
+      Un único velo corinto.
     */
 
-    .fragmento-1 {
-      clip-path:
-        polygon(
-          21.8% 34.0%,
-          23.1% 33.4%,
-          24.7% 34.0%,
-          28.4% 37.7%,
-          28.9% 38.2%,
-          26.2% 40.2%,
-          25.3% 40.0%,
-          22.4% 36.6%
-        );
-    }
-
-    /*
-      PARTE MEDIA.
-    */
-
-    .fragmento-2 {
-      clip-path:
-        polygon(
-          25.6% 40.2%,
-          28.8% 38.2%,
-          35.1% 42.0%,
-          34.9% 42.5%,
-          31.1% 44.0%,
-          30.4% 43.7%
-        );
-    }
-
-    /*
-      PARTE INFERIOR DEL MEÑIQUE.
-    */
-
-    .fragmento-3 {
-      clip-path:
-        polygon(
-          30.9% 43.9%,
-          34.9% 42.1%,
-          39.6% 45.5%,
-          39.6% 46.0%,
-          35.6% 47.6%,
-          34.9% 47.3%
-        );
-    }
-
-    /* =========================
-       APERTURAS
-
-       Se colocan SOBRE las líneas
-       negras reales del meñique.
-    ========================= */
-
-    .corte-menique {
-      position: absolute;
-
-      z-index: 7;
-
-      height: 3px;
-
-      border-radius: 999px;
-
-      transform-origin:
-        left center;
-
-      background:
-        rgba(20, 2, 7, 0.96);
-
-      box-shadow:
-        0 0 5px
-        rgba(95, 16, 40, 0.8);
-
-      pointer-events: none;
-
-      transition:
-        height 0.05s linear;
-    }
-
-    /*
-      Primera línea negra.
-    */
-
-    .corte-1 {
-      left: 25.55%;
-      top: 40.18%;
-
-      width: 4.1%;
-
-      transform:
-        rotate(-37deg);
-    }
-
-    /*
-      Segunda línea negra.
-    */
-
-    .corte-2 {
-      left: 30.89%;
-      top: 43.91%;
-
-      width: 4.6%;
-
-      transform:
-        rotate(-29deg);
-    }
-
-    /*
-      Línea de la base del meñique.
-    */
-
-    .corte-3 {
-      left: 35.56%;
-      top: 47.64%;
-
-      width: 4.6%;
-
-      transform:
-        rotate(-29deg);
-    }
-
-    /* =========================
-       VELO CORINTO SOBRE
-       TODA LA MANO
-    ========================= */
-
-    .velo-corinto {
+    .velo-mano {
       position: absolute;
 
       inset: 0;
 
-      z-index: 6;
+      z-index: 4;
 
       background:
-        rgba(92, 9, 35, 0.34);
-
-      mix-blend-mode:
-        multiply;
+        rgba(100, 14, 44, 0.12);
 
       pointer-events: none;
     }
 
     /* =========================
-       UN ÚNICO RELOJ
-
-       NO usa reloj.jpg.
-       NO hay imagen detrás.
-       NO hay segundo número.
+       UN SOLO RELOJ
     ========================= */
 
-    .reloj-superpuesto {
+    .reloj-hospital {
       position: absolute;
 
-      left: 50%;
-      top: 48%;
+      left: 5%;
+      right: 5%;
 
-      transform:
-        translate(
-          -50%,
-          -50%
-        );
+      top: 40%;
+
+      height: 19%;
 
       z-index: 10;
-
-      width: 90%;
-      height: 26%;
 
       display: flex;
 
@@ -729,60 +526,30 @@
       justify-content: center;
 
       background:
-        rgba(50, 4, 18, 0.18) !important;
-
-      background-image:
-        none !important;
+        rgba(45, 3, 16, 0.16);
 
       border:
         1px solid
-        rgba(111, 25, 52, 0.34);
+        rgba(120, 29, 58, 0.42);
 
       box-shadow:
-        none;
+        inset 0 0 35px
+        rgba(100, 15, 43, 0.12);
 
       pointer-events: none;
     }
 
     /*
-      Mata cualquier pseudo-elemento
-      de versiones anteriores.
+      No hay reloj.jpg.
+      No hay números debajo.
+      Solo existe este texto.
     */
-
-    .reloj-superpuesto::before,
-    .reloj-superpuesto::after {
-      content:
-        none !important;
-
-      display:
-        none !important;
-
-      background-image:
-        none !important;
-    }
-
-    /*
-      Si quedara algún elemento viejo
-      de reloj.jpg por accidente,
-      también desaparece.
-    */
-
-    .reloj-cuadro,
-    .reloj-circulo,
-    .aguja,
-    .numero-reloj,
-    .marca-hora,
-    .centro-reloj {
-      display:
-        none !important;
-    }
 
     .hora-digital {
-      position: relative;
-
-      z-index: 12;
-
       margin: 0;
+
+      color:
+        rgba(112, 21, 50, 0.96);
 
       font-family:
         "Courier New",
@@ -792,33 +559,17 @@
         clamp(
           2.4rem,
           9vw,
-          5.6rem
+          5.5rem
         );
 
       font-weight: 700;
 
+      letter-spacing: 0.08em;
+
       font-variant-numeric:
         tabular-nums;
 
-      letter-spacing:
-        0.08em;
-
-      color:
-        rgba(
-          105,
-          18,
-          47,
-          0.95
-        );
-
-      /*
-        SIN text-shadow para evitar
-        cualquier sensación de
-        doble número.
-      */
-
-      text-shadow:
-        none;
+      text-shadow: none;
     }
 
     /* =========================
@@ -826,15 +577,13 @@
     ========================= */
 
     .estado-menique {
-      margin:
-        22px auto 0;
+      margin: 22px auto 0;
 
       min-height: 72px;
+
       max-width: 850px;
 
-      font-family:
-        Georgia,
-        serif;
+      font-family: Georgia, serif;
 
       font-size:
         clamp(
@@ -864,10 +613,13 @@
       color: white;
     }
 
+    /* =========================
+       MÓVIL
+    ========================= */
+
     @media (max-width: 760px) {
       .escena {
-        padding:
-          20px 12px;
+        padding: 20px 12px;
       }
 
       #mapa-real {
@@ -883,9 +635,11 @@
         max-height: 65vh;
       }
 
-      .reloj-superpuesto {
-        width: 92%;
-        height: 25%;
+      .reloj-hospital {
+        left: 4%;
+        right: 4%;
+
+        height: 18%;
       }
 
       .hora-digital {
@@ -900,12 +654,12 @@
   </style>
 </head>
 
-<body data-version="34">
+<body>
 
   <main>
 
     <!-- =========================
-         PORTÓN
+         1. PORTÓN
     ========================= -->
 
     <section
@@ -954,9 +708,8 @@
 
     </section>
 
-
     <!-- =========================
-         MAPA
+         2. MAPA
     ========================= -->
 
     <section
@@ -976,9 +729,8 @@
 
     </section>
 
-
     <!-- =========================
-         DIAGNÓSTICO
+         3. DIAGNÓSTICO
     ========================= -->
 
     <section
@@ -992,15 +744,24 @@
 
     </section>
 
-
     <!-- =========================
-         SALA DE OPERACIÓN
+         4. QUIRÓFANO
     ========================= -->
 
     <section
       class="escena"
       id="quirofano"
     >
+
+      <img
+        src="quirofano.jpg"
+        alt=""
+        class="fondo-quirofano"
+      >
+
+      <div
+        class="velo-quirofano"
+      ></div>
 
       <div class="contenido-quirofano">
 
@@ -1115,9 +876,8 @@
 
     </section>
 
-
     <!-- =========================
-         EL MEÑIQUE
+         5. EL MEÑIQUE
     ========================= -->
 
     <section
@@ -1137,74 +897,32 @@
           Colgajo para reconstrucción del pulpejo y del lecho ungueal.
         </p>
 
-
         <div
           class="escenario-mano"
           id="escenario-mano"
         >
 
-          <!-- FOTO PRINCIPAL -->
+          <!--
+            Toda la mano y la separación
+            se dibujan aquí.
+          -->
 
-          <img
-            src="mano.jpg"
-            alt=""
-            class="mano-base"
-          >
-
-
-          <!-- TRES PARTES DEL MEÑIQUE -->
-
-          <img
-            src="mano.jpg"
-            alt=""
-            class="fragmento-menique fragmento-1"
-            id="fragmento-1"
-          >
-
-          <img
-            src="mano.jpg"
-            alt=""
-            class="fragmento-menique fragmento-2"
-            id="fragmento-2"
-          >
-
-          <img
-            src="mano.jpg"
-            alt=""
-            class="fragmento-menique fragmento-3"
-            id="fragmento-3"
-          >
-
-
-          <!-- LÍNEAS NEGRAS -->
+          <canvas
+            id="canvas-mano"
+            width="1542"
+            height="2048"
+          ></canvas>
 
           <div
-            class="corte-menique corte-1"
-            id="corte-1"
+            class="velo-mano"
           ></div>
 
-          <div
-            class="corte-menique corte-2"
-            id="corte-2"
-          ></div>
+          <!--
+            UN SOLO RELOJ.
+          -->
 
           <div
-            class="corte-menique corte-3"
-            id="corte-3"
-          ></div>
-
-
-          <!-- VELO CORINTO -->
-
-          <div
-            class="velo-corinto"
-          ></div>
-
-
-          <!-- UN SOLO RELOJ -->
-
-          <div
-            class="reloj-superpuesto"
+            class="reloj-hospital"
           >
 
             <p
@@ -1217,7 +935,6 @@
           </div>
 
         </div>
-
 
         <p
           class="estado-menique"
@@ -1232,10 +949,7 @@
 
   </main>
 
-
   <script>
-    console.log("EL ACCIDENTE — versión 34");
-
     /* =========================
        ESCENAS
     ========================= */
@@ -1261,10 +975,8 @@
     const botonMenique =
       document.querySelector("#boton-menique");
 
-
     let mapaInicializado = false;
     let meniqueIniciado = false;
-
 
     function cambiarEscena(
       escenaActual,
@@ -1284,7 +996,6 @@
       );
     }
 
-
     botonEntrar.addEventListener(
       "click",
       function () {
@@ -1300,7 +1011,6 @@
         }
       }
     );
-
 
     botonMenique.addEventListener(
       "click",
@@ -1318,13 +1028,11 @@
       }
     );
 
-
     /* =========================
        MAPA
     ========================= */
 
     function crearMapa() {
-
       const coordenadasPorton = [
         14.643277895439471,
         -90.50234271356774
@@ -1335,7 +1043,6 @@
         -90.56026555839702
       ];
 
-
       const mapa =
         L.map(
           "mapa-real",
@@ -1343,7 +1050,6 @@
             zoomControl: false
           }
         );
-
 
       L.tileLayer(
         "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
@@ -1359,9 +1065,9 @@
         mapa
       );
 
-
       const ruta = [
         coordenadasPorton,
+
         [14.6410, -90.5060],
         [14.6375, -90.5115],
         [14.6340, -90.5175],
@@ -1372,9 +1078,9 @@
         [14.6135, -90.5460],
         [14.6100, -90.5510],
         [14.6065, -90.5560],
+
         coordenadasHospital
       ];
-
 
       mapa.fitBounds(
         L.latLngBounds(
@@ -1385,11 +1091,10 @@
         }
       );
 
-
       L.polyline(
         ruta,
         {
-          color: "#5f1028",
+          color: "#64152e",
 
           weight: 3,
 
@@ -1398,7 +1103,6 @@
       ).addTo(
         mapa
       );
-
 
       const iconoPunto =
         L.divIcon({
@@ -1412,7 +1116,6 @@
           iconAnchor: [9, 9]
         });
 
-
       const punto =
         L.marker(
           coordenadasPorton,
@@ -1423,29 +1126,23 @@
           mapa
         );
 
-
       let tramo = 0;
       let progreso = 0;
 
       const velocidad = 0.01;
 
-
       function animarRuta() {
-
         const inicio =
           ruta[tramo];
 
         const final =
           ruta[tramo + 1];
 
-
         progreso += velocidad;
-
 
         if (progreso > 1) {
           progreso = 1;
         }
-
 
         const lat =
           inicio[0] +
@@ -1455,7 +1152,6 @@
           ) *
           progreso;
 
-
         const lng =
           inicio[1] +
           (
@@ -1464,11 +1160,12 @@
           ) *
           progreso;
 
-
         punto.setLatLng(
-          [lat, lng]
+          [
+            lat,
+            lng
+          ]
         );
-
 
         if (Math.random() > 0.9) {
           crearMarca(
@@ -1478,35 +1175,27 @@
           );
         }
 
-
         if (progreso >= 1) {
-
           if (
             tramo ===
             ruta.length - 2
           ) {
-
             window.setTimeout(
               function () {
-
                 cambiarEscena(
                   escenaMapa,
                   escenaPerdida
                 );
 
-
                 window.setTimeout(
                   function () {
-
                     cambiarEscena(
                       escenaPerdida,
                       escenaQuirofano
                     );
-
                   },
                   2800
                 );
-
               },
               1000
             );
@@ -1514,34 +1203,26 @@
             return;
           }
 
-
           tramo++;
-
           progreso = 0;
         }
-
 
         requestAnimationFrame(
           animarRuta
         );
       }
 
-
       animarRuta();
     }
-
 
     function crearMarca(
       mapa,
       lat,
       lng
     ) {
-
       const tamaño =
         5 +
-        Math.random() *
-        7;
-
+        Math.random() * 7;
 
       const iconoMarca =
         L.divIcon({
@@ -1559,7 +1240,10 @@
             `,
 
           iconSize:
-            [tamaño, tamaño],
+            [
+              tamaño,
+              tamaño
+            ],
 
           iconAnchor:
             [
@@ -1567,7 +1251,6 @@
               tamaño / 2
             ]
         });
-
 
       L.marker(
         [
@@ -1597,489 +1280,313 @@
       );
     }
 
-
     /* =========================
-       RELOJ
+       MANO
     ========================= */
+
+    const canvas =
+      document.querySelector(
+        "#canvas-mano"
+      );
+
+    const ctx =
+      canvas.getContext(
+        "2d"
+      );
 
     const horaDigital =
       document.querySelector(
         "#hora-digital"
       );
 
-
-    function actualizarReloj(
-      minutosTotales
-    ) {
-
-      const horas =
-        Math.floor(
-          minutosTotales /
-          60
-        );
-
-
-      const minutos =
-        Math.floor(
-          minutosTotales %
-          60
-        );
-
-
-      horaDigital.textContent =
-        String(
-          horas
-        ).padStart(
-          2,
-          "0"
-        )
-        +
-        ":"
-        +
-        String(
-          minutos
-        ).padStart(
-          2,
-          "0"
-        );
-    }
-
-
-    /* =========================
-       MEÑIQUE
-    ========================= */
-
-    const escenarioMano =
-      document.querySelector(
-        "#escenario-mano"
-      );
-
-
-    const fragmentos = [
-      document.querySelector(
-        "#fragmento-1"
-      ),
-
-      document.querySelector(
-        "#fragmento-2"
-      ),
-
-      document.querySelector(
-        "#fragmento-3"
-      )
-    ];
-
-
-    const cortes = [
-      document.querySelector(
-        "#corte-1"
-      ),
-
-      document.querySelector(
-        "#corte-2"
-      ),
-
-      document.querySelector(
-        "#corte-3"
-      )
-    ];
-
-
     const estadoMenique =
       document.querySelector(
         "#estado-menique"
       );
 
+    const imagenMano =
+      new Image();
 
-    function easeInOutCubic(t) {
-
-      if (t < 0.5) {
-        return 4 * t * t * t;
-      }
-
-      return 1 -
-        Math.pow(
-          -2 * t + 2,
-          3
-        ) /
-        2;
-    }
-
-
-    function easeInQuad(t) {
-      return t * t;
-    }
-
+    imagenMano.src =
+      "mano.jpg";
 
     /*
-      AHORA LA SEPARACIÓN
-      SUCEDE SOLO EN EL PROPIO MEÑIQUE.
+      Esta es la resolución exacta
+      de mano.jpg.
     */
 
-    function aplicarSeparacion(t) {
+    const ANCHO_MANO = 1542;
+    const ALTO_MANO = 2048;
 
-      const escala =
-        escenarioMano.clientWidth /
-        820;
+    /*
+      Las cuatro partes fueron ubicadas
+      directamente sobre la foto original.
 
+      Las fronteras corresponden a
+      las tres líneas negras del meñique.
+    */
 
-      /*
-        PUNTA:
-        se mueve ligeramente
-        hacia arriba e izquierda.
+    const segmentosMenique = [
+      [
+        [432, 744],
+        [470, 742],
+        [507, 763],
+        [539, 806],
+        [545, 837],
+        [536, 867],
+        [500, 848],
+        [475, 820],
+        [452, 792],
+        [439, 765]
+      ],
 
-        CENTRO:
-        casi permanece en su lugar.
+      [
+        [494, 840],
+        [536, 866],
+        [559, 884],
+        [603, 918],
+        [596, 941],
+        [558, 917],
+        [533, 894],
+        [515, 872]
+      ],
 
-        BASE:
-        se mueve ligeramente
-        hacia abajo y derecha.
-      */
+      [
+        [558, 916],
+        [596, 940],
+        [621, 957],
+        [672, 985],
+        [668, 1006],
+        [632, 986],
+        [601, 966],
+        [578, 946]
+      ],
 
-      const movimientos = [
-        {
-          x: -9,
-          y: -8,
-          rot: -1.1
-        },
+      [
+        [632, 985],
+        [668, 1005],
+        [687, 1019],
+        [703, 1034],
+        [688, 1052],
+        [660, 1034],
+        [641, 1017]
+      ]
+    ];
 
-        {
-          x: -1,
-          y: -1,
-          rot: -0.15
-        },
+    /*
+      Las tres líneas negras exactas.
+    */
 
-        {
-          x: 7,
-          y: 7,
-          rot: 0.8
-        }
-      ];
+    const lineasMenique = [
+      [
+        [494, 840],
+        [536, 866]
+      ],
 
+      [
+        [558, 916],
+        [596, 940]
+      ],
 
-      fragmentos.forEach(
-        function (
-          fragmento,
-          indice
-        ) {
+      [
+        [632, 985],
+        [668, 1005]
+      ]
+    ];
 
-          const movimiento =
-            movimientos[indice];
+    /*
+      Movimientos muy pequeños.
+      El dedo se queda sobre sí mismo.
+    */
 
+    const movimientosMenique = [
+      {
+        x: -22,
+        y: -18,
+        rotacion: -0.018
+      },
 
-          const x =
-            movimiento.x *
-            escala *
-            t;
+      {
+        x: -8,
+        y: -7,
+        rotacion: -0.007
+      },
 
+      {
+        x: 7,
+        y: 6,
+        rotacion: 0.007
+      },
 
-          const y =
-            movimiento.y *
-            escala *
-            t;
+      {
+        x: 16,
+        y: 13,
+        rotacion: 0.016
+      }
+    ];
 
-
-          const rot =
-            movimiento.rot *
-            t;
-
-
-          fragmento.style.transform =
-            `
-              translate(
-                ${x}px,
-                ${y}px
-              )
-              rotate(
-                ${rot}deg
-              )
-            `;
-        }
-      );
-
-
-      /*
-        LAS LÍNEAS NEGRAS
-        SE ABREN.
-
-        No aparecen polígonos
-        grises a un lado.
-      */
-
-      cortes.forEach(
-        function (corte) {
-
-          corte.style.height =
-            (
-              3 +
-              11 * t
-            )
-            +
-            "px";
-
-
-          corte.style.opacity =
-            (
-              0.65 +
-              0.35 * t
-            );
-        }
-      );
-    }
-
-
-    function cambiarTexto(
-      texto,
-      final = false
+    function crearPoligono(
+      puntos
     ) {
+      ctx.beginPath();
 
-      estadoMenique.style.opacity =
-        "0";
-
-
-      window.setTimeout(
-        function () {
-
-          estadoMenique.textContent =
-            texto;
-
-
-          if (final) {
-            estadoMenique.classList.add(
-              "final"
-            );
-          } else {
-            estadoMenique.classList.remove(
-              "final"
-            );
-          }
-
-
-          estadoMenique.style.opacity =
-            "1";
-
-        },
-        160
-      );
-    }
-
-
-    function iniciarEscenaMenique() {
-
-      actualizarReloj(
-        7 * 60
+      ctx.moveTo(
+        puntos[0][0],
+        puntos[0][1]
       );
 
-
-      aplicarSeparacion(
-        0
-      );
-
-
-      estadoMenique.classList.remove(
-        "final"
-      );
-
-
-      const duracionDesarme =
-        7000;
-
-
-      const duracionRearme =
-        2800;
-
-
-      const inicio =
-        performance.now();
-
-
-      let etapaTexto =
-        -1;
-
-
-      function animar(ahora) {
-
-        const transcurrido =
-          ahora -
-          inicio;
-
-
-        /* =====================
-           7 → 9
-        ===================== */
-
-        if (
-          transcurrido <=
-          duracionDesarme
-        ) {
-
-          const progreso =
-            transcurrido /
-            duracionDesarme;
-
-
-          const suave =
-            easeInOutCubic(
-              progreso
-            );
-
-
-          const minutos =
-            7 * 60 +
-            (
-              9 * 60 -
-              7 * 60
-            ) *
-            progreso;
-
-
-          actualizarReloj(
-            minutos
-          );
-
-
-          aplicarSeparacion(
-            suave
-          );
-
-
-          if (
-            progreso <
-            0.33
-          ) {
-
-            if (
-              etapaTexto !== 0
-            ) {
-
-              etapaTexto = 0;
-
-              cambiarTexto(
-                "De 7 a 9 se desarma el meñique con el que nací."
-              );
-            }
-
-          } else if (
-            progreso <
-            0.67
-          ) {
-
-            if (
-              etapaTexto !== 1
-            ) {
-
-              etapaTexto = 1;
-
-              cambiarTexto(
-                "Ahora tengo uno nuevo que todavía no conozco."
-              );
-            }
-
-          } else {
-
-            if (
-              etapaTexto !== 2
-            ) {
-
-              etapaTexto = 2;
-
-              cambiarTexto(
-                "Me da miedo verlo."
-              );
-            }
-          }
-
-
-          requestAnimationFrame(
-            animar
-          );
-
-          return;
-        }
-
-
-        /* =====================
-           9 → 11
-        ===================== */
-
-        const faseDos =
-          transcurrido -
-          duracionDesarme;
-
-
-        if (
-          faseDos <=
-          duracionRearme
-        ) {
-
-          const progreso =
-            faseDos /
-            duracionRearme;
-
-
-          const acelerado =
-            easeInQuad(
-              progreso
-            );
-
-
-          const minutos =
-            9 * 60 +
-            (
-              11 * 60 -
-              9 * 60
-            ) *
-            acelerado;
-
-
-          actualizarReloj(
-            minutos
-          );
-
-
-          aplicarSeparacion(
-            1 -
-            easeInOutCubic(
-              progreso
-            )
-          );
-
-
-          requestAnimationFrame(
-            animar
-          );
-
-          return;
-        }
-
-
-        /* =====================
-           11:00
-        ===================== */
-
-        actualizarReloj(
-          11 * 60
-        );
-
-
-        aplicarSeparacion(
-          0
-        );
-
-
-        cambiarTexto(
-          "A las 11 regresé de la anestesia con un dedo distinto: el mismo, pero mutante.",
-          true
+      for (
+        let i = 1;
+        i < puntos.length;
+        i++
+      ) {
+        ctx.lineTo(
+          puntos[i][0],
+          puntos[i][1]
         );
       }
 
-
-      requestAnimationFrame(
-        animar
-      );
+      ctx.closePath();
     }
 
-  </script>
+    function centroPoligono(
+      puntos
+    ) {
+      let x = 0;
+      let y = 0;
 
-</body>
-</html>
+      puntos.forEach(
+        function (punto) {
+          x += punto[0];
+          y += punto[1];
+        }
+      );
+
+      return {
+        x: x / puntos.length,
+        y: y / puntos.length
+      };
+    }
+
+    function dibujarSeparacion(
+      punto1,
+      punto2,
+      cantidad
+    ) {
+      const x1 = punto1[0];
+      const y1 = punto1[1];
+
+      const x2 = punto2[0];
+      const y2 = punto2[1];
+
+      const vx =
+        x2 - x1;
+
+      const vy =
+        y2 - y1;
+
+      const longitud =
+        Math.hypot(
+          vx,
+          vy
+        );
+
+      const nx =
+        -vy / longitud;
+
+      const ny =
+        vx / longitud;
+
+      /*
+        Se ensancha justamente
+        sobre la línea negra.
+      */
+
+      const grosor =
+        1.5 +
+        4.5 * cantidad;
+
+      ctx.beginPath();
+
+      ctx.moveTo(
+        x1 + nx * grosor,
+        y1 + ny * grosor
+      );
+
+      ctx.lineTo(
+        x2 + nx * grosor,
+        y2 + ny * grosor
+      );
+
+      ctx.lineTo(
+        x2 - nx * grosor,
+        y2 - ny * grosor
+      );
+
+      ctx.lineTo(
+        x1 - nx * grosor,
+        y1 - ny * grosor
+      );
+
+      ctx.closePath();
+
+      ctx.fillStyle =
+        `rgba(
+          27,
+          2,
+          9,
+          ${0.55 + 0.35 * cantidad}
+        )`;
+
+      ctx.fill();
+    }
+
+    function renderizarMano(
+      separacion
+    ) {
+      if (
+        !imagenMano.complete ||
+        !imagenMano.naturalWidth
+      ) {
+        return;
+      }
+
+      ctx.clearRect(
+        0,
+        0,
+        ANCHO_MANO,
+        ALTO_MANO
+      );
+
+      /*
+        Fondo corinto.
+      */
+
+      ctx.fillStyle =
+        "#24050e";
+
+      ctx.fillRect(
+        0,
+        0,
+        ANCHO_MANO,
+        ALTO_MANO
+      );
+
+      /*
+        MANO COMPLETA:
+        bastante transparente.
+      */
+
+      ctx.save();
+
+      ctx.globalAlpha =
+        0.25;
+
+      ctx.filter =
+        "brightness(0.60) saturate(0.52) contrast(0.90)";
+
+      ctx.drawImage(
+        imagenMano,
+        0,
+        0,
+        ANCHO
