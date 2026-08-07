@@ -570,6 +570,97 @@
     }
 
     /* =========================
+       6. DESPUÉS DE LAS DROGAS
+    ========================= */
+
+    #drogas {
+      background: #050505;
+    }
+
+    .contenedor-drogas {
+      width: min(760px, 94vw);
+      margin: 0 auto;
+    }
+
+    .titulo-drogas {
+      margin: 0 0 10px;
+
+      font-family:
+        Georgia,
+        serif;
+
+      font-size:
+        clamp(
+          2rem,
+          5vw,
+          4rem
+        );
+
+      font-weight: 400;
+    }
+
+    .texto-drogas {
+      margin: 0 auto 30px;
+      max-width: 620px;
+
+      font-family:
+        Georgia,
+        serif;
+
+      font-size:
+        clamp(
+          0.95rem,
+          2vw,
+          1.08rem
+        );
+
+      line-height: 1.55;
+
+      color:
+        rgba(255, 255, 255, 0.84);
+    }
+
+    .escenario-mano-interactiva {
+      width: min(420px, 82vw);
+      aspect-ratio: 540 / 718;
+
+      margin: 0 auto 16px;
+
+      overflow: hidden;
+
+      background: #0a0a0a;
+
+      border:
+        1px solid
+        rgba(216, 21, 37, 0.3);
+
+      cursor: pointer;
+    }
+
+    #canvas-mano-interactiva {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    .estado-audio {
+      margin: 0 0 26px;
+
+      min-height: 26px;
+
+      font-family:
+        Georgia,
+        serif;
+
+      font-style: italic;
+
+      font-size: 0.95rem;
+
+      color:
+        rgba(255, 255, 255, 0.72);
+    }
+
+    /* =========================
        MÓVIL
     ========================= */
 
@@ -605,6 +696,7 @@
             4rem
           );
       }
+
     }
 
   </style>
@@ -884,6 +976,59 @@
 
     </section>
 
+    <!-- =========================
+         6. DESPUÉS DE LAS DROGAS
+    ========================= -->
+
+    <section
+      class="escena"
+      id="drogas"
+    >
+
+      <div class="contenedor-drogas">
+
+        <h2 class="titulo-drogas">
+          Después de las drogas
+        </h2>
+
+        <p class="texto-drogas">
+          El 4 de agosto, entre las 11:19 de la mañana
+          y la 1:00 de la tarde, mandé estos audios
+          todavía bajo el efecto de la anestesia.
+          No recuerdo haberlo hecho.
+          Cada sutura es uno de esos audios: tocá
+          una para escucharlo.
+        </p>
+
+        <div
+          class="escenario-mano-interactiva"
+          id="escenario-mano-interactiva"
+        >
+
+          <canvas
+            id="canvas-mano-interactiva"
+            width="540"
+            height="718"
+          ></canvas>
+
+        </div>
+
+        <p
+          class="estado-audio"
+          id="estado-audio"
+        >
+          Tocá una sutura para escuchar.
+        </p>
+
+        <div
+          id="audios-ocultos"
+          style="display: none;"
+        ></div>
+
+      </div>
+
+    </section>
+
   </main>
 
   <script>
@@ -929,6 +1074,16 @@
         const escenaMenique =
           document.getElementById(
             "menique"
+          );
+
+        const escenaDrogas =
+          document.getElementById(
+            "drogas"
+          );
+
+        const estadoAudio =
+          document.getElementById(
+            "estado-audio"
           );
 
         const botonEntrar =
@@ -1427,28 +1582,55 @@
 
         /*
           Estas coordenadas están
-          basadas en la foto original.
+          medidas directamente sobre
+          mano.jpg (escaladas a
+          1542x2048), para que el
+          corte caiga justo encima
+          de las líneas negras que
+          están dibujadas en el dedo.
 
           PIEZA 1:
           punta hasta la primera
           línea negra.
         */
 
+        /*
+          Los cortes no son rectos:
+          van en zigzag, como una
+          incisión real de colgajo
+          (Z-plastia), cruzando la
+          línea negra en diagonal
+          en vez de cortarla derecho.
+        */
+
+        const corte1 = [
+          [477, 861],
+          [515, 828],
+          [548, 890],
+          [582, 861]
+        ];
+
+        const corte2 = [
+          [547, 937],
+          [588, 902],
+          [622, 968],
+          [660, 938]
+        ];
+
         const piezaPunta = [
-          [278, 748],
-          [303, 727],
-          [332, 735],
-          [359, 756],
-          [382, 783],
-          [404, 812],
-          [419, 838],
-          [408, 861],
-          [392, 882],
-          [374, 893],
-          [352, 878],
-          [331, 854],
-          [308, 827],
-          [289, 792]
+          [464, 745],
+          [497, 773],
+          [524, 803],
+          [547, 828],
+          [568, 848],
+          [582, 861],
+          [548, 890],
+          [515, 828],
+          [477, 861],
+          [448, 828],
+          [431, 798],
+          [428, 783],
+          [435, 763]
         ];
 
         /*
@@ -1457,20 +1639,22 @@
         */
 
         const piezaMedia = [
-          [352, 878],
-          [374, 893],
-          [392, 882],
-          [408, 861],
-          [427, 880],
-          [447, 897],
-          [469, 914],
-          [472, 930],
-          [464, 944],
-          [448, 954],
-          [429, 950],
-          [413, 937],
-          [396, 921],
-          [380, 904]
+          [582, 861],
+          [595, 868],
+          [613, 879],
+          [629, 899],
+          [645, 919],
+          [658, 934],
+          [660, 938],
+          [622, 968],
+          [588, 902],
+          [547, 937],
+          [527, 919],
+          [507, 899],
+          [496, 884],
+          [477, 861],
+          [515, 828],
+          [548, 890]
         ];
 
         /*
@@ -1480,25 +1664,27 @@
         */
 
         const zonaMovible = [
-          [278, 748],
-          [303, 727],
-          [332, 735],
-          [359, 756],
-          [382, 783],
-          [404, 812],
-          [427, 844],
-          [450, 876],
-          [472, 908],
-          [478, 931],
-          [466, 953],
-          [445, 960],
-          [422, 947],
-          [398, 924],
-          [373, 898],
-          [349, 879],
-          [326, 854],
-          [303, 825],
-          [284, 790]
+          [464, 745],
+          [497, 773],
+          [524, 803],
+          [547, 828],
+          [568, 848],
+          [582, 861],
+          [595, 868],
+          [613, 879],
+          [629, 899],
+          [645, 919],
+          [658, 934],
+          [660, 938],
+          [547, 937],
+          [527, 919],
+          [507, 899],
+          [496, 884],
+          [477, 861],
+          [448, 828],
+          [431, 798],
+          [428, 783],
+          [435, 763]
         ];
 
         function trazarPoligono(
@@ -1580,7 +1766,9 @@
           ctx.clip();
 
           /*
-            Gris del fondo de mano.jpg.
+            Gris del fondo de mano.jpg,
+            muestreado detrás del
+            meñique real.
           */
 
           ctx.globalAlpha =
@@ -1591,16 +1779,194 @@
             );
 
           ctx.fillStyle =
-            "#999a97";
+            "#878681";
 
           ctx.fillRect(
-            250,
-            700,
-            280,
-            300
+            415,
+            725,
+            265,
+            235
           );
 
           ctx.restore();
+        }
+
+        /*
+          SUTURAS:
+
+          al rearmarse el dedo
+          (9 → 11), sobre las dos
+          líneas de corte aparecen
+          muchas más líneas finas,
+          simulando los puntos de
+          la operación real.
+        */
+
+        function dibujarLineaSutura(
+          puntos,
+          alpha
+        ) {
+
+          ctx.save();
+
+          ctx.globalAlpha =
+            alpha;
+
+          ctx.strokeStyle =
+            "#d81525";
+
+          ctx.lineCap =
+            "round";
+
+          ctx.lineJoin =
+            "round";
+
+          /*
+            Línea de la incisión,
+            en zigzag.
+          */
+
+          ctx.lineWidth =
+            1.6;
+
+          ctx.beginPath();
+
+          ctx.moveTo(
+            puntos[0][0],
+            puntos[0][1]
+          );
+
+          for (
+            let i = 1;
+            i < puntos.length;
+            i++
+          ) {
+
+            ctx.lineTo(
+              puntos[i][0],
+              puntos[i][1]
+            );
+          }
+
+          ctx.stroke();
+
+          /*
+            Puntos de sutura
+            cruzando cada tramo
+            de la incisión.
+          */
+
+          ctx.lineWidth =
+            1.1;
+
+          for (
+            let s = 0;
+            s < puntos.length - 1;
+            s++
+          ) {
+
+            const a =
+              puntos[s];
+
+            const b =
+              puntos[s + 1];
+
+            const dx =
+              b[0] - a[0];
+
+            const dy =
+              b[1] - a[1];
+
+            const largo =
+              Math.hypot(
+                dx,
+                dy
+              );
+
+            if (
+              largo < 1
+            ) {
+
+              continue;
+            }
+
+            const ux =
+              dx / largo;
+
+            const uy =
+              dy / largo;
+
+            const px =
+              -uy;
+
+            const py =
+              ux;
+
+            const puntadas =
+              Math.max(
+                2,
+                Math.round(
+                  largo / 12
+                )
+              );
+
+            for (
+              let i = 1;
+              i < puntadas;
+              i++
+            ) {
+
+              const t =
+                i / puntadas;
+
+              const cx =
+                a[0] + dx * t;
+
+              const cy =
+                a[1] + dy * t;
+
+              const l =
+                8;
+
+              ctx.beginPath();
+
+              ctx.moveTo(
+                cx - px * l * 0.5,
+                cy - py * l * 0.5
+              );
+
+              ctx.lineTo(
+                cx + px * l * 0.5,
+                cy + py * l * 0.5
+              );
+
+              ctx.stroke();
+            }
+          }
+
+          ctx.restore();
+        }
+
+        function dibujarSuturas(
+          alpha
+        ) {
+
+          if (
+            alpha <= 0.01
+          ) {
+
+            return;
+          }
+
+          dibujarLineaSutura(
+            corte1,
+            alpha
+          );
+
+          dibujarLineaSutura(
+            corte2,
+            alpha
+          );
         }
 
         function dibujarPieza(
@@ -1668,7 +2034,8 @@
 
         function renderizarMano(
           separacion1,
-          separacion2
+          separacion2,
+          alphaSuturas
         ) {
 
           if (
@@ -1679,6 +2046,10 @@
 
             return;
           }
+
+          alphaSuturas =
+            alphaSuturas ||
+            0;
 
           ctx.clearRect(
             0,
@@ -1713,15 +2084,17 @@
             PRIMERA SEPARACIÓN:
 
             punta y medio se mueven
-            juntos hacia arriba/izquierda.
+            juntos a lo largo del
+            propio eje del dedo
+            (hacia donde apunta).
           */
 
           const grupoX =
-            -34 *
+            -26 *
             separacion1;
 
           const grupoY =
-            -22 *
+            -37 *
             separacion1;
 
           /*
@@ -1734,13 +2107,13 @@
           const puntaX =
             grupoX
             -
-            27 *
+            21 *
             separacion2;
 
           const puntaY =
             grupoY
             -
-            18 *
+            28 *
             separacion2;
 
           const medioX =
@@ -1770,6 +2143,16 @@
             puntaY,
             -0.01 *
             separacion2
+          );
+
+          /*
+            Suturas de la operación,
+            solo visibles mientras
+            el dedo se rearma.
+          */
+
+          dibujarSuturas(
+            alphaSuturas
           );
         }
 
@@ -2156,9 +2539,17 @@
                     );
                 }
 
+                const alphaSuturas =
+                  1 -
+                  Math.max(
+                    sep1,
+                    sep2
+                  );
+
                 renderizarMano(
                   sep1,
-                  sep2
+                  sep2,
+                  alphaSuturas
                 );
 
                 requestAnimationFrame(
@@ -2178,7 +2569,8 @@
 
               renderizarMano(
                 0,
-                0
+                0,
+                1
               );
 
               cambiarTexto(
@@ -2225,10 +2617,644 @@
           }
         }
 
+        /* =========================
+           6. DESPUÉS DE LAS DROGAS
+        ========================= */
+
+        const archivosAudio = [
+          "WhatsApp Ptt 2026-08-04 at 11.19.10 AM.ogg",
+          "WhatsApp Ptt 2026-08-04 at 11.21.32 AM.ogg",
+          "WhatsApp Ptt 2026-08-04 at 11.21.42 AM.ogg",
+          "WhatsApp Ptt 2026-08-04 at 11.21.57 AM.ogg",
+          "WhatsApp Ptt 2026-08-04 at 12.37.24 PM.ogg",
+          "WhatsApp Ptt 2026-08-04 at 12.39.30 PM.ogg",
+          "WhatsApp Ptt 2026-08-04 at 12.40.01 PM.ogg",
+          "WhatsApp Ptt 2026-08-04 at 12.40.35 PM.ogg",
+          "WhatsApp Ptt 2026-08-04 at 12.40.56 PM.ogg",
+          "WhatsApp Ptt 2026-08-04 at 12.41.39 PM.ogg",
+          "WhatsApp Ptt 2026-08-04 at 12.42.00 PM.ogg",
+          "WhatsApp Ptt 2026-08-04 at 12.42.40 PM.ogg",
+          "WhatsApp Ptt 2026-08-04 at 12.43.58 PM.ogg",
+          "WhatsApp Ptt 2026-08-04 at 12.44.45 PM.ogg",
+          "WhatsApp Ptt 2026-08-04 at 12.45.27 PM.ogg",
+          "WhatsApp Ptt 2026-08-04 at 12.46.22 PM.ogg",
+          "WhatsApp Ptt 2026-08-04 at 12.47.32 PM.ogg",
+          "WhatsApp Ptt 2026-08-04 at 12.47.52 PM.ogg",
+          "WhatsApp Ptt 2026-08-04 at 12.48.13 PM.ogg",
+          "WhatsApp Ptt 2026-08-04 at 12.49.52 PM.ogg"
+        ];
+
+        function horaDesdeArchivo(
+          nombre
+        ) {
+
+          const m =
+            nombre.match(
+              /at (\d{2})\.(\d{2})\.\d{2} (AM|PM)/
+            );
+
+          if (
+            !m
+          ) {
+
+            return "";
+          }
+
+          return (
+            m[1] +
+            ":" +
+            m[2] +
+            " " +
+            m[3]
+          );
+        }
+
+        /*
+          Un punto por audio, ubicado
+          sobre una sutura real del
+          dedo (coordenadas dentro de
+          canvas-mano-interactiva,
+          540x718). El orden sigue el
+          orden cronológico de
+          archivosAudio.
+        */
+
+        const puntosSutura = [
+          { x: 163, y: 261 },
+          { x: 185, y: 301 },
+          { x: 211, y: 328 },
+          { x: 262, y: 359 },
+          { x: 236, y: 204 },
+          { x: 250, y: 248 },
+          { x: 254, y: 290 },
+          { x: 258, y: 323 },
+          { x: 281, y: 181 },
+          { x: 290, y: 223 },
+          { x: 291, y: 271 },
+          { x: 297, y: 320 },
+          { x: 346, y: 192 },
+          { x: 352, y: 236 },
+          { x: 355, y: 280 },
+          { x: 358, y: 322 },
+          { x: 413, y: 353 },
+          { x: 380, y: 410 },
+          { x: 253, y: 373 },
+          { x: 272, y: 413 }
+        ];
+
+        let audiosCreados =
+          false;
+
+        function construirAudiosOcultos() {
+
+          if (
+            audiosCreados
+          ) {
+
+            return;
+          }
+
+          audiosCreados =
+            true;
+
+          const contenedor =
+            document.getElementById(
+              "audios-ocultos"
+            );
+
+          archivosAudio.forEach(
+            function (
+              nombre,
+              indice
+            ) {
+
+              const audio =
+                document.createElement(
+                  "audio"
+                );
+
+              audio.preload =
+                "none";
+
+              audio.src =
+                encodeURI(
+                  nombre
+                );
+
+              audio.addEventListener(
+                "ended",
+                function () {
+
+                  if (
+                    puntoActivo ===
+                    indice
+                  ) {
+
+                    puntoActivo =
+                      null;
+
+                    estadoAudio.textContent =
+                      "Tocá una sutura para escuchar.";
+                  }
+                }
+              );
+
+              contenedor.appendChild(
+                audio
+              );
+
+              puntosSutura[
+                indice
+              ].audio =
+                audio;
+
+              puntosSutura[
+                indice
+              ].hora =
+                horaDesdeArchivo(
+                  nombre
+                );
+            }
+          );
+        }
+
+        construirAudiosOcultos();
+
+        /* =========================
+           MANO INTERACTIVA
+
+           Cada punto está sobre
+           una sutura real. Tocarlo
+           reproduce un audio, y
+           mientras suena, ese punto
+           tiembla y brilla según
+           su volumen.
+        ========================= */
+
+        const canvasManoInteractiva =
+          document.getElementById(
+            "canvas-mano-interactiva"
+          );
+
+        const ctxMi =
+          canvasManoInteractiva.getContext(
+            "2d"
+          );
+
+        let audioCtx =
+          null;
+
+        let analizador =
+          null;
+
+        let datosAudio =
+          null;
+
+        const fuentesConectadas =
+          new WeakSet();
+
+        function obtenerAudioCtx() {
+
+          if (
+            !audioCtx
+          ) {
+
+            audioCtx =
+              new (
+                window.AudioContext ||
+                window.webkitAudioContext
+              )();
+
+            analizador =
+              audioCtx.createAnalyser();
+
+            analizador.fftSize =
+              256;
+
+            datosAudio =
+              new Uint8Array(
+                analizador.frequencyBinCount
+              );
+
+            analizador.connect(
+              audioCtx.destination
+            );
+          }
+
+          return audioCtx;
+        }
+
+        function conectarAudioReactivo(
+          elemento
+        ) {
+
+          const ctxAudio =
+            obtenerAudioCtx();
+
+          if (
+            ctxAudio.state ===
+            "suspended"
+          ) {
+
+            ctxAudio.resume();
+          }
+
+          if (
+            fuentesConectadas.has(
+              elemento
+            )
+          ) {
+
+            return;
+          }
+
+          fuentesConectadas.add(
+            elemento
+          );
+
+          const fuente =
+            ctxAudio.createMediaElementSource(
+              elemento
+            );
+
+          fuente.connect(
+            analizador
+          );
+        }
+
+        function volumenActual() {
+
+          if (
+            !analizador
+          ) {
+
+            return 0;
+          }
+
+          analizador.getByteTimeDomainData(
+            datosAudio
+          );
+
+          let suma =
+            0;
+
+          for (
+            let i = 0;
+            i < datosAudio.length;
+            i++
+          ) {
+
+            const v =
+              (
+                datosAudio[i] -
+                128
+              ) /
+              128;
+
+            suma +=
+              v * v;
+          }
+
+          return Math.sqrt(
+            suma /
+            datosAudio.length
+          );
+        }
+
+        let puntoActivo =
+          null;
+
+        function tocarPunto(
+          indice
+        ) {
+
+          const punto =
+            puntosSutura[
+              indice
+            ];
+
+          if (
+            !punto.audio
+          ) {
+
+            return;
+          }
+
+          if (
+            puntoActivo ===
+            indice
+          ) {
+
+            punto.audio.pause();
+
+            puntoActivo =
+              null;
+
+            estadoAudio.textContent =
+              "Tocá una sutura para escuchar.";
+
+            return;
+          }
+
+          if (
+            puntoActivo !==
+            null
+          ) {
+
+            const anterior =
+              puntosSutura[
+                puntoActivo
+              ];
+
+            if (
+              anterior.audio
+            ) {
+
+              anterior.audio.pause();
+
+              anterior.audio.currentTime =
+                0;
+            }
+          }
+
+          conectarAudioReactivo(
+            punto.audio
+          );
+
+          punto.audio.currentTime =
+            0;
+
+          punto.audio.play();
+
+          puntoActivo =
+            indice;
+
+          estadoAudio.textContent =
+            "Reproduciendo — " +
+            punto.hora;
+        }
+
+        canvasManoInteractiva.addEventListener(
+          "click",
+          function (
+            evento
+          ) {
+
+            const rect =
+              canvasManoInteractiva.getBoundingClientRect();
+
+            const escalaX =
+              canvasManoInteractiva.width /
+              rect.width;
+
+            const escalaY =
+              canvasManoInteractiva.height /
+              rect.height;
+
+            const x =
+              (
+                evento.clientX -
+                rect.left
+              ) *
+              escalaX;
+
+            const y =
+              (
+                evento.clientY -
+                rect.top
+              ) *
+              escalaY;
+
+            let masCercano =
+              null;
+
+            let distMin =
+              26;
+
+            puntosSutura.forEach(
+              function (
+                punto,
+                indice
+              ) {
+
+                const d =
+                  Math.hypot(
+                    punto.x - x,
+                    punto.y - y
+                  );
+
+                if (
+                  d < distMin
+                ) {
+
+                  distMin =
+                    d;
+
+                  masCercano =
+                    indice;
+                }
+              }
+            );
+
+            if (
+              masCercano !==
+              null
+            ) {
+
+              tocarPunto(
+                masCercano
+              );
+            }
+          }
+        );
+
+        let tiempoMi =
+          0;
+
+        function dibujarPuntoSutura(
+          punto,
+          activo,
+          rms
+        ) {
+
+          const radioBase =
+            activo ?
+            4 + rms * 6 :
+            4;
+
+          ctxMi.save();
+
+          ctxMi.strokeStyle =
+            "#ff2d3d";
+
+          ctxMi.lineCap =
+            "round";
+
+          if (
+            activo
+          ) {
+
+            ctxMi.shadowColor =
+              "rgba(255, 45, 61, 0.75)";
+
+            ctxMi.shadowBlur =
+              6 +
+              rms * 26;
+
+            /*
+              Onda expansiva, como
+              un pulso de sonido
+              saliendo de la sutura.
+            */
+
+            const faseOnda =
+              (
+                tiempoMi %
+                1.2
+              ) /
+              1.2;
+
+            ctxMi.globalAlpha =
+              1 - faseOnda;
+
+            ctxMi.lineWidth =
+              1.2;
+
+            ctxMi.beginPath();
+
+            ctxMi.arc(
+              punto.x,
+              punto.y,
+              6 +
+              faseOnda * 22,
+              0,
+              Math.PI * 2
+            );
+
+            ctxMi.stroke();
+
+            ctxMi.globalAlpha =
+              1;
+
+          } else {
+
+            ctxMi.shadowColor =
+              "rgba(255, 45, 61, 0.5)";
+
+            ctxMi.shadowBlur =
+              3;
+
+            ctxMi.globalAlpha =
+              0.8;
+          }
+
+          ctxMi.lineWidth =
+            activo ?
+            2.4 :
+            1.8;
+
+          ctxMi.beginPath();
+
+          ctxMi.moveTo(
+            punto.x - radioBase,
+            punto.y
+          );
+
+          ctxMi.lineTo(
+            punto.x + radioBase,
+            punto.y
+          );
+
+          ctxMi.moveTo(
+            punto.x,
+            punto.y - radioBase
+          );
+
+          ctxMi.lineTo(
+            punto.x,
+            punto.y + radioBase
+          );
+
+          ctxMi.stroke();
+
+          ctxMi.restore();
+        }
+
+        function dibujarManoInteractiva() {
+
+          tiempoMi +=
+            0.016;
+
+          const rms =
+            puntoActivo !==
+            null ?
+            volumenActual() :
+            0;
+
+          ctxMi.clearRect(
+            0,
+            0,
+            canvasManoInteractiva.width,
+            canvasManoInteractiva.height
+          );
+
+          ctxMi.drawImage(
+            canvas,
+            0,
+            0,
+            ANCHO,
+            ALTO,
+            0,
+            0,
+            canvasManoInteractiva.width,
+            canvasManoInteractiva.height
+          );
+
+          puntosSutura.forEach(
+            function (
+              punto,
+              indice
+            ) {
+
+              dibujarPuntoSutura(
+                punto,
+                indice ===
+                puntoActivo,
+                rms
+              );
+            }
+          );
+
+          requestAnimationFrame(
+            dibujarManoInteractiva
+          );
+        }
+
+        requestAnimationFrame(
+          dibujarManoInteractiva
+        );
+
+        window.addEventListener(
+          "inicioAudios11",
+          function () {
+
+            window.setTimeout(
+              function () {
+
+                mostrarEscena(
+                  escenaDrogas
+                );
+              },
+              3600
+            );
+          }
+        );
+
       }
     );
 
   </script>
 
 </body>
+</html>
 </html>
