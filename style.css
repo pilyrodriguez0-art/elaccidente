@@ -62,7 +62,9 @@ button {
 button:hover {
   background: white;
   color: black;
-  .credito-foto {
+}
+
+.credito-foto {
   position: absolute;
   right: 18px;
   bottom: 14px;
