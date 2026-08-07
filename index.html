@@ -6,7 +6,6 @@
 
   <title>El accidente</title>
 
-  <!-- LEAFLET -->
   <link
     rel="stylesheet"
     href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
@@ -17,7 +16,6 @@
   ></script>
 
   <style>
-
     * {
       box-sizing: border-box;
     }
@@ -30,6 +28,7 @@
     }
 
     body {
+      margin: 0;
       background: #111;
       color: white;
       font-family: Arial, sans-serif;
@@ -37,7 +36,6 @@
 
     .escena {
       display: none;
-
       min-height: 100vh;
       padding: 40px;
 
@@ -52,17 +50,6 @@
       flex-direction: column;
     }
 
-    h1,
-    h2,
-    p {
-      margin-top: 0;
-    }
-
-
-    /* ===================================
-       BOTONES
-    =================================== */
-
     button {
       margin-top: 20px;
       padding: 12px 24px;
@@ -74,7 +61,6 @@
       color: white;
 
       font-size: 16px;
-
       cursor: pointer;
     }
 
@@ -83,14 +69,12 @@
       color: black;
     }
 
-
-    /* ===================================
-       CRÉDITO DE FOTOS
-    =================================== */
+    /* =========================
+       CRÉDITOS
+    ========================= */
 
     .credito-foto {
       position: absolute;
-
       right: 18px;
       bottom: 18px;
 
@@ -98,11 +82,9 @@
       padding: 7px 10px;
 
       border-radius: 6px;
-
       background: rgba(0, 0, 0, 0.65);
 
       color: white;
-
       font-size: 12px;
 
       z-index: 20;
@@ -112,10 +94,9 @@
       color: white;
     }
 
-
-    /* ===================================
-       ESCENA 1: PORTÓN
-    =================================== */
+    /* =========================
+       1. PORTÓN
+    ========================= */
 
     #porton {
       position: relative;
@@ -132,42 +113,37 @@
       background-repeat: no-repeat;
     }
 
-    .contenido-porton {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
     #porton h1 {
-      margin-bottom: 12px;
-
+      margin: 0 0 12px;
       font-size: 38px;
     }
 
+    #porton p {
+      margin: 0;
+    }
 
-    /* ===================================
-       ESCENA 2: MAPA
-    =================================== */
+    /* =========================
+       2. MAPA
+    ========================= */
 
     #mapa {
       background: #111;
-      color: white;
     }
 
     .contenido-mapa {
       width: min(1150px, 100%);
     }
 
-    .titulo-mapa {
-      margin-bottom: 12px;
+    .pregunta-mapa {
+      margin: 0 0 24px;
 
-      font-size: 30px;
-    }
+      font-size: clamp(
+        1.7rem,
+        4vw,
+        3rem
+      );
 
-    .texto-mapa {
-      margin-bottom: 20px;
-
-      opacity: 0.75;
+      font-weight: 400;
     }
 
     #mapa-real {
@@ -175,47 +151,33 @@
       height: 72vh;
 
       border: 1px solid #444;
-
       overflow: hidden;
     }
-
-
-    /* PUNTO QUE VIAJA */
 
     .punto-viajero {
       width: 18px;
       height: 18px;
 
       border-radius: 50%;
-
-      background: #b00000;
+      background: #a00000;
 
       box-shadow:
         0 0 0 3px rgba(120, 0, 0, 0.25),
         0 0 14px rgba(150, 0, 0, 0.7);
     }
 
-
-    /* RASTRO ROJO */
-
     .marca-roja {
       border-radius: 50%;
-
-      background: #990000;
-
-      opacity: 0.75;
+      background: #8e0000;
+      opacity: 0.7;
     }
 
-
-    /* ===================================
-       ESCENA 3:
-       PÉRDIDA DE SUSTANCIA
-    =================================== */
+    /* =========================
+       3. PÉRDIDA DE SUSTANCIA
+    ========================= */
 
     #perdida {
       background: #050505;
-
-      color: white;
     }
 
     .texto-perdida {
@@ -228,48 +190,37 @@
       );
 
       font-weight: 400;
-
       letter-spacing: -0.04em;
     }
 
-
-    /* ===================================
-       ESCENA 4:
-       SALA DE OPERACIÓN
-    =================================== */
+    /* =========================
+       4. SALA DE OPERACIÓN
+    ========================= */
 
     #quirofano {
       position: relative;
-
       overflow: hidden;
-
-      color: white;
 
       background-image:
         linear-gradient(
-          rgba(0, 0, 0, 0.12),
-          rgba(0, 0, 0, 0.48)
+          rgba(0, 0, 0, 0.15),
+          rgba(0, 0, 0, 0.5)
         ),
         url("quirofano.jpg");
 
       background-size: cover;
-
       background-position: center;
-
       background-repeat: no-repeat;
     }
-
-
-    /* RESPLANDOR DE LA LUZ */
 
     .luz-quirofano {
       position: absolute;
 
-      top: -25vh;
+      top: -30vh;
       left: 50%;
 
-      width: 85vh;
-      height: 85vh;
+      width: 90vh;
+      height: 90vh;
 
       transform: translateX(-50%);
 
@@ -278,27 +229,21 @@
       background:
         radial-gradient(
           circle,
-          rgba(255, 255, 255, 0.92) 0%,
-          rgba(255, 255, 255, 0.45) 18%,
-          rgba(255, 255, 255, 0.12) 38%,
-          rgba(255, 255, 255, 0) 68%
+          rgba(255, 255, 255, 0.95) 0%,
+          rgba(255, 255, 255, 0.45) 20%,
+          rgba(255, 255, 255, 0.1) 42%,
+          rgba(255, 255, 255, 0) 70%
         );
 
       pointer-events: none;
-
       z-index: 1;
     }
 
-
-    /* CAJA DEL TEXTO */
-
     .contenido-quirofano {
       position: relative;
-
       z-index: 5;
 
       width: min(760px, 100%);
-
       max-height: 78vh;
 
       padding: 30px;
@@ -306,92 +251,72 @@
       overflow-y: auto;
 
       border: 1px solid rgba(255, 255, 255, 0.25);
-
       border-radius: 14px;
 
-      background: rgba(0, 0, 0, 0.48);
+      background: rgba(0, 0, 0, 0.52);
 
       backdrop-filter: blur(5px);
 
+      color: white;
       text-align: left;
     }
 
-
     .titulo-quirofano {
-      margin-bottom: 30px;
-
-      color: white;
+      margin: 0 0 30px;
 
       font-size: clamp(
-        1.7rem,
+        1.8rem,
         4vw,
         3rem
       );
 
       font-weight: 400;
-
       text-align: center;
     }
 
-
     .guion {
-      margin: 0;
-
-      color: white;
-
       font-size: clamp(
         1rem,
         2vw,
         1.2rem
       );
 
-      line-height: 1.8;
+      line-height: 1.75;
     }
 
+    .guion p {
+      margin-top: 0;
+    }
 
     .personaje {
-      margin-top: 22px;
-      margin-bottom: 4px;
+      margin-top: 24px !important;
+      margin-bottom: 6px !important;
 
       font-weight: bold;
-
-      text-transform: uppercase;
-
       letter-spacing: 0.08em;
     }
 
-
     .accion {
-      margin-top: 22px;
-      margin-bottom: 22px;
+      margin: 22px 0 !important;
 
       font-style: italic;
-
       opacity: 0.85;
     }
 
-
     .cuenta {
-      margin-top: 34px;
+      margin: 35px 0 !important;
 
       font-size: clamp(
-        1.8rem,
-        5vw,
-        3.5rem
+        2rem,
+        6vw,
+        4rem
       );
 
-      letter-spacing: 0.1em;
-
       text-align: center;
+      letter-spacing: 0.1em;
     }
 
-
-    /* ===================================
-       MÓVIL
-    =================================== */
-
     @media (max-width: 700px) {
-
       .escena {
         padding: 20px;
       }
@@ -401,53 +326,43 @@
       }
 
       .contenido-quirofano {
-        max-height: 82vh;
-
+        max-height: 80vh;
         padding: 22px;
       }
-
     }
-
   </style>
 </head>
-
 
 <body>
 
   <main>
 
-
-    <!-- ===================================
-         ESCENA 1: PORTÓN
-    ==================================== -->
+    <!-- =========================
+         ESCENA 1
+    ========================= -->
 
     <section
       class="escena escena-activa"
       id="porton"
     >
 
-      <div class="contenido-porton">
+      <h1>
+        El portón
+      </h1>
 
-        <h1>
-          El portón
-        </h1>
+      <p>
+        Aquí comienza el recorrido.
+      </p>
 
-        <p>
-          Aquí comienza el recorrido.
-        </p>
-
-        <button
-          id="entrar"
-          type="button"
-        >
-          Entrar
-        </button>
-
-      </div>
+      <button
+        id="entrar"
+        type="button"
+      >
+        Entrar
+      </button>
 
 
       <p class="credito-foto">
-
         Foto de
 
         <a
@@ -467,16 +382,14 @@
         >
           Unsplash
         </a>.
-
       </p>
 
     </section>
 
 
-
-    <!-- ===================================
-         ESCENA 2: MAPA
-    ==================================== -->
+    <!-- =========================
+         ESCENA 2
+    ========================= -->
 
     <section
       class="escena"
@@ -485,13 +398,9 @@
 
       <div class="contenido-mapa">
 
-        <h2 class="titulo-mapa">
-          Recorrido
+        <h2 class="pregunta-mapa">
+          ¿Dónde está tu dedo, Pili?
         </h2>
-
-        <p class="texto-mapa">
-          El trayecto.
-        </p>
 
         <div id="mapa-real"></div>
 
@@ -500,11 +409,9 @@
     </section>
 
 
-
-    <!-- ===================================
-         ESCENA 3:
-         PÉRDIDA DE SUSTANCIA
-    ==================================== -->
+    <!-- =========================
+         ESCENA 3
+    ========================= -->
 
     <section
       class="escena"
@@ -518,11 +425,9 @@
     </section>
 
 
-
-    <!-- ===================================
-         ESCENA 4:
-         SALA DE OPERACIÓN
-    ==================================== -->
+    <!-- =========================
+         ESCENA 4
+    ========================= -->
 
     <section
       class="escena"
@@ -621,7 +526,6 @@
 
 
       <p class="credito-foto">
-
         Foto de
 
         <a
@@ -641,7 +545,6 @@
         >
           Unsplash
         </a>.
-
       </p>
 
     </section>
@@ -649,54 +552,59 @@
   </main>
 
 
-
   <script>
 
-    /* ===================================
-       ELEMENTOS
-    =================================== */
+    const porton =
+      document.querySelector("#porton");
+
+    const escenaMapa =
+      document.querySelector("#mapa");
+
+    const escenaPerdida =
+      document.querySelector("#perdida");
+
+    const escenaQuirofano =
+      document.querySelector("#quirofano");
 
     const botonEntrar =
       document.querySelector("#entrar");
 
 
-    const porton =
-      document.querySelector("#porton");
-
-
-    const escenaMapa =
-      document.querySelector("#mapa");
-
-
-    const escenaPerdida =
-      document.querySelector("#perdida");
-
-
-    const escenaQuirofano =
-      document.querySelector("#quirofano");
-
-
     let mapaInicializado = false;
 
 
+    /* =========================
+       CAMBIAR ESCENA
+    ========================= */
 
-    /* ===================================
+    function cambiarEscena(
+      escenaActual,
+      escenaNueva
+    ) {
+
+      escenaActual.classList.remove(
+        "escena-activa"
+      );
+
+      escenaNueva.classList.add(
+        "escena-activa"
+      );
+
+    }
+
+
+    /* =========================
        PORTÓN → MAPA
-    =================================== */
+    ========================= */
 
     botonEntrar.addEventListener(
       "click",
       function () {
 
-        porton.classList.remove(
-          "escena-activa"
+        cambiarEscena(
+          porton,
+          escenaMapa
         );
-
-
-        escenaMapa.classList.add(
-          "escena-activa"
-        );
-
 
         if (!mapaInicializado) {
 
@@ -710,75 +618,21 @@
     );
 
 
-
-    /* ===================================
-       MAPA → PÉRDIDA
-    =================================== */
-
-    function mostrarPerdida() {
-
-      escenaMapa.classList.remove(
-        "escena-activa"
-      );
-
-
-      escenaPerdida.classList.add(
-        "escena-activa"
-      );
-
-
-      /*
-        Después de mostrar
-        "pérdida de sustancia",
-        esperamos unos segundos.
-      */
-
-      window.setTimeout(
-        mostrarQuirofano,
-        2600
-      );
-
-    }
-
-
-
-    /* ===================================
-       PÉRDIDA → QUIRÓFANO
-    =================================== */
-
-    function mostrarQuirofano() {
-
-      escenaPerdida.classList.remove(
-        "escena-activa"
-      );
-
-
-      escenaQuirofano.classList.add(
-        "escena-activa"
-      );
-
-    }
-
-
-
-    /* ===================================
-       CREAR MAPA
-    =================================== */
+    /* =========================
+       MAPA
+    ========================= */
 
     function crearMapa() {
-
 
       const coordenadasPorton = [
         14.643277895439471,
         -90.50234271356774
       ];
 
-
       const coordenadasHospital = [
         14.60393779846318,
         -90.56026555839702
       ];
-
 
 
       const mapa =
@@ -790,55 +644,36 @@
         );
 
 
-
-      /* MAPA CLARO */
-
       L.tileLayer(
         "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
         {
-
           subdomains: "abcd",
-
           maxZoom: 20,
 
           attribution:
             "&copy; OpenStreetMap contributors &copy; CARTO"
-
         }
       ).addTo(mapa);
 
-
-
-      /* RECORRIDO */
 
       const ruta = [
 
         coordenadasPorton,
 
         [14.6410, -90.5060],
-
         [14.6375, -90.5115],
-
         [14.6340, -90.5175],
-
         [14.6300, -90.5225],
-
         [14.6260, -90.5280],
-
         [14.6215, -90.5340],
-
         [14.6170, -90.5400],
-
         [14.6135, -90.5460],
-
         [14.6100, -90.5510],
-
         [14.6065, -90.5560],
 
         coordenadasHospital
 
       ];
-
 
 
       mapa.fitBounds(
@@ -849,25 +684,15 @@
       );
 
 
-
-      /* LÍNEA ROJA */
-
       L.polyline(
         ruta,
         {
-
           color: "#8b0000",
-
           weight: 3,
-
           opacity: 0.45
-
         }
       ).addTo(mapa);
 
-
-
-      /* PUNTO ROJO */
 
       const iconoPunto =
         L.divIcon({
@@ -890,7 +715,6 @@
         });
 
 
-
       const punto =
         L.marker(
           coordenadasPorton,
@@ -900,25 +724,16 @@
         ).addTo(mapa);
 
 
-
-      /* ===================================
-         ANIMACIÓN
-      =================================== */
-
       let tramo = 0;
-
       let progreso = 0;
 
       const velocidad = 0.01;
 
 
-
       function animar() {
-
 
         const inicio =
           ruta[tramo];
-
 
         const final =
           ruta[tramo + 1];
@@ -927,13 +742,9 @@
         progreso += velocidad;
 
 
-
         if (progreso > 1) {
-
           progreso = 1;
-
         }
-
 
 
         const lat =
@@ -945,7 +756,6 @@
           progreso;
 
 
-
         const lng =
           inicio[1] +
           (
@@ -953,7 +763,6 @@
             inicio[1]
           ) *
           progreso;
-
 
 
         punto.setLatLng(
@@ -964,12 +773,8 @@
         );
 
 
-
-        /* MARCAS */
-
         if (
-          Math.random() >
-          0.9
+          Math.random() > 0.9
         ) {
 
           crearMarca(
@@ -981,16 +786,10 @@
         }
 
 
-
-        /* FINAL DE UN TRAMO */
-
-        if (
-          progreso >= 1
-        ) {
-
+        if (progreso >= 1) {
 
           /*
-            ÚLTIMO TRAMO
+            SI ES EL ÚLTIMO TRAMO
           */
 
           if (
@@ -998,10 +797,41 @@
             ruta.length - 2
           ) {
 
+            /*
+              1 segundo después:
+              mapa → pérdida
+            */
+
             window.setTimeout(
-              mostrarPerdida,
+              function () {
+
+                cambiarEscena(
+                  escenaMapa,
+                  escenaPerdida
+                );
+
+
+                /*
+                  3 segundos después:
+                  pérdida → quirófano
+                */
+
+                window.setTimeout(
+                  function () {
+
+                    cambiarEscena(
+                      escenaPerdida,
+                      escenaQuirofano
+                    );
+
+                  },
+                  3000
+                );
+
+              },
               1000
             );
+
 
             return;
 
@@ -1009,11 +839,9 @@
 
 
           tramo++;
-
           progreso = 0;
 
         }
-
 
 
         requestAnimationFrame(
@@ -1023,16 +851,14 @@
       }
 
 
-
       animar();
 
     }
 
 
-
-    /* ===================================
-       CREAR MARCAS ROJAS
-    =================================== */
+    /* =========================
+       MARCAS ROJAS
+    ========================= */
 
     function crearMarca(
       mapa,
@@ -1040,18 +866,15 @@
       lng
     ) {
 
-
       const tamaño =
         5 +
         Math.random() * 7;
-
 
 
       const iconoMarca =
         L.divIcon({
 
           className: "",
-
 
           html:
             `
@@ -1064,12 +887,10 @@
               ></div>
             `,
 
-
           iconSize: [
             tamaño,
             tamaño
           ],
-
 
           iconAnchor: [
             tamaño / 2,
@@ -1077,7 +898,6 @@
           ]
 
         });
-
 
 
       L.marker(
@@ -1101,13 +921,11 @@
         ],
 
         {
-
           icon:
             iconoMarca,
 
           interactive:
             false
-
         }
 
       ).addTo(mapa);
