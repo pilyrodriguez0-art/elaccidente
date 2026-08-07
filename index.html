@@ -33,9 +33,9 @@
     }
 
     :root {
-      --corinto: #62152f;
-      --corinto-oscuro: #4b0d22;
-      --corinto-medio: #76263f;
+      --corinto: #65152f;
+      --corinto-oscuro: #4c0d22;
+      --corinto-medio: #76243e;
     }
 
     body {
@@ -49,9 +49,9 @@
       overflow-x: hidden;
     }
 
-    /* =============================
+    /* ==================================
        ESCENAS
-    ============================= */
+    ================================== */
 
     .escena {
       display: none;
@@ -91,9 +91,9 @@
       color: black;
     }
 
-    /* =============================
+    /* ==================================
        CRÉDITOS
-    ============================= */
+    ================================== */
 
     .credito-foto {
       position: absolute;
@@ -121,9 +121,9 @@
       color: white;
     }
 
-    /* =============================
-       PORTÓN
-    ============================= */
+    /* ==================================
+       1. PORTÓN
+    ================================== */
 
     #porton {
       position: relative;
@@ -142,6 +142,7 @@
 
     #porton h1 {
       margin: 0 0 12px;
+
       font-size: 38px;
     }
 
@@ -149,9 +150,9 @@
       margin-top: 20px;
     }
 
-    /* =============================
-       MAPA
-    ============================= */
+    /* ==================================
+       2. MAPA
+    ================================== */
 
     #mapa {
       background: #111;
@@ -166,7 +167,8 @@
     }
 
     .pregunta-mapa {
-      margin: 0 0 24px;
+      margin:
+        0 0 24px;
 
       font-size:
         clamp(
@@ -198,11 +200,8 @@
         var(--corinto);
 
       box-shadow:
-        0 0 0 3px
-        rgba(98, 21, 47, 0.25),
-
-        0 0 14px
-        rgba(98, 21, 47, 0.7);
+        0 0 0 3px rgba(101, 21, 47, 0.25),
+        0 0 14px rgba(101, 21, 47, 0.70);
     }
 
     .marca-roja {
@@ -214,9 +213,9 @@
       opacity: 0.7;
     }
 
-    /* =============================
-       DIAGNÓSTICO
-    ============================= */
+    /* ==================================
+       3. DIAGNÓSTICO
+    ================================== */
 
     #perdida {
       background: #050505;
@@ -244,9 +243,9 @@
         -0.03em;
     }
 
-    /* =============================
-       QUIRÓFANO
-    ============================= */
+    /* ==================================
+       4. SALA DE OPERACIÓN
+    ================================== */
 
     #quirofano {
       position: relative;
@@ -256,16 +255,15 @@
       padding-bottom: 100px;
 
       /*
-        IMPORTANTE:
-        fondo CLARO neutro.
+        FONDO CLARO.
 
-        Así bajar la opacidad
-        vuelve la fotografía
-        transparente, no oscura.
+        La foto se hace transparente
+        sobre este fondo.
+
+        No se oscurece.
       */
 
-      background:
-        #d4d5d2;
+      background: #f0f0ed;
     }
 
     .fondo-quirofano {
@@ -281,42 +279,16 @@
       object-fit: cover;
 
       /*
-        MUCHO MÁS TRANSPARENTE.
+        FOTO MUY TRANSPARENTE.
       */
 
-      opacity: 0.16;
+      opacity: 0.22;
 
       /*
-        Sin brightness.
-        Sin oscurecer.
-        Sin rojo.
+        NINGÚN filtro oscuro.
       */
 
       filter: none;
-    }
-
-    /*
-      Capa blanca muy ligera
-      para seguir desvaneciendo
-      la fotografía.
-    */
-
-    .velo-quirofano {
-      position: absolute;
-
-      inset: 0;
-
-      z-index: 1;
-
-      background:
-        rgba(
-          255,
-          255,
-          255,
-          0.14
-        );
-
-      pointer-events: none;
     }
 
     .contenido-quirofano {
@@ -389,8 +361,7 @@
       letter-spacing:
         0.08em;
 
-      color:
-        #420a1d;
+      color: #420919;
     }
 
     .dialogo {
@@ -441,18 +412,26 @@
     }
 
     #boton-menique {
+      color:
+        var(--corinto-oscuro);
+
+      border-color:
+        var(--corinto-oscuro);
+
       background:
-        rgba(0, 0, 0, 0.60);
+        rgba(255, 255, 255, 0.55);
     }
 
     #boton-menique:hover {
-      background: white;
-      color: black;
+      background:
+        var(--corinto-oscuro);
+
+      color: white;
     }
 
-    /* =============================
-       EL MEÑIQUE
-    ============================= */
+    /* ==================================
+       5. EL MEÑIQUE
+    ================================== */
 
     #menique {
       background: #050505;
@@ -465,7 +444,8 @@
           94vw
         );
 
-      margin: 0 auto;
+      margin:
+        0 auto;
     }
 
     .titulo-menique {
@@ -514,9 +494,9 @@
         );
     }
 
-    /* =============================
-       FOTO DE LA MANO
-    ============================= */
+    /* ==================================
+       ESCENARIO DE LA MANO
+    ================================== */
 
     .escenario-mano {
       position: relative;
@@ -527,10 +507,15 @@
           92vw
         );
 
+      /*
+        La foto real es 1542 x 2048.
+      */
+
       aspect-ratio:
         1542 / 2048;
 
-      margin: 0 auto;
+      margin:
+        0 auto;
 
       overflow: hidden;
 
@@ -558,19 +543,21 @@
       height: 100%;
     }
 
-    /* =============================
+    /* ==================================
        RELOJ
-    ============================= */
+
+       UN SOLO RELOJ.
+    ================================== */
 
     .reloj-hospital {
       position: absolute;
 
-      left: 6%;
-      right: 6%;
+      left: 5%;
+      right: 5%;
 
-      top: 41%;
+      top: 40%;
 
-      height: 17%;
+      height: 18%;
 
       z-index: 10;
 
@@ -584,16 +571,16 @@
           255,
           255,
           255,
-          0.10
+          0.07
         );
 
       border:
         1px solid
         rgba(
-          75,
+          76,
           13,
           34,
-          0.30
+          0.24
         );
 
       pointer-events: none;
@@ -604,7 +591,7 @@
 
       color:
         rgba(
-          75,
+          76,
           13,
           34,
           0.90
@@ -628,11 +615,13 @@
 
       font-variant-numeric:
         tabular-nums;
+
+      text-shadow: none;
     }
 
-    /* =============================
-       TEXTO INFERIOR
-    ============================= */
+    /* ==================================
+       TEXTO DE ABAJO
+    ================================== */
 
     .estado-menique {
       margin:
@@ -679,9 +668,9 @@
       color: white;
     }
 
-    /* =============================
+    /* ==================================
        MÓVIL
-    ============================= */
+    ================================== */
 
     @media (
       max-width: 760px
@@ -713,6 +702,9 @@
       .reloj-hospital {
         left: 4%;
         right: 4%;
+
+        height:
+          18%;
       }
 
       .hora-digital {
@@ -731,7 +723,9 @@
 
   <main>
 
-    <!-- PORTÓN -->
+    <!-- ==================================
+         PORTÓN
+    ================================== -->
 
     <section
       class="escena escena-activa"
@@ -779,7 +773,9 @@
 
     </section>
 
-    <!-- MAPA -->
+    <!-- ==================================
+         MAPA
+    ================================== -->
 
     <section
       class="escena"
@@ -804,7 +800,9 @@
 
     </section>
 
-    <!-- DIAGNÓSTICO -->
+    <!-- ==================================
+         DIAGNÓSTICO
+    ================================== -->
 
     <section
       class="escena"
@@ -819,7 +817,9 @@
 
     </section>
 
-    <!-- QUIRÓFANO -->
+    <!-- ==================================
+         SALA DE OPERACIÓN
+    ================================== -->
 
     <section
       class="escena"
@@ -831,10 +831,6 @@
         alt=""
         class="fondo-quirofano"
       >
-
-      <div
-        class="velo-quirofano"
-      ></div>
 
       <div
         class="contenido-quirofano"
@@ -959,7 +955,9 @@
 
     </section>
 
-    <!-- EL MEÑIQUE -->
+    <!-- ==================================
+         EL MEÑIQUE
+    ================================== -->
 
     <section
       class="escena"
@@ -986,6 +984,7 @@
 
         <div
           class="escenario-mano"
+          id="escenario-mano"
         >
 
           <canvas
@@ -1024,9 +1023,9 @@
 
   <script>
 
-    /* =============================
+    /* ==================================
        ESCENAS
-    ============================= */
+    ================================== */
 
     const porton =
       document.querySelector(
@@ -1074,17 +1073,13 @@
       escenaNueva
     ) {
 
-      escenaActual
-        .classList
-        .remove(
-          "escena-activa"
-        );
+      escenaActual.classList.remove(
+        "escena-activa"
+      );
 
-      escenaNueva
-        .classList
-        .add(
-          "escena-activa"
-        );
+      escenaNueva.classList.add(
+        "escena-activa"
+      );
 
       window.scrollTo(
         0,
@@ -1134,9 +1129,9 @@
       }
     );
 
-    /* =============================
+    /* ==================================
        MAPA
-    ============================= */
+    ================================== */
 
     function crearMapa() {
 
@@ -1161,11 +1156,9 @@
       L.tileLayer(
         "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
         {
-          subdomains:
-            "abcd",
+          subdomains: "abcd",
 
-          maxZoom:
-            20,
+          maxZoom: 20,
 
           attribution:
             "&copy; OpenStreetMap contributors &copy; CARTO"
@@ -1205,7 +1198,7 @@
         ruta,
         {
           color:
-            "#62152f",
+            "#65152f",
 
           weight: 3,
 
@@ -1421,9 +1414,9 @@
       );
     }
 
-    /* =============================
+    /* ==================================
        MANO
-    ============================= */
+    ================================== */
 
     const canvas =
       document.querySelector(
@@ -1448,6 +1441,11 @@
     const imagenMano =
       new Image();
 
+    /*
+      Tu archivo en GitHub sigue
+      llamándose mano.jpg.
+    */
+
     imagenMano.src =
       "mano.jpg";
 
@@ -1457,169 +1455,384 @@
     const ALTO =
       2048;
 
-    /*
-      DOS CORTES REALES DEL MEÑIQUE.
+    /* ==================================
+       MEÑIQUE REAL
 
-      Son las dos líneas negras
-      transversales principales
-      que se ven en la foto.
-    */
+       Coordenadas tomadas de
+       la fotografía original.
 
-    const corteSuperior = {
-      a:
-        [438, 837],
+       Línea negra 1:
+       aprox. 490,850 → 535,878
 
-      b:
-        [505, 880]
-    };
-
-    const corteInferior = {
-      a:
-        [525, 918],
-
-      b:
-        [594, 961]
-    };
+       Línea negra 2:
+       aprox. 552,920 → 600,954
+    ================================== */
 
     /*
-      Dibuja una apertura real
-      justo encima de una línea.
+      PIEZA 1:
+      punta hasta primera línea.
     */
 
-    function dibujarApertura(
-      corte,
-      cantidad
+    const pieza1 = [
+      [296, 752],
+      [320, 740],
+      [346, 748],
+      [380, 777],
+      [414, 813],
+      [453, 850],
+      [486, 874],
+      [510, 877],
+      [529, 866],
+      [535, 850],
+      [514, 827],
+      [486, 798],
+      [456, 769],
+      [424, 742],
+      [392, 723],
+      [357, 713],
+      [325, 720]
+    ];
+
+    /*
+      PIEZA 2:
+      primera línea a segunda línea.
+    */
+
+    const pieza2 = [
+      [486, 874],
+      [510, 877],
+      [529, 866],
+      [549, 882],
+      [568, 899],
+      [587, 918],
+      [601, 937],
+      [602, 952],
+      [590, 965],
+      [570, 962],
+      [550, 950],
+      [530, 934],
+      [511, 917],
+      [496, 898]
+    ];
+
+    /*
+      PIEZA 3:
+      segunda línea hasta la base.
+    */
+
+    const pieza3 = [
+      [550, 950],
+      [570, 962],
+      [590, 965],
+      [610, 978],
+      [631, 991],
+      [651, 1003],
+      [672, 1014],
+      [688, 1028],
+      [699, 1044],
+      [698, 1060],
+      [684, 1073],
+      [663, 1070],
+      [644, 1058],
+      [625, 1044],
+      [605, 1029],
+      [587, 1012],
+      [569, 993]
+    ];
+
+    const piezas = [
+      pieza1,
+      pieza2,
+      pieza3
+    ];
+
+    /*
+      ZONA ENTERA QUE OCUPA
+      EL MEÑIQUE.
+
+      La cubrimos antes de
+      redibujar los pedazos.
+
+      Así NO queda debajo una
+      copia del meñique original.
+    */
+
+    const mascaraMenique = [
+      [294, 747],
+      [320, 718],
+      [357, 704],
+      [395, 710],
+      [430, 730],
+      [462, 758],
+      [492, 790],
+      [521, 824],
+      [548, 861],
+      [573, 896],
+      [600, 929],
+      [625, 963],
+      [650, 988],
+      [680, 1004],
+      [705, 1028],
+      [714, 1055],
+      [702, 1082],
+      [675, 1093],
+      [648, 1080],
+      [620, 1059],
+      [592, 1035],
+      [562, 1005],
+      [532, 971],
+      [505, 936],
+      [476, 902],
+      [445, 870],
+      [414, 838],
+      [380, 808],
+      [346, 784],
+      [316, 768]
+    ];
+
+    /*
+      Coordenadas exactas de
+      las dos divisiones negras.
+    */
+
+    const linea1 = {
+      a: [480, 850],
+      b: [532, 882]
+    };
+
+    const linea2 = {
+      a: [548, 918],
+      b: [603, 955]
+    };
+
+    function trazarPoligono(
+      puntos
+    ) {
+
+      ctx.beginPath();
+
+      ctx.moveTo(
+        puntos[0][0],
+        puntos[0][1]
+      );
+
+      for (
+        let i = 1;
+        i < puntos.length;
+        i++
+      ) {
+
+        ctx.lineTo(
+          puntos[i][0],
+          puntos[i][1]
+        );
+      }
+
+      ctx.closePath();
+    }
+
+    function centroPoligono(
+      puntos
+    ) {
+
+      let x =
+        0;
+
+      let y =
+        0;
+
+      puntos.forEach(
+        function (
+          punto
+        ) {
+
+          x +=
+            punto[0];
+
+          y +=
+            punto[1];
+        }
+      );
+
+      return {
+        x:
+          x /
+          puntos.length,
+
+        y:
+          y /
+          puntos.length
+      };
+    }
+
+    /*
+      CUBRE el meñique original.
+
+      Usamos un gris tomado del
+      fondo de la propia fotografía.
+
+      Esto permite que las piezas
+      realmente parezcan separarse.
+    */
+
+    function cubrirMeniqueOriginal(
+      intensidad
     ) {
 
       if (
-        cantidad <= 0
+        intensidad <= 0
+      ) {
+
+        return;
+      }
+
+      ctx.save();
+
+      trazarPoligono(
+        mascaraMenique
+      );
+
+      ctx.clip();
+
+      /*
+        Fondo gris neutro.
+      */
+
+      ctx.globalAlpha =
+        intensidad;
+
+      ctx.fillStyle =
+        "#9b9c98";
+
+      ctx.fillRect(
+        250,
+        680,
+        500,
+        450
+      );
+
+      ctx.restore();
+    }
+
+    function dibujarPieza(
+      pieza,
+      dx,
+      dy,
+      rotacion,
+      opacidad
+    ) {
+
+      const centro =
+        centroPoligono(
+          pieza
+        );
+
+      ctx.save();
+
+      ctx.translate(
+        dx,
+        dy
+      );
+
+      ctx.translate(
+        centro.x,
+        centro.y
+      );
+
+      ctx.rotate(
+        rotacion
+      );
+
+      ctx.translate(
+        -centro.x,
+        -centro.y
+      );
+
+      trazarPoligono(
+        pieza
+      );
+
+      ctx.clip();
+
+      ctx.globalAlpha =
+        opacidad;
+
+      /*
+        Cuando drawImage recibe dx y dy
+        aquí, la imagen acompaña
+        exactamente al recorte.
+      */
+
+      ctx.drawImage(
+        imagenMano,
+        0,
+        0,
+        ANCHO,
+        ALTO
+      );
+
+      ctx.restore();
+    }
+
+    /*
+      Pequeña sombra en el espacio
+      que se abre.
+
+      Es abstracta, no gráfica.
+    */
+
+    function dibujarEspacio(
+      linea,
+      apertura
+    ) {
+
+      if (
+        apertura <= 0.01
       ) {
 
         return;
       }
 
       const x1 =
-        corte.a[0];
+        linea.a[0];
 
       const y1 =
-        corte.a[1];
+        linea.a[1];
 
       const x2 =
-        corte.b[0];
+        linea.b[0];
 
       const y2 =
-        corte.b[1];
-
-      const dx =
-        x2 - x1;
-
-      const dy =
-        y2 - y1;
-
-      const longitud =
-        Math.hypot(
-          dx,
-          dy
-        );
-
-      const nx =
-        -dy /
-        longitud;
-
-      const ny =
-        dx /
-        longitud;
-
-      /*
-        Hasta 27 píxeles
-        en la fotografía original.
-
-        En pantalla se ve como
-        un espacio claro y evidente.
-      */
-
-      const grosor =
-        2 +
-        25 *
-        cantidad;
+        linea.b[1];
 
       ctx.save();
 
       ctx.beginPath();
 
       ctx.moveTo(
-        x1 +
-        nx *
-        grosor,
-        y1 +
-        ny *
-        grosor
+        x1,
+        y1
       );
 
       ctx.lineTo(
-        x2 +
-        nx *
-        grosor,
-        y2 +
-        ny *
-        grosor
+        x2,
+        y2
       );
-
-      ctx.lineTo(
-        x2 -
-        nx *
-        grosor,
-        y2 -
-        ny *
-        grosor
-      );
-
-      ctx.lineTo(
-        x1 -
-        nx *
-        grosor,
-        y1 -
-        ny *
-        grosor
-      );
-
-      ctx.closePath();
-
-      /*
-        Color del fondo gris
-        que rodea la mano.
-
-        De esta forma se lee
-        como un espacio entre
-        las partes del dedo.
-      */
-
-      ctx.fillStyle =
-        `rgba(
-          150,
-          151,
-          147,
-          ${0.20 + 0.80 * cantidad}
-        )`;
-
-      ctx.fill();
-
-      /*
-        Sombra muy sutil
-        en cada lado del espacio.
-      */
 
       ctx.lineWidth =
-        2 +
-        3 *
-        cantidad;
+        4 +
+        17 *
+        apertura;
+
+      ctx.lineCap =
+        "round";
 
       ctx.strokeStyle =
         `rgba(
-          35,
-          28,
-          30,
-          ${0.18 + 0.42 * cantidad}
+          60,
+          60,
+          58,
+          ${0.25 + 0.45 * apertura}
         )`;
 
       ctx.stroke();
@@ -1627,17 +1840,19 @@
       ctx.restore();
     }
 
-    /*
-      La mano completa permanece
-      exactamente en su posición.
+    /* ==================================
+       RENDER DE LA MANO
 
-      Lo que se abre son las
-      líneas negras que ya existen.
-    */
+       separacion1:
+       primera división.
+
+       separacion2:
+       segunda división.
+    ================================== */
 
     function renderizarMano(
-      primeraDivision,
-      segundaDivision
+      separacion1,
+      separacion2
     ) {
 
       if (
@@ -1656,30 +1871,8 @@
       );
 
       /*
-        Fondo neutro.
+        FOTO COMPLETA NORMAL.
       */
-
-      ctx.fillStyle =
-        "#999a97";
-
-      ctx.fillRect(
-        0,
-        0,
-        ANCHO,
-        ALTO
-      );
-
-      /*
-        FOTO NORMAL.
-
-        Sin rojo.
-        Sin filtro oscuro.
-      */
-
-      ctx.save();
-
-      ctx.globalAlpha =
-        0.82;
 
       ctx.drawImage(
         imagenMano,
@@ -1689,29 +1882,118 @@
         ALTO
       );
 
-      ctx.restore();
+      const maximo =
+        Math.max(
+          separacion1,
+          separacion2
+        );
 
       /*
-        PRIMERO:
-        una división que deja
-        el meñique en dos.
+        Quitamos visualmente
+        el meñique original cuando
+        empieza a separarse.
       */
 
-      dibujarApertura(
-        corteInferior,
-        primeraDivision
+      cubrirMeniqueOriginal(
+        Math.min(
+          1,
+          maximo *
+          1.8
+        )
       );
 
       /*
-        DESPUÉS:
-        segunda división.
+        MOVIMIENTOS.
 
-        Ahora quedan tres partes.
+        Son deliberadamente
+        más visibles que antes.
+
+        Aun así permanecen
+        alrededor del propio dedo.
       */
 
-      dibujarApertura(
-        corteSuperior,
-        segundaDivision
+      const puntaX =
+        -26 *
+        separacion1
+        -
+        18 *
+        separacion2;
+
+      const puntaY =
+        -20 *
+        separacion1
+        -
+        13 *
+        separacion2;
+
+      const medioX =
+        -4 *
+        separacion1
+        +
+        2 *
+        separacion2;
+
+      const medioY =
+        -2 *
+        separacion1
+        +
+        2 *
+        separacion2;
+
+      const baseX =
+        20 *
+        separacion1
+        +
+        19 *
+        separacion2;
+
+      const baseY =
+        15 *
+        separacion1
+        +
+        15 *
+        separacion2;
+
+      dibujarPieza(
+        pieza3,
+        baseX,
+        baseY,
+        0.006 *
+        maximo,
+        1
+      );
+
+      dibujarPieza(
+        pieza2,
+        medioX,
+        medioY,
+        0,
+        1
+      );
+
+      dibujarPieza(
+        pieza1,
+        puntaX,
+        puntaY,
+        -0.008 *
+        maximo,
+        1
+      );
+
+      /*
+        Reforzamos visualmente
+        los espacios justo sobre
+        las líneas negras.
+      */
+
+      dibujarEspacio(
+        linea2,
+        separacion1
+      );
+
+      dibujarEspacio(
+        linea1,
+        separacion2
       );
     }
 
@@ -1737,9 +2019,9 @@
       );
     }
 
-    /* =============================
+    /* ==================================
        RELOJ
-    ============================= */
+    ================================== */
 
     function actualizarReloj(
       minutosTotales
@@ -1775,9 +2057,9 @@
         );
     }
 
-    /* =============================
-       ANIMACIÓN
-    ============================= */
+    /* ==================================
+       FUNCIONES DE MOVIMIENTO
+    ================================== */
 
     function easeInOutCubic(
       t
@@ -1840,6 +2122,21 @@
       );
     }
 
+    /* ==================================
+       ANIMACIÓN DEL MEÑIQUE
+
+       7 → 8
+       primera división
+
+       8 → 9
+       segunda división
+
+       pausa
+
+       9 → 11
+       se reconstruye lentamente
+    ================================== */
+
     function iniciarEscenaMenique() {
 
       function comenzar() {
@@ -1858,34 +2155,41 @@
         );
 
         /*
-          MÁS LENTO.
+          7 → 8
 
-          7:00 → 8:10
-
-          Primera separación.
+          10 segundos.
         */
 
-        const faseUno =
-          8000;
+        const fasePrimeraDivision =
+          10000;
 
         /*
-          8:10 → 9:00
+          8 → 9
 
-          Aparece la segunda
-          separación.
+          otros 10 segundos.
         */
 
-        const faseDos =
-          7000;
+        const faseSegundaDivision =
+          10000;
+
+        /*
+          Se queda completamente
+          dividido durante 3 segundos.
+        */
+
+        const pausaDividido =
+          3000;
 
         /*
           9 → 11
 
-          Se vuelve a armar.
+          12 segundos.
+
+          Ya no corre tan rápido.
         */
 
-        const rearme =
-          3500;
+        const faseRearme =
+          12000;
 
         const inicio =
           performance.now();
@@ -1901,32 +2205,32 @@
             ahora -
             inicio;
 
-          /* ========================
-             FASE 1
-             UN CORTE
-          ======================== */
+          /* ==========================
+             7 → 8
+
+             PRIMERA DIVISIÓN
+
+             Meñique en dos.
+          ========================== */
 
           if (
             tiempo <=
-            faseUno
+            fasePrimeraDivision
           ) {
 
             const progreso =
               tiempo /
-              faseUno;
+              fasePrimeraDivision;
 
             const apertura =
               easeInOutCubic(
                 progreso
               );
 
-            const minutos =
-              7 * 60 +
-              70 *
-              progreso;
-
             actualizarReloj(
-              minutos
+              7 * 60 +
+              60 *
+              progreso
             );
 
             renderizarMano(
@@ -1954,37 +2258,36 @@
             return;
           }
 
-          /* ========================
-             FASE 2
-             TRES PARTES
-          ======================== */
+          /* ==========================
+             8 → 9
+
+             SEGUNDA DIVISIÓN
+
+             Meñique en tres.
+          ========================== */
 
           const tiempoDos =
             tiempo -
-            faseUno;
+            fasePrimeraDivision;
 
           if (
             tiempoDos <=
-            faseDos
+            faseSegundaDivision
           ) {
 
             const progreso =
               tiempoDos /
-              faseDos;
+              faseSegundaDivision;
 
             const apertura =
               easeInOutCubic(
                 progreso
               );
 
-            const minutos =
-              8 * 60 +
-              10 +
-              50 *
-              progreso;
-
             actualizarReloj(
-              minutos
+              8 * 60 +
+              60 *
+              progreso
             );
 
             renderizarMano(
@@ -2033,24 +2336,58 @@
             return;
           }
 
-          /* ========================
+          /* ==========================
+             PAUSA A LAS 9
+
+             SE VEN LAS TRES PIEZAS.
+          ========================== */
+
+          const tiempoPausa =
+            tiempo -
+            fasePrimeraDivision -
+            faseSegundaDivision;
+
+          if (
+            tiempoPausa <=
+            pausaDividido
+          ) {
+
+            actualizarReloj(
+              9 * 60
+            );
+
+            renderizarMano(
+              1,
+              1
+            );
+
+            requestAnimationFrame(
+              animar
+            );
+
+            return;
+          }
+
+          /* ==========================
              9 → 11
-             SE CIERRA
-          ======================== */
+
+             RECONSTRUCCIÓN LENTA
+          ========================== */
 
           const tiempoRearme =
             tiempo -
-            faseUno -
-            faseDos;
+            fasePrimeraDivision -
+            faseSegundaDivision -
+            pausaDividido;
 
           if (
             tiempoRearme <=
-            rearme
+            faseRearme
           ) {
 
             const progreso =
               tiempoRearme /
-              rearme;
+              faseRearme;
 
             const cierre =
               1 -
@@ -2058,29 +2395,133 @@
                 progreso
               );
 
-            const minutos =
-              9 * 60 +
-              120 *
-              (
-                progreso *
-                progreso
-              );
+            /*
+              El reloj avanza de
+              9 a 11 durante
+              12 segundos.
+            */
 
             actualizarReloj(
-              minutos
+              9 * 60 +
+              120 *
+              progreso
             );
 
             /*
-              Se cierra primero
-              el corte superior.
+              Cierra primero
+              la segunda división.
             */
 
-            const superior =
-              Math.max(
-                0,
-                cierre *
-                1.35 -
-                0.35
-              );
+            let division2 =
+              1;
 
-            /*
+            let division1 =
+              1;
+
+            if (
+              progreso <
+              0.5
+            ) {
+
+              division2 =
+                1 -
+                easeInOutCubic(
+                  progreso *
+                  2
+                );
+
+              division1 =
+                1;
+
+            } else {
+
+              division2 =
+                0;
+
+              division1 =
+                1 -
+                easeInOutCubic(
+                  (
+                    progreso -
+                    0.5
+                  ) *
+                  2
+                );
+            }
+
+            renderizarMano(
+              division1,
+              division2
+            );
+
+            requestAnimationFrame(
+              animar
+            );
+
+            return;
+          }
+
+          /* ==========================
+             FINAL
+
+             11:00
+          ========================== */
+
+          actualizarReloj(
+            11 * 60
+          );
+
+          renderizarMano(
+            0,
+            0
+          );
+
+          cambiarTexto(
+            "A las 11 regresé de la anestesia con un dedo distinto: el mismo, pero mutante.",
+            true
+          );
+
+          /*
+            Aquí queda la señal interna
+            para la próxima escena de
+            audios.
+
+            No aparece texto adicional.
+          */
+
+          window.dispatchEvent(
+            new CustomEvent(
+              "inicioAudios11"
+            )
+          );
+        }
+
+        requestAnimationFrame(
+          animar
+        );
+      }
+
+      if (
+        imagenMano.complete &&
+        imagenMano.naturalWidth
+      ) {
+
+        comenzar();
+
+      } else {
+
+        imagenMano.addEventListener(
+          "load",
+          comenzar,
+          {
+            once: true
+          }
+        );
+      }
+    }
+
+  </script>
+
+</body>
+
+</html>
