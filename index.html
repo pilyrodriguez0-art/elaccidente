@@ -82,10 +82,13 @@
     button {
       margin-top: 20px;
       padding: 12px 24px;
+
       border: 1px solid white;
       border-radius: 999px;
+
       background: transparent;
       color: white;
+
       font-size: 16px;
       cursor: pointer;
     }
@@ -99,10 +102,13 @@
       position: absolute;
       right: 18px;
       bottom: 18px;
+
       margin: 0;
       padding: 7px 10px;
+
       border-radius: 6px;
       background: rgba(0, 0, 0, 0.6);
+
       color: white;
       font-size: 12px;
     }
@@ -130,6 +136,7 @@
     #mapa-real {
       width: 100%;
       height: 72vh;
+
       border: 1px solid #444;
       overflow: hidden;
     }
@@ -137,7 +144,9 @@
     .punto-viajero {
       width: 18px;
       height: 18px;
+
       border-radius: 50%;
+
       background: #b00000;
 
       box-shadow:
@@ -149,9 +158,6 @@
       border-radius: 50%;
       background: #990000;
       opacity: 0.75;
-
-      box-shadow:
-        2px 5px 0 -2px rgba(120, 0, 0, 0.65);
     }
 
     /* PÉRDIDA DE SUSTANCIA */
@@ -162,10 +168,11 @@
     }
 
     .texto-perdida {
+      margin: 0;
+
       font-size: clamp(2.5rem, 9vw, 7rem);
       font-weight: 400;
       letter-spacing: -0.04em;
-      margin: 0;
     }
   </style>
 </head>
@@ -175,22 +182,34 @@
   <main>
 
     <!-- ESCENA 1 -->
-    <section class="escena escena-activa" id="porton">
+
+    <section
+      class="escena escena-activa"
+      id="porton"
+    >
 
       <div class="contenido-porton">
 
         <h1>El portón</h1>
 
-        <p>Aquí comienza el recorrido.</p>
+        <p>
+          Aquí comienza el recorrido.
+        </p>
 
-        <button id="entrar" type="button">
+        <button
+          id="entrar"
+          type="button"
+        >
           Entrar
         </button>
 
       </div>
 
+
       <p class="credito-foto">
+
         Foto de
+
         <a
           href="https://unsplash.com/es/@anyachernykh"
           target="_blank"
@@ -198,7 +217,9 @@
         >
           Anya Chernykh
         </a>
+
         en
+
         <a
           href="https://unsplash.com/es/fotos/una-puerta-azul-con-una-cerradura-oxidada-tvotQu_jd68"
           target="_blank"
@@ -206,17 +227,24 @@
         >
           Unsplash
         </a>.
+
       </p>
 
     </section>
 
 
     <!-- ESCENA 2 -->
-    <section class="escena" id="mapa">
+
+    <section
+      class="escena"
+      id="mapa"
+    >
 
       <div class="contenido-mapa">
 
-        <h2>Recorrido</h2>
+        <h2>
+          Recorrido
+        </h2>
 
         <p class="texto-mapa">
           El trayecto.
@@ -230,7 +258,11 @@
 
 
     <!-- ESCENA 3 -->
-    <section class="escena" id="perdida">
+
+    <section
+      class="escena"
+      id="perdida"
+    >
 
       <h2 class="texto-perdida">
         pérdida de sustancia
@@ -255,6 +287,7 @@
     const escenaPerdida =
       document.querySelector("#perdida");
 
+
     let mapaInicializado = false;
 
 
@@ -269,6 +302,7 @@
         escenaMapa.classList.add(
           "escena-activa"
         );
+
 
         if (!mapaInicializado) {
 
@@ -302,18 +336,20 @@
         -90.50234271356774
       ];
 
+
       const coordenadasHospital = [
         14.60393779846318,
         -90.56026555839702
       ];
 
 
-      const mapa = L.map(
-        "mapa-real",
-        {
-          zoomControl: false
-        }
-      );
+      const mapa =
+        L.map(
+          "mapa-real",
+          {
+            zoomControl: false
+          }
+        );
 
 
       L.tileLayer(
@@ -323,8 +359,7 @@
           maxZoom: 20,
 
           attribution:
-            '&copy; OpenStreetMap contributors ' +
-            '&copy; CARTO'
+            "&copy; OpenStreetMap contributors &copy; CARTO"
         }
       ).addTo(mapa);
 
@@ -403,25 +438,10 @@
 
       let progreso = 0;
 
-      const velocidad = 0.008;
+      const velocidad = 0.01;
 
 
       function animar() {
-
-        if (
-          tramo >=
-          ruta.length - 1
-        ) {
-
-          window.setTimeout(
-            mostrarPerdida,
-            900
-          );
-
-          return;
-
-        }
-
 
         const inicio =
           ruta[tramo];
@@ -431,6 +451,11 @@
 
 
         progreso += velocidad;
+
+
+        if (progreso > 1) {
+          progreso = 1;
+        }
 
 
         const lat =
@@ -458,7 +483,7 @@
 
         if (
           Math.random() >
-          0.88
+          0.9
         ) {
 
           crearMarca(
@@ -470,13 +495,31 @@
         }
 
 
-        if (
-          progreso >= 1
-        ) {
+        if (progreso >= 1) {
 
-          progreso = 0;
+          /*
+            Si este era el último tramo,
+            termina el mapa.
+          */
+
+          if (
+            tramo ===
+            ruta.length - 2
+          ) {
+
+            setTimeout(
+              mostrarPerdida,
+              1000
+            );
+
+            return;
+
+          }
+
 
           tramo++;
+
+          progreso = 0;
 
         }
 
@@ -501,7 +544,7 @@
 
       const tamaño =
         5 +
-        Math.random() * 8;
+        Math.random() * 7;
 
 
       const iconoMarca =
@@ -549,10 +592,12 @@
           ) *
           0.00035
         ],
+
         {
           icon: iconoMarca,
           interactive: false
         }
+
       ).addTo(mapa);
 
     }
