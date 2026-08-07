@@ -6,7 +6,6 @@
 
   <title>El accidente</title>
 
-  <!-- Leaflet -->
   <link
     rel="stylesheet"
     href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
@@ -48,9 +47,7 @@
       flex-direction: column;
     }
 
-    /* =========================
-       ESCENA 1: PORTÓN
-    ========================= */
+    /* PORTÓN */
 
     #porton {
       position: relative;
@@ -85,13 +82,10 @@
     button {
       margin-top: 20px;
       padding: 12px 24px;
-
       border: 1px solid white;
       border-radius: 999px;
-
       background: transparent;
       color: white;
-
       font-size: 16px;
       cursor: pointer;
     }
@@ -105,13 +99,10 @@
       position: absolute;
       right: 18px;
       bottom: 18px;
-
       margin: 0;
       padding: 7px 10px;
-
       border-radius: 6px;
       background: rgba(0, 0, 0, 0.6);
-
       color: white;
       font-size: 12px;
     }
@@ -120,9 +111,7 @@
       color: white;
     }
 
-    /* =========================
-       ESCENA 2: MAPA
-    ========================= */
+    /* MAPA */
 
     #mapa {
       background: #111;
@@ -141,19 +130,14 @@
     #mapa-real {
       width: 100%;
       height: 72vh;
-
       border: 1px solid #444;
       overflow: hidden;
     }
 
-    /* Punto rojo que se mueve */
-
     .punto-viajero {
       width: 18px;
       height: 18px;
-
       border-radius: 50%;
-
       background: #b00000;
 
       box-shadow:
@@ -161,16 +145,27 @@
         0 0 14px rgba(150, 0, 0, 0.7);
     }
 
-    /* Marcas rojas */
-
     .marca-roja {
       border-radius: 50%;
       background: #990000;
-
       opacity: 0.75;
 
       box-shadow:
         2px 5px 0 -2px rgba(120, 0, 0, 0.65);
+    }
+
+    /* PÉRDIDA DE SUSTANCIA */
+
+    #perdida {
+      background: #050505;
+      color: white;
+    }
+
+    .texto-perdida {
+      font-size: clamp(2.5rem, 9vw, 7rem);
+      font-weight: 400;
+      letter-spacing: -0.04em;
+      margin: 0;
     }
   </style>
 </head>
@@ -179,19 +174,14 @@
 
   <main>
 
-    <!-- =========================
-         ESCENA 1
-    ========================== -->
-
+    <!-- ESCENA 1 -->
     <section class="escena escena-activa" id="porton">
 
       <div class="contenido-porton">
 
         <h1>El portón</h1>
 
-        <p>
-          Aquí comienza el recorrido.
-        </p>
+        <p>Aquí comienza el recorrido.</p>
 
         <button id="entrar" type="button">
           Entrar
@@ -221,15 +211,12 @@
     </section>
 
 
-    <!-- =========================
-         ESCENA 2
-    ========================== -->
-
+    <!-- ESCENA 2 -->
     <section class="escena" id="mapa">
 
       <div class="contenido-mapa">
 
-        <h2>Recorrido hacia el hospital</h2>
+        <h2>Recorrido</h2>
 
         <p class="texto-mapa">
           El trayecto.
@@ -238,6 +225,16 @@
         <div id="mapa-real"></div>
 
       </div>
+
+    </section>
+
+
+    <!-- ESCENA 3 -->
+    <section class="escena" id="perdida">
+
+      <h2 class="texto-perdida">
+        pérdida de sustancia
+      </h2>
 
     </section>
 
@@ -254,6 +251,9 @@
 
     const escenaMapa =
       document.querySelector("#mapa");
+
+    const escenaPerdida =
+      document.querySelector("#perdida");
 
     let mapaInicializado = false;
 
@@ -282,11 +282,20 @@
     );
 
 
-    function crearMapa() {
+    function mostrarPerdida() {
 
-      /* =========================
-         COORDENADAS
-      ========================== */
+      escenaMapa.classList.remove(
+        "escena-activa"
+      );
+
+      escenaPerdida.classList.add(
+        "escena-activa"
+      );
+
+    }
+
+
+    function crearMapa() {
 
       const coordenadasPorton = [
         14.643277895439471,
@@ -299,10 +308,6 @@
       ];
 
 
-      /* =========================
-         CREAR MAPA
-      ========================== */
-
       const mapa = L.map(
         "mapa-real",
         {
@@ -310,11 +315,6 @@
         }
       );
 
-
-      /* =========================
-         MAPA BASE CARTO
-         Blanco / gris
-      ========================== */
 
       L.tileLayer(
         "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
@@ -328,10 +328,6 @@
         }
       ).addTo(mapa);
 
-
-      /* =========================
-         RECORRIDO
-      ========================== */
 
       const ruta = [
 
@@ -369,10 +365,6 @@
       );
 
 
-      /* =========================
-         LÍNEA ROJA
-      ========================== */
-
       L.polyline(
         ruta,
         {
@@ -382,10 +374,6 @@
         }
       ).addTo(mapa);
 
-
-      /* =========================
-         PUNTO ROJO
-      ========================== */
 
       const iconoPunto =
         L.divIcon({
@@ -411,10 +399,6 @@
         ).addTo(mapa);
 
 
-      /* =========================
-         ANIMACIÓN
-      ========================== */
-
       let tramo = 0;
 
       let progreso = 0;
@@ -428,6 +412,11 @@
           tramo >=
           ruta.length - 1
         ) {
+
+          window.setTimeout(
+            mostrarPerdida,
+            900
+          );
 
           return;
 
@@ -467,10 +456,6 @@
         );
 
 
-        /* =========================
-           DEJAR MARCAS
-        ========================== */
-
         if (
           Math.random() >
           0.88
@@ -507,10 +492,6 @@
 
     }
 
-
-    /* =========================
-       CREAR MARCA ROJA
-    ========================== */
 
     function crearMarca(
       mapa,
