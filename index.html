@@ -34,15 +34,18 @@
 
     :root {
       --corinto: #64152e;
-      --corinto-medio: #7d2540;
-      --corinto-claro: #983c57;
+      --corinto-oscuro: #4f0d22;
+      --corinto-medio: #79233d;
     }
 
     body {
       margin: 0;
+
       background: #050505;
       color: white;
+
       font-family: Arial, sans-serif;
+
       overflow-x: hidden;
     }
 
@@ -156,7 +159,11 @@
     }
 
     .contenido-mapa {
-      width: min(1150px, 100%);
+      width:
+        min(
+          1150px,
+          100%
+        );
     }
 
     .pregunta-mapa {
@@ -187,17 +194,22 @@
 
       border-radius: 50%;
 
-      background: var(--corinto);
+      background:
+        var(--corinto);
 
       box-shadow:
-        0 0 0 3px rgba(100, 21, 46, 0.25),
-        0 0 14px rgba(100, 21, 46, 0.7);
+        0 0 0 3px
+        rgba(100, 21, 46, 0.25),
+
+        0 0 14px
+        rgba(100, 21, 46, 0.7);
     }
 
     .marca-roja {
       border-radius: 50%;
 
-      background: var(--corinto);
+      background:
+        var(--corinto);
 
       opacity: 0.7;
     }
@@ -213,7 +225,9 @@
     .texto-perdida {
       margin: 0;
 
-      font-family: Georgia, serif;
+      font-family:
+        Georgia,
+        serif;
 
       font-size:
         clamp(
@@ -226,7 +240,8 @@
 
       line-height: 1.2;
 
-      letter-spacing: -0.03em;
+      letter-spacing:
+        -0.03em;
     }
 
     /* =========================
@@ -240,13 +255,13 @@
 
       padding-bottom: 100px;
 
-      background: #100207;
+      background: #111;
     }
 
     /*
-      La foto ahora es un elemento
-      separado y tiene solo 16 %
-      de opacidad.
+      FOTO NORMAL.
+      SIN VELO ROJO.
+      SOLO MÁS TENUE.
     */
 
     .fondo-quirofano {
@@ -261,12 +276,17 @@
 
       object-fit: cover;
 
-      opacity: 0.16;
+      opacity: 0.48;
 
       filter:
-        brightness(0.72)
-        saturate(0.65);
+        brightness(0.82)
+        contrast(0.95);
     }
+
+    /*
+      Solo oscurecemos ligeramente
+      para que se lea el texto.
+    */
 
     .velo-quirofano {
       position: absolute;
@@ -276,7 +296,7 @@
       z-index: 1;
 
       background:
-        rgba(75, 5, 27, 0.35);
+        rgba(0, 0, 0, 0.18);
 
       pointer-events: none;
     }
@@ -315,7 +335,12 @@
 
       font-weight: 400;
 
-      color: #86213f;
+      color:
+        var(--corinto-oscuro);
+
+      text-shadow:
+        0 1px 2px
+        rgba(255, 255, 255, 0.35);
     }
 
     .guion {
@@ -328,7 +353,12 @@
 
       line-height: 1.7;
 
-      color: #7d1d39;
+      color:
+        var(--corinto-oscuro);
+
+      text-shadow:
+        0 1px 2px
+        rgba(255, 255, 255, 0.30);
     }
 
     .guion p {
@@ -336,30 +366,39 @@
     }
 
     .personaje {
-      margin-top: 22px !important;
-      margin-bottom: 5px !important;
+      margin-top:
+        22px !important;
+
+      margin-bottom:
+        5px !important;
 
       font-weight: bold;
 
-      letter-spacing: 0.08em;
+      letter-spacing:
+        0.08em;
 
-      color: #71142f;
+      color:
+        #460a1d;
     }
 
     .dialogo {
-      color: #7d1d39;
+      color:
+        var(--corinto-oscuro);
     }
 
     .accion {
-      margin: 20px 0 !important;
+      margin:
+        20px 0 !important;
 
       font-style: italic;
 
-      color: #8b3049;
+      color:
+        var(--corinto);
     }
 
     .cuenta {
-      margin: 32px 0 !important;
+      margin:
+        32px 0 !important;
 
       text-align: center;
 
@@ -370,9 +409,11 @@
           4rem
         );
 
-      letter-spacing: 0.1em;
+      letter-spacing:
+        0.1em;
 
-      color: #73152f;
+      color:
+        var(--corinto-oscuro);
     }
 
     .siguiente-quirofano {
@@ -381,14 +422,15 @@
       left: 50%;
       bottom: 32px;
 
-      transform: translateX(-50%);
+      transform:
+        translateX(-50%);
 
       z-index: 30;
     }
 
     #boton-menique {
       background:
-        rgba(0, 0, 0, 0.55);
+        rgba(0, 0, 0, 0.58);
     }
 
     #boton-menique:hover {
@@ -415,9 +457,12 @@
     }
 
     .titulo-menique {
-      margin: 0 0 10px;
+      margin:
+        0 0 10px;
 
-      font-family: Georgia, serif;
+      font-family:
+        Georgia,
+        serif;
 
       font-size:
         clamp(
@@ -430,11 +475,14 @@
     }
 
     .texto-menique {
-      margin: 0 auto 26px;
+      margin:
+        0 auto 26px;
 
       max-width: 850px;
 
-      font-family: Georgia, serif;
+      font-family:
+        Georgia,
+        serif;
 
       font-size:
         clamp(
@@ -446,11 +494,16 @@
       line-height: 1.55;
 
       color:
-        rgba(255, 255, 255, 0.84);
+        rgba(
+          255,
+          255,
+          255,
+          0.84
+        );
     }
 
     /* =========================
-       MANO / CANVAS
+       CANVAS DE LA MANO
     ========================= */
 
     .escenario-mano {
@@ -465,15 +518,22 @@
       aspect-ratio:
         1542 / 2048;
 
-      margin: 0 auto;
+      margin:
+        0 auto;
 
       overflow: hidden;
 
-      background: #24050e;
+      background:
+        #777;
 
       border:
         1px solid
-        rgba(100, 21, 46, 0.25);
+        rgba(
+          255,
+          255,
+          255,
+          0.12
+        );
     }
 
     #canvas-mano {
@@ -487,25 +547,11 @@
       height: 100%;
     }
 
-    /*
-      Un único velo corinto.
-    */
-
-    .velo-mano {
-      position: absolute;
-
-      inset: 0;
-
-      z-index: 4;
-
-      background:
-        rgba(100, 14, 44, 0.12);
-
-      pointer-events: none;
-    }
-
     /* =========================
-       UN SOLO RELOJ
+       RELOJ
+
+       SOLO UNO.
+       SIN reloj.jpg.
     ========================= */
 
     .reloj-hospital {
@@ -516,7 +562,7 @@
 
       top: 40%;
 
-      height: 19%;
+      height: 18%;
 
       z-index: 10;
 
@@ -526,30 +572,35 @@
       justify-content: center;
 
       background:
-        rgba(45, 3, 16, 0.16);
+        rgba(
+          12,
+          12,
+          12,
+          0.13
+        );
 
       border:
         1px solid
-        rgba(120, 29, 58, 0.42);
-
-      box-shadow:
-        inset 0 0 35px
-        rgba(100, 15, 43, 0.12);
+        rgba(
+          79,
+          13,
+          34,
+          0.34
+        );
 
       pointer-events: none;
     }
-
-    /*
-      No hay reloj.jpg.
-      No hay números debajo.
-      Solo existe este texto.
-    */
 
     .hora-digital {
       margin: 0;
 
       color:
-        rgba(112, 21, 50, 0.96);
+        rgba(
+          79,
+          13,
+          34,
+          0.92
+        );
 
       font-family:
         "Courier New",
@@ -564,7 +615,8 @@
 
       font-weight: 700;
 
-      letter-spacing: 0.08em;
+      letter-spacing:
+        0.08em;
 
       font-variant-numeric:
         tabular-nums;
@@ -577,13 +629,16 @@
     ========================= */
 
     .estado-menique {
-      margin: 22px auto 0;
+      margin:
+        22px auto 0;
 
       min-height: 72px;
 
       max-width: 850px;
 
-      font-family: Georgia, serif;
+      font-family:
+        Georgia,
+        serif;
 
       font-size:
         clamp(
@@ -595,7 +650,12 @@
       line-height: 1.5;
 
       color:
-        rgba(255, 255, 255, 0.84);
+        rgba(
+          255,
+          255,
+          255,
+          0.84
+        );
 
       transition:
         opacity 0.35s ease,
@@ -613,33 +673,75 @@
       color: white;
     }
 
+    .inicio-audios {
+      display: none;
+
+      margin:
+        20px auto 0;
+
+      max-width: 760px;
+
+      font-family:
+        Georgia,
+        serif;
+
+      font-size:
+        clamp(
+          1.05rem,
+          2.4vw,
+          1.35rem
+        );
+
+      color:
+        rgba(
+          255,
+          255,
+          255,
+          0.66
+        );
+    }
+
+    .inicio-audios.visible {
+      display: block;
+    }
+
     /* =========================
        MÓVIL
     ========================= */
 
-    @media (max-width: 760px) {
+    @media (
+      max-width: 760px
+    ) {
+
       .escena {
-        padding: 20px 12px;
+        padding:
+          20px 12px;
       }
 
       #mapa-real {
-        height: 68vh;
+        height:
+          68vh;
       }
 
       #quirofano {
-        padding-bottom: 95px;
+        padding-bottom:
+          95px;
       }
 
       .contenido-quirofano {
-        width: 94%;
-        max-height: 65vh;
+        width:
+          94%;
+
+        max-height:
+          65vh;
       }
 
       .reloj-hospital {
         left: 4%;
         right: 4%;
 
-        height: 18%;
+        height:
+          18%;
       }
 
       .hora-digital {
@@ -659,7 +761,7 @@
   <main>
 
     <!-- =========================
-         1. PORTÓN
+         PORTÓN
     ========================= -->
 
     <section
@@ -709,7 +811,7 @@
     </section>
 
     <!-- =========================
-         2. MAPA
+         MAPA
     ========================= -->
 
     <section
@@ -717,20 +819,26 @@
       id="mapa"
     >
 
-      <div class="contenido-mapa">
+      <div
+        class="contenido-mapa"
+      >
 
-        <h2 class="pregunta-mapa">
+        <h2
+          class="pregunta-mapa"
+        >
           ¿Dónde está tu dedo, Pili?
         </h2>
 
-        <div id="mapa-real"></div>
+        <div
+          id="mapa-real"
+        ></div>
 
       </div>
 
     </section>
 
     <!-- =========================
-         3. DIAGNÓSTICO
+         DIAGNÓSTICO
     ========================= -->
 
     <section
@@ -738,14 +846,16 @@
       id="perdida"
     >
 
-      <h2 class="texto-perdida">
+      <h2
+        class="texto-perdida"
+      >
         Diagnóstico: pérdida de sustancia
       </h2>
 
     </section>
 
     <!-- =========================
-         4. QUIRÓFANO
+         QUIRÓFANO
     ========================= -->
 
     <section
@@ -763,75 +873,113 @@
         class="velo-quirofano"
       ></div>
 
-      <div class="contenido-quirofano">
+      <div
+        class="contenido-quirofano"
+      >
 
-        <h2 class="titulo-quirofano">
+        <h2
+          class="titulo-quirofano"
+        >
           Sala de operación
         </h2>
 
-        <div class="guion">
+        <div
+          class="guion"
+        >
 
-          <p class="personaje">
+          <p
+            class="personaje"
+          >
             YO
           </p>
 
-          <p class="dialogo">
+          <p
+            class="dialogo"
+          >
             —Hoy no voy a llorar.
           </p>
 
-          <p class="accion">
+          <p
+            class="accion"
+          >
             Se lo digo al médico. Él se ríe.
           </p>
 
-          <p class="accion">
+          <p
+            class="accion"
+          >
             El anestesista hace lo suyo y me explica algo.
           </p>
 
-          <p class="personaje">
+          <p
+            class="personaje"
+          >
             YO
           </p>
 
-          <p class="dialogo">
+          <p
+            class="dialogo"
+          >
             —¿Y tengo que contar?
           </p>
 
-          <p class="personaje">
+          <p
+            class="personaje"
+          >
             OTRO DOCTOR
           </p>
 
-          <p class="dialogo">
+          <p
+            class="dialogo"
+          >
             —Ni que fuera película.
           </p>
 
-          <p class="personaje">
+          <p
+            class="personaje"
+          >
             OTRO DOCTOR
           </p>
 
-          <p class="dialogo">
+          <p
+            class="dialogo"
+          >
             —Pero cuente.
           </p>
 
-          <p class="accion">
+          <p
+            class="accion"
+          >
             Inicio.
           </p>
 
-          <p class="cuenta">
+          <p
+            class="cuenta"
+          >
             10, 9...
           </p>
 
-          <p class="personaje">
+          <p
+            class="personaje"
+          >
             ANESTESISTA
           </p>
 
-          <p class="dialogo">
+          <p
+            class="dialogo"
+          >
             —Le va a doler ahora.
           </p>
 
-          <p class="accion">
+          <p
+            class="accion"
+          >
             Me quejo.
           </p>
 
-          <p class="accion">
+          <p
+            class="accion"
+          >
             Ya no recuerdo nada.
           </p>
 
@@ -839,7 +987,9 @@
 
       </div>
 
-      <div class="siguiente-quirofano">
+      <div
+        class="siguiente-quirofano"
+      >
 
         <button
           id="boton-menique"
@@ -850,7 +1000,9 @@
 
       </div>
 
-      <p class="credito-foto">
+      <p
+        class="credito-foto"
+      >
 
         Foto de
 
@@ -877,7 +1029,7 @@
     </section>
 
     <!-- =========================
-         5. EL MEÑIQUE
+         EL MEÑIQUE
     ========================= -->
 
     <section
@@ -885,13 +1037,19 @@
       id="menique"
     >
 
-      <div class="contenedor-menique">
+      <div
+        class="contenedor-menique"
+      >
 
-        <h2 class="titulo-menique">
+        <h2
+          class="titulo-menique"
+        >
           El Meñique
         </h2>
 
-        <p class="texto-menique">
+        <p
+          class="texto-menique"
+        >
           Herida cortocontundente en el pulpejo medio izquierdo,
           con pérdida de sustancia.
           Colgajo para reconstrucción del pulpejo y del lecho ungueal.
@@ -902,24 +1060,11 @@
           id="escenario-mano"
         >
 
-          <!--
-            Toda la mano y la separación
-            se dibujan aquí.
-          -->
-
           <canvas
             id="canvas-mano"
             width="1542"
             height="2048"
           ></canvas>
-
-          <div
-            class="velo-mano"
-          ></div>
-
-          <!--
-            UN SOLO RELOJ.
-          -->
 
           <div
             class="reloj-hospital"
@@ -943,6 +1088,13 @@
           De 7 a 9 se desarma el meñique con el que nací.
         </p>
 
+        <p
+          class="inicio-audios"
+          id="inicio-audios"
+        >
+          A partir de las 11 comienzan las voces.
+        </p>
+
       </div>
 
     </section>
@@ -950,38 +1102,57 @@
   </main>
 
   <script>
+
     /* =========================
        ESCENAS
     ========================= */
 
     const porton =
-      document.querySelector("#porton");
+      document.querySelector(
+        "#porton"
+      );
 
     const escenaMapa =
-      document.querySelector("#mapa");
+      document.querySelector(
+        "#mapa"
+      );
 
     const escenaPerdida =
-      document.querySelector("#perdida");
+      document.querySelector(
+        "#perdida"
+      );
 
     const escenaQuirofano =
-      document.querySelector("#quirofano");
+      document.querySelector(
+        "#quirofano"
+      );
 
     const escenaMenique =
-      document.querySelector("#menique");
+      document.querySelector(
+        "#menique"
+      );
 
     const botonEntrar =
-      document.querySelector("#entrar");
+      document.querySelector(
+        "#entrar"
+      );
 
     const botonMenique =
-      document.querySelector("#boton-menique");
+      document.querySelector(
+        "#boton-menique"
+      );
 
-    let mapaInicializado = false;
-    let meniqueIniciado = false;
+    let mapaInicializado =
+      false;
+
+    let meniqueIniciado =
+      false;
 
     function cambiarEscena(
       escenaActual,
       escenaNueva
     ) {
+
       escenaActual.classList.remove(
         "escena-activa"
       );
@@ -999,15 +1170,20 @@
     botonEntrar.addEventListener(
       "click",
       function () {
+
         cambiarEscena(
           porton,
           escenaMapa
         );
 
-        if (!mapaInicializado) {
+        if (
+          !mapaInicializado
+        ) {
+
           crearMapa();
 
-          mapaInicializado = true;
+          mapaInicializado =
+            true;
         }
       }
     );
@@ -1015,15 +1191,20 @@
     botonMenique.addEventListener(
       "click",
       function () {
+
         cambiarEscena(
           escenaQuirofano,
           escenaMenique
         );
 
-        if (!meniqueIniciado) {
+        if (
+          !meniqueIniciado
+        ) {
+
           iniciarEscenaMenique();
 
-          meniqueIniciado = true;
+          meniqueIniciado =
+            true;
         }
       }
     );
@@ -1033,6 +1214,7 @@
     ========================= */
 
     function crearMapa() {
+
       const coordenadasPorton = [
         14.643277895439471,
         -90.50234271356774
@@ -1047,16 +1229,19 @@
         L.map(
           "mapa-real",
           {
-            zoomControl: false
+            zoomControl:
+              false
           }
         );
 
       L.tileLayer(
         "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
         {
-          subdomains: "abcd",
+          subdomains:
+            "abcd",
 
-          maxZoom: 20,
+          maxZoom:
+            20,
 
           attribution:
             "&copy; OpenStreetMap contributors &copy; CARTO"
@@ -1087,18 +1272,22 @@
           ruta
         ),
         {
-          padding: [50, 50]
+          padding:
+            [50, 50]
         }
       );
 
       L.polyline(
         ruta,
         {
-          color: "#64152e",
+          color:
+            "#64152e",
 
-          weight: 3,
+          weight:
+            3,
 
-          opacity: 0.45
+          opacity:
+            0.45
         }
       ).addTo(
         mapa
@@ -1106,41 +1295,57 @@
 
       const iconoPunto =
         L.divIcon({
-          className: "",
+          className:
+            "",
 
           html:
             '<div class="punto-viajero"></div>',
 
-          iconSize: [18, 18],
+          iconSize:
+            [18, 18],
 
-          iconAnchor: [9, 9]
+          iconAnchor:
+            [9, 9]
         });
 
       const punto =
         L.marker(
           coordenadasPorton,
           {
-            icon: iconoPunto
+            icon:
+              iconoPunto
           }
         ).addTo(
           mapa
         );
 
-      let tramo = 0;
-      let progreso = 0;
+      let tramo =
+        0;
 
-      const velocidad = 0.01;
+      let progreso =
+        0;
+
+      const velocidad =
+        0.01;
 
       function animarRuta() {
+
         const inicio =
-          ruta[tramo];
+          ruta[
+            tramo
+          ];
 
         const final =
-          ruta[tramo + 1];
+          ruta[
+            tramo + 1
+          ];
 
-        progreso += velocidad;
+        progreso +=
+          velocidad;
 
-        if (progreso > 1) {
+        if (
+          progreso > 1
+        ) {
           progreso = 1;
         }
 
@@ -1167,7 +1372,10 @@
           ]
         );
 
-        if (Math.random() > 0.9) {
+        if (
+          Math.random() >
+          0.9
+        ) {
           crearMarca(
             mapa,
             lat,
@@ -1175,13 +1383,18 @@
           );
         }
 
-        if (progreso >= 1) {
+        if (
+          progreso >= 1
+        ) {
+
           if (
             tramo ===
             ruta.length - 2
           ) {
+
             window.setTimeout(
               function () {
+
                 cambiarEscena(
                   escenaMapa,
                   escenaPerdida
@@ -1189,10 +1402,12 @@
 
                 window.setTimeout(
                   function () {
+
                     cambiarEscena(
                       escenaPerdida,
                       escenaQuirofano
                     );
+
                   },
                   2800
                 );
@@ -1204,7 +1419,9 @@
           }
 
           tramo++;
-          progreso = 0;
+
+          progreso =
+            0;
         }
 
         requestAnimationFrame(
@@ -1220,13 +1437,16 @@
       lat,
       lng
     ) {
+
       const tamaño =
         5 +
-        Math.random() * 7;
+        Math.random() *
+        7;
 
       const iconoMarca =
         L.divIcon({
-          className: "",
+          className:
+            "",
 
           html:
             `
@@ -1304,130 +1524,153 @@
         "#estado-menique"
       );
 
+    const inicioAudios =
+      document.querySelector(
+        "#inicio-audios"
+      );
+
     const imagenMano =
       new Image();
 
     imagenMano.src =
       "mano.jpg";
 
-    /*
-      Esta es la resolución exacta
-      de mano.jpg.
-    */
+    const ANCHO =
+      1542;
 
-    const ANCHO_MANO = 1542;
-    const ALTO_MANO = 2048;
+    const ALTO =
+      2048;
 
     /*
-      Las cuatro partes fueron ubicadas
-      directamente sobre la foto original.
+      RECORTES REALES DEL MEÑIQUE.
 
-      Las fronteras corresponden a
-      las tres líneas negras del meñique.
+      Primera sección:
+      punta → primera línea negra.
     */
 
-    const segmentosMenique = [
-      [
-        [432, 744],
-        [470, 742],
-        [507, 763],
-        [539, 806],
-        [545, 837],
-        [536, 867],
-        [500, 848],
-        [475, 820],
-        [452, 792],
-        [439, 765]
-      ],
-
-      [
-        [494, 840],
-        [536, 866],
-        [559, 884],
-        [603, 918],
-        [596, 941],
-        [558, 917],
-        [533, 894],
-        [515, 872]
-      ],
-
-      [
-        [558, 916],
-        [596, 940],
-        [621, 957],
-        [672, 985],
-        [668, 1006],
-        [632, 986],
-        [601, 966],
-        [578, 946]
-      ],
-
-      [
-        [632, 985],
-        [668, 1005],
-        [687, 1019],
-        [703, 1034],
-        [688, 1052],
-        [660, 1034],
-        [641, 1017]
-      ]
+    const segmento1 = [
+      [420, 752],
+      [449, 731],
+      [481, 737],
+      [514, 765],
+      [540, 813],
+      [536, 858],
+      [521, 884],
+      [467, 862],
+      [438, 826]
     ];
 
     /*
-      Las tres líneas negras exactas.
+      Primera línea → segunda línea.
     */
 
-    const lineasMenique = [
-      [
-        [494, 840],
-        [536, 866]
-      ],
-
-      [
-        [558, 916],
-        [596, 940]
-      ],
-
-      [
-        [632, 985],
-        [668, 1005]
-      ]
+    const segmento2 = [
+      [467, 862],
+      [521, 884],
+      [558, 914],
+      [596, 951],
+      [594, 977],
+      [575, 994],
+      [521, 965],
+      [490, 922]
     ];
 
     /*
-      Movimientos muy pequeños.
-      El dedo se queda sobre sí mismo.
+      Segunda línea → tercera línea.
     */
 
-    const movimientosMenique = [
+    const segmento3 = [
+      [521, 965],
+      [575, 994],
+      [617, 1023],
+      [675, 1051],
+      [679, 1075],
+      [657, 1091],
+      [600, 1064],
+      [555, 1024]
+    ];
+
+    /*
+      Tercera línea → nacimiento del dedo.
+    */
+
+    const segmento4 = [
+      [600, 1064],
+      [657, 1091],
+      [698, 1109],
+      [713, 1130],
+      [699, 1152],
+      [668, 1159],
+      [632, 1139],
+      [607, 1108]
+    ];
+
+    const segmentos = [
+      segmento1,
+      segmento2,
+      segmento3,
+      segmento4
+    ];
+
+    /*
+      Las tres líneas negras reales.
+    */
+
+    const cortes = [
       {
-        x: -22,
-        y: -18,
-        rotacion: -0.018
+        a: [467, 862],
+        b: [521, 884]
       },
 
       {
-        x: -8,
-        y: -7,
-        rotacion: -0.007
+        a: [521, 965],
+        b: [594, 977]
       },
 
       {
-        x: 7,
-        y: 6,
-        rotacion: 0.007
-      },
-
-      {
-        x: 16,
-        y: 13,
-        rotacion: 0.016
+        a: [600, 1064],
+        b: [679, 1075]
       }
     ];
 
-    function crearPoligono(
+    /*
+      MOVIMIENTOS MÍNIMOS.
+
+      No se van al lado.
+      Solo abren espacio entre
+      una línea negra y otra.
+    */
+
+    const movimientos = [
+      {
+        x: -7,
+        y: -6,
+        rot: -0.004
+      },
+
+      {
+        x: -2,
+        y: -2,
+        rot: -0.002
+      },
+
+      {
+        x: 2,
+        y: 2,
+        rot: 0.002
+      },
+
+      {
+        x: 6,
+        y: 6,
+        rot: 0.004
+      }
+    ];
+
+    function trazarPoligono(
       puntos
     ) {
+
       ctx.beginPath();
 
       ctx.moveTo(
@@ -1440,6 +1683,7 @@
         i < puntos.length;
         i++
       ) {
+
         ctx.lineTo(
           puntos[i][0],
           puntos[i][1]
@@ -1452,90 +1696,139 @@
     function centroPoligono(
       puntos
     ) {
+
       let x = 0;
       let y = 0;
 
       puntos.forEach(
-        function (punto) {
-          x += punto[0];
-          y += punto[1];
+        function (
+          punto
+        ) {
+          x +=
+            punto[0];
+
+          y +=
+            punto[1];
         }
       );
 
       return {
-        x: x / puntos.length,
-        y: y / puntos.length
+        x:
+          x /
+          puntos.length,
+
+        y:
+          y /
+          puntos.length
       };
     }
 
-    function dibujarSeparacion(
-      punto1,
-      punto2,
-      cantidad
+    /*
+      Crea una apertura EXACTAMENTE
+      sobre la línea negra original.
+    */
+
+    function dibujarCorte(
+      corte,
+      progreso
     ) {
-      const x1 = punto1[0];
-      const y1 = punto1[1];
 
-      const x2 = punto2[0];
-      const y2 = punto2[1];
+      const x1 =
+        corte.a[0];
 
-      const vx =
+      const y1 =
+        corte.a[1];
+
+      const x2 =
+        corte.b[0];
+
+      const y2 =
+        corte.b[1];
+
+      const dx =
         x2 - x1;
 
-      const vy =
+      const dy =
         y2 - y1;
 
       const longitud =
         Math.hypot(
-          vx,
-          vy
+          dx,
+          dy
         );
 
-      const nx =
-        -vy / longitud;
+      const normalX =
+        -dy /
+        longitud;
 
-      const ny =
-        vx / longitud;
+      const normalY =
+        dx /
+        longitud;
 
       /*
-        Se ensancha justamente
-        sobre la línea negra.
+        Empieza como la línea negra
+        existente y se ensancha
+        lentamente hasta crear
+        un espacio visible.
       */
 
-      const grosor =
-        1.5 +
-        4.5 * cantidad;
+      const mitad =
+        1 +
+        7 *
+        progreso;
 
       ctx.beginPath();
 
       ctx.moveTo(
-        x1 + nx * grosor,
-        y1 + ny * grosor
+        x1 +
+        normalX *
+        mitad,
+        y1 +
+        normalY *
+        mitad
       );
 
       ctx.lineTo(
-        x2 + nx * grosor,
-        y2 + ny * grosor
+        x2 +
+        normalX *
+        mitad,
+        y2 +
+        normalY *
+        mitad
       );
 
       ctx.lineTo(
-        x2 - nx * grosor,
-        y2 - ny * grosor
+        x2 -
+        normalX *
+        mitad,
+        y2 -
+        normalY *
+        mitad
       );
 
       ctx.lineTo(
-        x1 - nx * grosor,
-        y1 - ny * grosor
+        x1 -
+        normalX *
+        mitad,
+        y1 -
+        normalY *
+        mitad
       );
 
       ctx.closePath();
 
+      /*
+        Gris oscuro:
+        se lee como espacio,
+        no como una nueva línea roja.
+      */
+
       ctx.fillStyle =
         `rgba(
-          27,
-          2,
-          9,
-          ${0.55 + 0.35 * cantidad}
+          48,
+          48,
+          47,
+          ${0.28 + 0.56 * progreso}
         )`;
 
       ctx.fill();
@@ -1544,6 +1837,7 @@
     function renderizarMano(
       separacion
     ) {
+
       if (
         !imagenMano.complete ||
         !imagenMano.naturalWidth
@@ -1554,39 +1848,501 @@
       ctx.clearRect(
         0,
         0,
-        ANCHO_MANO,
-        ALTO_MANO
+        ANCHO,
+        ALTO
       );
 
       /*
-        Fondo corinto.
+        FONDO NATURAL.
+        NO ROJO.
       */
 
       ctx.fillStyle =
-        "#24050e";
+        "#8f8f8b";
 
       ctx.fillRect(
         0,
         0,
-        ANCHO_MANO,
-        ALTO_MANO
+        ANCHO,
+        ALTO
       );
 
       /*
-        MANO COMPLETA:
-        bastante transparente.
+        FOTO COMPLETA.
+
+        Se mantiene natural,
+        solo ligeramente tenue.
       */
 
       ctx.save();
 
       ctx.globalAlpha =
-        0.25;
+        0.76;
 
       ctx.filter =
-        "brightness(0.60) saturate(0.52) contrast(0.90)";
+        "brightness(0.88) contrast(0.96) saturate(0.90)";
 
       ctx.drawImage(
         imagenMano,
         0,
         0,
-        ANCHO
+        ANCHO,
+        ALTO
+      );
+
+      ctx.restore();
+
+      /*
+        Dibujamos por encima las
+        cuatro secciones exactas
+        del mismo meñique.
+
+        El desplazamiento máximo
+        es de unos pocos píxeles.
+      */
+
+      segmentos.forEach(
+        function (
+          segmento,
+          indice
+        ) {
+
+          const movimiento =
+            movimientos[
+              indice
+            ];
+
+          const centro =
+            centroPoligono(
+              segmento
+            );
+
+          ctx.save();
+
+          ctx.translate(
+            movimiento.x *
+            separacion,
+            movimiento.y *
+            separacion
+          );
+
+          ctx.translate(
+            centro.x,
+            centro.y
+          );
+
+          ctx.rotate(
+            movimiento.rot *
+            separacion
+          );
+
+          ctx.translate(
+            -centro.x,
+            -centro.y
+          );
+
+          trazarPoligono(
+            segmento
+          );
+
+          ctx.clip();
+
+          ctx.globalAlpha =
+            0.98;
+
+          ctx.filter =
+            "brightness(0.95) contrast(1) saturate(0.96)";
+
+          ctx.drawImage(
+            imagenMano,
+            0,
+            0,
+            ANCHO,
+            ALTO
+          );
+
+          ctx.restore();
+        }
+      );
+
+      /*
+        Las tres líneas negras
+        ahora son las aperturas.
+      */
+
+      cortes.forEach(
+        function (
+          corte
+        ) {
+
+          dibujarCorte(
+            corte,
+            separacion
+          );
+        }
+      );
+    }
+
+    imagenMano.addEventListener(
+      "load",
+      function () {
+
+        renderizarMano(
+          0
+        );
+      }
+    );
+
+    if (
+      imagenMano.complete &&
+      imagenMano.naturalWidth
+    ) {
+
+      renderizarMano(
+        0
+      );
+    }
+
+    /* =========================
+       RELOJ
+    ========================= */
+
+    function actualizarReloj(
+      minutosTotales
+    ) {
+
+      const horas =
+        Math.floor(
+          minutosTotales /
+          60
+        );
+
+      const minutos =
+        Math.floor(
+          minutosTotales %
+          60
+        );
+
+      horaDigital.textContent =
+        String(
+          horas
+        ).padStart(
+          2,
+          "0"
+        )
+        +
+        ":"
+        +
+        String(
+          minutos
+        ).padStart(
+          2,
+          "0"
+        );
+    }
+
+    /* =========================
+       ANIMACIÓN
+    ========================= */
+
+    function easeInOutCubic(
+      t
+    ) {
+
+      if (
+        t < 0.5
+      ) {
+
+        return
+          4 *
+          t *
+          t *
+          t;
+      }
+
+      return
+        1 -
+        Math.pow(
+          -2 * t + 2,
+          3
+        ) /
+        2;
+    }
+
+    function cambiarTexto(
+      texto,
+      final = false
+    ) {
+
+      estadoMenique.style.opacity =
+        "0";
+
+      window.setTimeout(
+        function () {
+
+          estadoMenique.textContent =
+            texto;
+
+          if (
+            final
+          ) {
+
+            estadoMenique.classList.add(
+              "final"
+            );
+
+          } else {
+
+            estadoMenique.classList.remove(
+              "final"
+            );
+          }
+
+          estadoMenique.style.opacity =
+            "1";
+        },
+        150
+      );
+    }
+
+    function iniciarEscenaMenique() {
+
+      function comenzar() {
+
+        actualizarReloj(
+          7 * 60
+        );
+
+        renderizarMano(
+          0
+        );
+
+        inicioAudios.classList.remove(
+          "visible"
+        );
+
+        const duracionDesarme =
+          7200;
+
+        const duracionRearme =
+          2600;
+
+        const inicio =
+          performance.now();
+
+        let etapaTexto =
+          -1;
+
+        function animar(
+          ahora
+        ) {
+
+          const transcurrido =
+            ahora -
+            inicio;
+
+          /* =====================
+             7 → 9
+             SE ABREN LOS CORTES
+          ===================== */
+
+          if (
+            transcurrido <=
+            duracionDesarme
+          ) {
+
+            const progreso =
+              transcurrido /
+              duracionDesarme;
+
+            const suave =
+              easeInOutCubic(
+                progreso
+              );
+
+            const minutos =
+              7 * 60 +
+              (
+                9 * 60 -
+                7 * 60
+              ) *
+              progreso;
+
+            actualizarReloj(
+              minutos
+            );
+
+            renderizarMano(
+              suave
+            );
+
+            if (
+              progreso <
+              0.33
+            ) {
+
+              if (
+                etapaTexto !==
+                0
+              ) {
+
+                etapaTexto =
+                  0;
+
+                cambiarTexto(
+                  "De 7 a 9 se desarma el meñique con el que nací."
+                );
+              }
+
+            } else if (
+              progreso <
+              0.67
+            ) {
+
+              if (
+                etapaTexto !==
+                1
+              ) {
+
+                etapaTexto =
+                  1;
+
+                cambiarTexto(
+                  "Ahora tengo uno nuevo que todavía no conozco."
+                );
+              }
+
+            } else {
+
+              if (
+                etapaTexto !==
+                2
+              ) {
+
+                etapaTexto =
+                  2;
+
+                cambiarTexto(
+                  "Me da miedo verlo."
+                );
+              }
+            }
+
+            requestAnimationFrame(
+              animar
+            );
+
+            return;
+          }
+
+          /* =====================
+             9 → 11
+             SE VUELVE A ARMAR
+          ===================== */
+
+          const faseDos =
+            transcurrido -
+            duracionDesarme;
+
+          if (
+            faseDos <=
+            duracionRearme
+          ) {
+
+            const progreso =
+              faseDos /
+              duracionRearme;
+
+            const acelerado =
+              progreso *
+              progreso;
+
+            const minutos =
+              9 * 60 +
+              (
+                11 * 60 -
+                9 * 60
+              ) *
+              acelerado;
+
+            actualizarReloj(
+              minutos
+            );
+
+            renderizarMano(
+              1 -
+              easeInOutCubic(
+                progreso
+              )
+            );
+
+            requestAnimationFrame(
+              animar
+            );
+
+            return;
+          }
+
+          /* =====================
+             11:00
+             COMIENZAN LOS AUDIOS
+          ===================== */
+
+          actualizarReloj(
+            11 * 60
+          );
+
+          renderizarMano(
+            0
+          );
+
+          cambiarTexto(
+            "A las 11 regresé de la anestesia con un dedo distinto: el mismo, pero mutante.",
+            true
+          );
+
+          inicioAudios.classList.add(
+            "visible"
+          );
+
+          /*
+            Este evento queda preparado
+            para conectar los WhatsApp Ptt
+            en la siguiente etapa.
+          */
+
+          window.dispatchEvent(
+            new CustomEvent(
+              "inicioAudios11"
+            )
+          );
+        }
+
+        requestAnimationFrame(
+          animar
+        );
+      }
+
+      if (
+        imagenMano.complete &&
+        imagenMano.naturalWidth
+      ) {
+
+        comenzar();
+
+      } else {
+
+        imagenMano.addEventListener(
+          "load",
+          comenzar,
+          {
+            once: true
+          }
+        );
+      }
+    }
+
+  </script>
+
+</body>
+</html>
