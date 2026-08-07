@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-
   <meta charset="UTF-8">
 
   <meta
@@ -12,24 +10,19 @@
 
   <title>El accidente</title>
 
-
   <link
     rel="stylesheet"
     href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
   >
 
-
   <script
     src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
   ></script>
 
-
   <style>
-
     * {
       box-sizing: border-box;
     }
-
 
     html,
     body {
@@ -38,778 +31,444 @@
       min-height: 100%;
     }
 
-
     body {
       margin: 0;
-
       background: #050505;
       color: white;
-
       font-family: Arial, sans-serif;
-
       overflow-x: hidden;
     }
 
-
-    /* =================================
-       COLOR PRINCIPAL
-       CORINTO
-    ================================= */
-
     :root {
-      --corinto: #7a1730;
-      --corinto-claro: #a52a46;
-      --corinto-suave: #c55a6e;
+      --corinto: #68162b;
+      --corinto-medio: #7b1d35;
+      --corinto-suave: #96324a;
     }
 
-
-    /* =================================
+    /* =========================
        ESCENAS
-    ================================= */
+    ========================= */
 
     .escena {
       display: none;
-
       min-height: 100vh;
-
       padding: 40px 20px;
-
       align-items: center;
       justify-content: center;
-
       text-align: center;
     }
-
 
     .escena-activa {
       display: flex;
       flex-direction: column;
     }
 
-
     button {
       padding: 12px 24px;
-
       border: 1px solid white;
       border-radius: 999px;
-
       background: transparent;
-
       color: white;
-
       font-size: 16px;
-
       cursor: pointer;
     }
-
 
     button:hover {
       background: white;
       color: black;
     }
 
-
-    /* =================================
-       CRÉDITOS
-    ================================= */
-
     .credito-foto {
       position: absolute;
-
       right: 18px;
       bottom: 18px;
-
       margin: 0;
-
       padding: 7px 10px;
-
       border-radius: 6px;
-
-      background:
-        rgba(0, 0, 0, 0.55);
-
+      background: rgba(0, 0, 0, 0.55);
       color: white;
-
       font-size: 12px;
-
       z-index: 20;
     }
-
 
     .credito-foto a {
       color: white;
     }
 
-
-    /* =================================
+    /* =========================
        1. PORTÓN
-    ================================= */
+    ========================= */
 
     #porton {
       position: relative;
 
       background-image:
-
         linear-gradient(
           rgba(0, 0, 0, 0.18),
           rgba(0, 0, 0, 0.38)
         ),
-
-        url(
-          "anya-chernykh-tvotQu_jd68-unsplash.jpg"
-        );
+        url("anya-chernykh-tvotQu_jd68-unsplash.jpg");
 
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
     }
 
-
     #porton h1 {
       margin: 0 0 12px;
-
       font-size: 38px;
     }
-
 
     #porton p {
       margin: 0;
     }
 
-
     #entrar {
       margin-top: 20px;
     }
 
-
-    /* =================================
+    /* =========================
        2. MAPA
-    ================================= */
+    ========================= */
 
     #mapa {
       background: #111;
     }
 
-
     .contenido-mapa {
-      width:
-        min(
-          1150px,
-          100%
-        );
+      width: min(1150px, 100%);
     }
-
 
     .pregunta-mapa {
-      margin:
-        0 0 24px;
-
-      font-size:
-        clamp(
-          1.7rem,
-          4vw,
-          3rem
-        );
-
+      margin: 0 0 24px;
+      font-size: clamp(1.7rem, 4vw, 3rem);
       font-weight: 400;
     }
-
 
     #mapa-real {
       width: 100%;
       height: 72vh;
-
-      border:
-        1px solid #444;
-
+      border: 1px solid #444;
       overflow: hidden;
     }
-
 
     .punto-viajero {
       width: 18px;
       height: 18px;
-
       border-radius: 50%;
-
-      background:
-        var(--corinto);
+      background: var(--corinto);
 
       box-shadow:
-
-        0 0 0 3px
-        rgba(122, 23, 48, 0.25),
-
-        0 0 14px
-        rgba(122, 23, 48, 0.7);
+        0 0 0 3px rgba(104, 22, 43, 0.25),
+        0 0 14px rgba(104, 22, 43, 0.7);
     }
-
 
     .marca-roja {
       border-radius: 50%;
-
-      background:
-        var(--corinto);
-
+      background: var(--corinto);
       opacity: 0.7;
     }
 
-
-    /* =================================
+    /* =========================
        3. DIAGNÓSTICO
-    ================================= */
+    ========================= */
 
     #perdida {
       background: #050505;
     }
 
-
     .texto-perdida {
       margin: 0;
-
-      font-size:
-        clamp(
-          2rem,
-          7vw,
-          5rem
-        );
-
+      font-family: Georgia, serif;
+      font-size: clamp(2rem, 7vw, 5rem);
       font-weight: 400;
-
-      letter-spacing:
-        -0.03em;
-
-      font-family:
-        Georgia,
-        serif;
-
       line-height: 1.2;
+      letter-spacing: -0.03em;
     }
 
-
-    /* =================================
+    /* =========================
        4. QUIRÓFANO
-    ================================= */
+    ========================= */
 
     #quirofano {
       position: relative;
-
       overflow: hidden;
-
       padding-bottom: 100px;
 
       background-image:
-
         linear-gradient(
           rgba(0, 0, 0, 0.04),
           rgba(0, 0, 0, 0.12)
         ),
-
-        url(
-          "quirofano.jpg"
-        );
+        url("quirofano.jpg");
 
       background-size: cover;
-
       background-position: center;
-
       background-repeat: no-repeat;
     }
 
-
     .contenido-quirofano {
       position: relative;
-
       z-index: 5;
 
-      width:
-        min(
-          700px,
-          92%
-        );
-
+      width: min(700px, 92%);
       max-height: 72vh;
 
       overflow-y: auto;
-
       padding: 20px 10px;
-
-      background: transparent;
-
-      border: none;
 
       text-align: left;
 
       text-shadow:
-        0 2px 6px
-        rgba(0, 0, 0, 0.95),
-
-        0 5px 14px
-        rgba(0, 0, 0, 0.85);
+        0 2px 6px rgba(0, 0, 0, 0.95),
+        0 5px 14px rgba(0, 0, 0, 0.85);
     }
-
 
     .titulo-quirofano {
-      margin:
-        0 0 28px;
-
-      font-size:
-        clamp(
-          1.8rem,
-          4vw,
-          3rem
-        );
-
+      margin: 0 0 28px;
+      font-size: clamp(1.8rem, 4vw, 3rem);
       font-weight: 400;
-
       text-align: center;
-
-      color:
-        var(--corinto);
+      color: var(--corinto);
     }
-
 
     .guion {
-      font-size:
-        clamp(
-          1rem,
-          2vw,
-          1.18rem
-        );
-
+      font-size: clamp(1rem, 2vw, 1.18rem);
       line-height: 1.7;
-
-      color:
-        var(--corinto);
+      color: var(--corinto);
     }
-
 
     .guion p {
       margin-top: 0;
     }
 
-
     .personaje {
-      margin-top:
-        22px !important;
-
-      margin-bottom:
-        5px !important;
-
+      margin-top: 22px !important;
+      margin-bottom: 5px !important;
       font-weight: bold;
-
-      letter-spacing:
-        0.08em;
-
-      color:
-        #681126;
+      letter-spacing: 0.08em;
+      color: #561021;
     }
-
 
     .dialogo {
-      color:
-        var(--corinto);
+      color: var(--corinto);
     }
-
 
     .accion {
-      margin:
-        20px 0 !important;
-
+      margin: 20px 0 !important;
       font-style: italic;
-
-      color:
-        #8f2940;
+      color: var(--corinto-medio);
     }
-
 
     .cuenta {
-      margin:
-        32px 0 !important;
-
-      font-size:
-        clamp(
-          2rem,
-          6vw,
-          4rem
-        );
-
+      margin: 32px 0 !important;
+      font-size: clamp(2rem, 6vw, 4rem);
       text-align: center;
-
-      letter-spacing:
-        0.1em;
-
-      color:
-        var(--corinto);
+      letter-spacing: 0.1em;
+      color: var(--corinto);
     }
-
 
     .siguiente-quirofano {
       position: absolute;
-
       left: 50%;
       bottom: 32px;
-
-      transform:
-        translateX(-50%);
-
+      transform: translateX(-50%);
       z-index: 30;
-
-      white-space: nowrap;
     }
-
 
     #boton-menique {
-      background:
-        rgba(0, 0, 0, 0.55);
+      background: rgba(0, 0, 0, 0.55);
     }
-
 
     #boton-menique:hover {
       background: white;
       color: black;
     }
 
-
-    /* =================================
+    /* =========================
        5. EL MEÑIQUE
-    ================================= */
+    ========================= */
 
     #menique {
       background: #050505;
-      color: white;
     }
-
 
     .contenedor-menique {
-      width:
-        min(
-          980px,
-          94vw
-        );
-
-      margin:
-        0 auto;
+      width: min(980px, 94vw);
+      margin: 0 auto;
     }
 
-
     .titulo-menique {
-      margin:
-        0 0 10px;
-
-      font-family:
-        Georgia,
-        serif;
-
-      font-size:
-        clamp(
-          2rem,
-          5vw,
-          4rem
-        );
-
+      margin: 0 0 10px;
+      font-family: Georgia, serif;
+      font-size: clamp(2rem, 5vw, 4rem);
       font-weight: 400;
     }
 
-
     .texto-menique {
-      margin:
-        0 auto 26px;
-
+      margin: 0 auto 26px;
       max-width: 850px;
 
-      color:
-        rgba(
-          255,
-          255,
-          255,
-          0.84
-        );
-
+      font-family: Georgia, serif;
+      font-size: clamp(0.95rem, 2vw, 1.08rem);
       line-height: 1.55;
 
-      font-size:
-        clamp(
-          0.95rem,
-          2vw,
-          1.08rem
-        );
-
-      font-family:
-        Georgia,
-        serif;
+      color: rgba(255, 255, 255, 0.84);
     }
 
-
-    /* =================================
-       FOTO DE LA MANO
-    ================================= */
+    /* =========================
+       FOTO
+    ========================= */
 
     .escenario-mano {
       position: relative;
 
-      width:
-        min(
-          820px,
-          92vw
-        );
+      width: min(820px, 92vw);
+      aspect-ratio: 1080 / 1350;
 
-      aspect-ratio:
-        1080 / 1350;
-
-      margin:
-        0 auto;
+      margin: 0 auto;
 
       overflow: hidden;
 
-      background:
-        #94938f;
+      background: #969590;
 
       border:
         1px solid
-        rgba(
-          255,
-          255,
-          255,
-          0.12
-        );
+        rgba(255, 255, 255, 0.12);
     }
-
 
     .mano-base,
     .fragmento-menique {
       position: absolute;
-
       inset: 0;
 
       background-image:
-        url(
-          "mano.jpg"
-        );
+        url("mano.jpg");
 
-      background-size:
-        100% 100%;
-
-      background-repeat:
-        no-repeat;
-
-      background-position:
-        center;
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+      background-position: center;
     }
-
 
     .mano-base {
       z-index: 1;
     }
 
-
-    /* =================================
+    /* =========================
        HUECO DEL MEÑIQUE
-
-       ESTA VEZ ESTÁ UBICADO
-       SOBRE EL MEÑIQUE REAL
-       DE LA FOTO.
-    ================================= */
+    ========================= */
 
     .ocultador-menique {
       position: absolute;
-
       inset: 0;
-
       z-index: 2;
-
-      /*
-        Fondo muy parecido
-        al gris de la fotografía.
-      */
-
-      background:
-        linear-gradient(
-          120deg,
-          #999894,
-          #a09f9b
-        );
 
       opacity: 0;
 
+      background:
+        linear-gradient(
+          115deg,
+          #999893,
+          #a1a09b
+        );
 
       /*
-        Contorno aproximado
-        únicamente del meñique.
+        Únicamente el meñique.
       */
 
       clip-path:
         polygon(
-
-          27.8% 27.0%,
-
-          31.1% 25.6%,
-
-          34.0% 27.2%,
-
-          35.4% 31.5%,
-
-          36.4% 36.3%,
-
-          38.0% 41.5%,
-
-          40.0% 46.6%,
-
-          41.7% 51.3%,
-
-          40.8% 55.7%,
-
-          38.2% 57.6%,
-
-          34.8% 55.2%,
-
-          31.9% 51.2%,
-
-          29.9% 46.5%,
-
-          28.8% 40.5%,
-
-          27.9% 34.5%
-
+          27.5% 26.0%,
+          30.5% 24.8%,
+          33.4% 25.8%,
+          35.1% 29.4%,
+          36.1% 34.4%,
+          37.3% 39.8%,
+          39.0% 45.2%,
+          40.4% 50.4%,
+          40.7% 54.0%,
+          39.0% 57.0%,
+          36.1% 57.0%,
+          33.4% 53.8%,
+          31.0% 49.2%,
+          29.5% 44.0%,
+          28.4% 38.0%,
+          27.6% 32.0%
         );
-
     }
 
-
-    /* =================================
-       PEDAZOS DEL MEÑIQUE
-    ================================= */
+    /* =========================
+       FRAGMENTOS
+    ========================= */
 
     .fragmento-menique {
       z-index: 3;
-
       pointer-events: none;
-
-      will-change:
-        transform;
-
-      /*
-        El movimiento se mantiene
-        encima del propio dedo.
-      */
-
-      transform-origin:
-        center center;
+      will-change: transform;
     }
 
-
     /*
-      PUNTA
-      hasta la primera línea negra.
+      Cada zona sigue aproximadamente
+      una de las divisiones negras
+      ya dibujadas sobre el dedo.
     */
 
     .fragmento-1 {
       clip-path:
         polygon(
-
-          27.8% 27.0%,
-
-          31.0% 25.6%,
-
-          34.0% 27.2%,
-
-          35.0% 31.4%,
-
-          34.0% 35.0%,
-
-          30.3% 34.0%,
-
-          28.2% 31.5%
-
+          27.5% 26.0%,
+          30.5% 24.8%,
+          33.4% 25.8%,
+          35.0% 29.5%,
+          34.0% 33.4%,
+          30.5% 32.8%,
+          28.0% 30.6%
         );
     }
-
-
-    /*
-      SEGUNDO PEDAZO
-      entre la primera
-      y segunda línea negra.
-    */
 
     .fragmento-2 {
       clip-path:
         polygon(
-
-          28.2% 31.5%,
-
-          30.3% 34.0%,
-
-          34.0% 35.0%,
-
-          36.1% 40.0%,
-
-          35.6% 43.3%,
-
-          31.4% 42.0%,
-
-          29.0% 38.0%
-
+          28.0% 30.6%,
+          30.5% 32.8%,
+          34.0% 33.4%,
+          36.0% 38.5%,
+          35.0% 42.0%,
+          31.5% 41.2%,
+          29.0% 37.2%
         );
     }
-
-
-    /*
-      TERCER PEDAZO
-    */
 
     .fragmento-3 {
       clip-path:
         polygon(
-
-          29.0% 38.0%,
-
-          31.4% 42.0%,
-
-          35.6% 43.3%,
-
-          39.3% 48.2%,
-
-          38.6% 51.8%,
-
-          34.3% 50.8%,
-
-          31.1% 46.5%
-
+          29.0% 37.2%,
+          31.5% 41.2%,
+          35.0% 42.0%,
+          38.4% 47.0%,
+          37.8% 50.7%,
+          34.1% 49.8%,
+          31.1% 45.7%
         );
     }
-
-
-    /*
-      BASE DEL MEÑIQUE
-    */
 
     .fragmento-4 {
       clip-path:
         polygon(
-
-          31.1% 46.5%,
-
-          34.3% 50.8%,
-
-          38.6% 51.8%,
-
-          41.7% 51.3%,
-
-          40.8% 55.7%,
-
-          38.2% 57.6%,
-
-          34.8% 55.2%,
-
-          31.9% 51.2%
-
+          31.1% 45.7%,
+          34.1% 49.8%,
+          37.8% 50.7%,
+          40.4% 50.4%,
+          40.7% 54.0%,
+          39.0% 57.0%,
+          36.1% 57.0%,
+          33.4% 53.8%
         );
     }
 
-
-    /* =================================
-       RELOJ DE HOSPITAL
-    ================================= */
+    /* =========================
+       RELOJ CUADRADO
+    ========================= */
 
     .reloj-superpuesto {
       position: absolute;
@@ -818,123 +477,59 @@
       top: 44%;
 
       transform:
-        translate(
-          -50%,
-          -50%
-        );
+        translate(-50%, -50%);
 
-      width:
-        min(
-          330px,
-          42vw
-        );
-
-      aspect-ratio:
-        1.85 / 1;
+      width: min(330px, 42vw);
+      aspect-ratio: 1.85 / 1;
 
       z-index: 10;
 
       pointer-events: none;
     }
 
-
-    /*
-      SOLO LA IMAGEN RECTANGULAR.
-      MUCHO MÁS TRANSPARENTE.
-    */
-
     .reloj-cuadro {
       position: absolute;
-
       inset: 0;
 
-      overflow: hidden;
-
-      opacity: 0.20;
-
-
-      /*
-        Acercamos mucho la imagen
-        para mostrar principalmente
-        el reloj y no todo el techo.
-      */
+      opacity: 0.13;
 
       background-image:
-        url(
-          "reloj.jpg"
-        );
+        url("reloj.jpg");
 
-      background-size:
-        185%;
-
-      background-position:
-        center 31%;
-
-      background-repeat:
-        no-repeat;
-
-      mix-blend-mode:
-        multiply;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
 
       filter:
-        contrast(1.15)
-        saturate(0.75);
+        grayscale(0.25)
+        contrast(1.05);
     }
-
-
-    /*
-      Una capa corinto muy suave
-      sobre el reloj.
-    */
 
     .reloj-superpuesto::after {
       content: "";
 
       position: absolute;
-
       inset: 0;
-
-      background:
-        rgba(
-          87,
-          14,
-          35,
-          0.10
-        );
 
       border:
         1px solid
-        rgba(
-          122,
-          23,
-          48,
-          0.25
-        );
+        rgba(104, 22, 43, 0.32);
 
-      pointer-events: none;
+      background:
+        rgba(104, 22, 43, 0.05);
     }
-
-
-    /*
-      HORA ACTUAL.
-    */
 
     .hora-digital {
       position: absolute;
-
       inset: 0;
 
       display: flex;
-
       align-items: center;
       justify-content: center;
 
       margin: 0;
 
-      z-index: 4;
-
-      color:
-        #71142b;
+      z-index: 5;
 
       font-family:
         "Courier New",
@@ -942,50 +537,36 @@
 
       font-size:
         clamp(
-          1.7rem,
+          1.5rem,
           5vw,
-          3.2rem
+          3rem
         );
 
-      font-weight: 700;
+      font-weight: bold;
 
       letter-spacing:
         0.08em;
 
-      text-shadow:
-        0 0 7px
+      color:
         rgba(
-          122,
-          23,
-          48,
-          0.20
+          104,
+          22,
+          43,
+          0.82
         );
     }
 
-
-    /* =================================
-       TEXTO DE ABAJO
-    ================================= */
+    /* =========================
+       TEXTO INFERIOR
+    ========================= */
 
     .estado-menique {
-      margin:
-        20px auto 0;
+      margin: 20px auto 0;
 
       min-height: 54px;
-
       max-width: 820px;
 
-      color:
-        rgba(
-          255,
-          255,
-          255,
-          0.80
-        );
-
-      font-family:
-        Georgia,
-        serif;
+      font-family: Georgia, serif;
 
       font-size:
         clamp(
@@ -996,23 +577,27 @@
 
       line-height: 1.5;
 
+      color:
+        rgba(
+          255,
+          255,
+          255,
+          0.8
+        );
+
       transition:
         opacity
-        0.5s ease;
+        0.4s ease;
     }
-
 
     .mensaje-final {
       display: none;
 
-      margin:
-        20px auto 0;
+      margin: 20px auto 0;
 
       max-width: 820px;
 
-      font-family:
-        Georgia,
-        serif;
+      font-family: Georgia, serif;
 
       font-size:
         clamp(
@@ -1022,10 +607,7 @@
         );
 
       line-height: 1.35;
-
-      color: white;
     }
-
 
     .mensaje-final.visible {
       display: block;
@@ -1035,108 +617,60 @@
         1.2s ease;
     }
 
-
     @keyframes aparecer {
-
       from {
         opacity: 0;
-
         transform:
-          translateY(
-            14px
-          );
+          translateY(14px);
       }
 
       to {
         opacity: 1;
-
         transform:
-          translateY(
-            0
-          );
+          translateY(0);
       }
-
     }
 
-
-    /* =================================
-       MÓVIL
-    ================================= */
-
-    @media (
-      max-width: 760px
-    ) {
-
+    @media (max-width: 760px) {
       .escena {
         padding:
           20px 12px;
       }
 
-
       #mapa-real {
-        height:
-          68vh;
+        height: 68vh;
       }
-
 
       #quirofano {
-        padding-bottom:
-          95px;
+        padding-bottom: 95px;
       }
-
 
       .contenido-quirofano {
-        width:
-          94%;
-
-        max-height:
-          65vh;
+        width: 94%;
+        max-height: 65vh;
       }
-
 
       .reloj-superpuesto {
-        width:
-          43vw;
-
-        left:
-          57%;
-
-        top:
-          44%;
+        width: 43vw;
       }
-
 
       .hora-digital {
         font-size:
           clamp(
-            1.2rem,
+            1.1rem,
             5vw,
             2rem
           );
       }
-
-
-      .texto-menique {
-        font-size:
-          0.9rem;
-      }
-
     }
-
   </style>
-
 </head>
-
-
 
 <body>
 
   <main>
 
-
-    <!-- =================================
-         1. PORTÓN
-    ================================= -->
+    <!-- PORTÓN -->
 
     <section
       class="escena escena-activa"
@@ -1147,11 +681,9 @@
         El portón
       </h1>
 
-
       <p>
         Aquí comienza el recorrido.
       </p>
-
 
       <button
         id="entrar"
@@ -1160,10 +692,7 @@
         Entrar
       </button>
 
-
-      <p
-        class="credito-foto"
-      >
+      <p class="credito-foto">
 
         Foto de
 
@@ -1190,190 +719,116 @@
     </section>
 
 
-
-    <!-- =================================
-         2. MAPA
-    ================================= -->
+    <!-- MAPA -->
 
     <section
       class="escena"
       id="mapa"
     >
 
-      <div
-        class="contenido-mapa"
-      >
+      <div class="contenido-mapa">
 
-        <h2
-          class="pregunta-mapa"
-        >
+        <h2 class="pregunta-mapa">
           ¿Dónde está tu dedo, Pili?
         </h2>
 
-
-        <div
-          id="mapa-real"
-        ></div>
+        <div id="mapa-real"></div>
 
       </div>
 
     </section>
 
 
-
-    <!-- =================================
-         3. DIAGNÓSTICO
-    ================================= -->
+    <!-- DIAGNÓSTICO -->
 
     <section
       class="escena"
       id="perdida"
     >
 
-      <h2
-        class="texto-perdida"
-      >
+      <h2 class="texto-perdida">
         Diagnóstico: pérdida de sustancia
       </h2>
 
     </section>
 
 
-
-    <!-- =================================
-         4. QUIRÓFANO
-    ================================= -->
+    <!-- QUIRÓFANO -->
 
     <section
       class="escena"
       id="quirofano"
     >
 
-      <div
-        class="contenido-quirofano"
-      >
+      <div class="contenido-quirofano">
 
-        <h2
-          class="titulo-quirofano"
-        >
+        <h2 class="titulo-quirofano">
           Sala de operación
         </h2>
 
+        <div class="guion">
 
-        <div
-          class="guion"
-        >
-
-          <p
-            class="personaje"
-          >
+          <p class="personaje">
             YO
           </p>
 
-
-          <p
-            class="dialogo"
-          >
+          <p class="dialogo">
             —Hoy no voy a llorar.
           </p>
 
-
-          <p
-            class="accion"
-          >
-            Se lo digo al médico.
-            Él se ríe.
+          <p class="accion">
+            Se lo digo al médico. Él se ríe.
           </p>
 
-
-          <p
-            class="accion"
-          >
-            El anestesista hace lo suyo
-            y me explica algo.
+          <p class="accion">
+            El anestesista hace lo suyo y me explica algo.
           </p>
 
-
-          <p
-            class="personaje"
-          >
+          <p class="personaje">
             YO
           </p>
 
-
-          <p
-            class="dialogo"
-          >
+          <p class="dialogo">
             —¿Y tengo que contar?
           </p>
 
-
-          <p
-            class="personaje"
-          >
+          <p class="personaje">
             OTRO DOCTOR
           </p>
 
-
-          <p
-            class="dialogo"
-          >
+          <p class="dialogo">
             —Ni que fuera película.
           </p>
 
-
-          <p
-            class="personaje"
-          >
+          <p class="personaje">
             OTRO DOCTOR
           </p>
 
-
-          <p
-            class="dialogo"
-          >
+          <p class="dialogo">
             —Pero cuente.
           </p>
 
-
-          <p
-            class="accion"
-          >
+          <p class="accion">
             Inicio.
           </p>
 
-
-          <p
-            class="cuenta"
-          >
+          <p class="cuenta">
             10, 9...
           </p>
 
-
-          <p
-            class="personaje"
-          >
+          <p class="personaje">
             ANESTESISTA
           </p>
 
-
-          <p
-            class="dialogo"
-          >
+          <p class="dialogo">
             —Le va a doler ahora.
           </p>
 
-
-          <p
-            class="accion"
-          >
+          <p class="accion">
             Me quejo.
           </p>
 
-
-          <p
-            class="accion"
-          >
+          <p class="accion">
             Ya no recuerdo nada.
           </p>
 
@@ -1381,10 +836,7 @@
 
       </div>
 
-
-      <div
-        class="siguiente-quirofano"
-      >
+      <div class="siguiente-quirofano">
 
         <button
           id="boton-menique"
@@ -1395,10 +847,7 @@
 
       </div>
 
-
-      <p
-        class="credito-foto"
-      >
+      <p class="credito-foto">
 
         Foto de
 
@@ -1425,31 +874,20 @@
     </section>
 
 
-
-    <!-- =================================
-         5. EL MEÑIQUE
-    ================================= -->
+    <!-- EL MEÑIQUE -->
 
     <section
       class="escena"
       id="menique"
     >
 
-      <div
-        class="contenedor-menique"
-      >
+      <div class="contenedor-menique">
 
-
-        <h2
-          class="titulo-menique"
-        >
+        <h2 class="titulo-menique">
           El Meñique
         </h2>
 
-
-        <p
-          class="texto-menique"
-        >
+        <p class="texto-menique">
           Herida cortocontundente en el pulpejo medio izquierdo,
           con pérdida de sustancia.
           Colgajo para reconstrucción del pulpejo y del lecho ungueal.
@@ -1460,7 +898,6 @@
           class="escenario-mano"
           id="escenario-mano"
         >
-
 
           <div
             class="mano-base"
@@ -1497,8 +934,6 @@
           ></div>
 
 
-          <!-- RELOJ -->
-
           <div
             class="reloj-superpuesto"
           >
@@ -1506,7 +941,6 @@
             <div
               class="reloj-cuadro"
             ></div>
-
 
             <p
               class="hora-digital"
@@ -1536,57 +970,48 @@
           el mismo, pero mutante.
         </p>
 
-
       </div>
 
     </section>
 
-
   </main>
-
 
 
   <script>
 
-    /* =================================
+    /* =========================
        ESCENAS
-    ================================= */
+    ========================= */
 
     const porton =
       document.querySelector(
         "#porton"
       );
 
-
     const escenaMapa =
       document.querySelector(
         "#mapa"
       );
-
 
     const escenaPerdida =
       document.querySelector(
         "#perdida"
       );
 
-
     const escenaQuirofano =
       document.querySelector(
         "#quirofano"
       );
-
 
     const escenaMenique =
       document.querySelector(
         "#menique"
       );
 
-
     const botonEntrar =
       document.querySelector(
         "#entrar"
       );
-
 
     const botonMenique =
       document.querySelector(
@@ -1597,10 +1022,8 @@
     let mapaInicializado =
       false;
 
-
     let meniqueIniciado =
       false;
-
 
 
     function cambiarEscena(
@@ -1608,19 +1031,13 @@
       escenaNueva
     ) {
 
-      escenaActual
-        .classList
-        .remove(
-          "escena-activa"
-        );
+      escenaActual.classList.remove(
+        "escena-activa"
+      );
 
-
-      escenaNueva
-        .classList
-        .add(
-          "escena-activa"
-        );
-
+      escenaNueva.classList.add(
+        "escena-activa"
+      );
 
       window.scrollTo(
         0,
@@ -1628,7 +1045,6 @@
       );
 
     }
-
 
 
     botonEntrar.addEventListener(
@@ -1639,7 +1055,6 @@
           porton,
           escenaMapa
         );
-
 
         if (
           !mapaInicializado
@@ -1656,7 +1071,6 @@
     );
 
 
-
     botonMenique.addEventListener(
       "click",
       function () {
@@ -1665,7 +1079,6 @@
           escenaQuirofano,
           escenaMenique
         );
-
 
         if (
           !meniqueIniciado
@@ -1682,9 +1095,9 @@
     );
 
 
-    /* =================================
+    /* =========================
        MAPA
-    ================================= */
+    ========================= */
 
     function crearMapa() {
 
@@ -1692,7 +1105,6 @@
         14.643277895439471,
         -90.50234271356774
       ];
-
 
       const coordenadasHospital = [
         14.60393779846318,
@@ -1704,29 +1116,20 @@
         L.map(
           "mapa-real",
           {
-            zoomControl:
-              false
+            zoomControl: false
           }
         );
 
 
       L.tileLayer(
-
         "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
-
         {
-
-          subdomains:
-            "abcd",
-
-          maxZoom:
-            20,
+          subdomains: "abcd",
+          maxZoom: 20,
 
           attribution:
             "&copy; OpenStreetMap contributors &copy; CARTO"
-
         }
-
       ).addTo(
         mapa
       );
@@ -1753,16 +1156,13 @@
 
 
       mapa.fitBounds(
-
         L.latLngBounds(
           ruta
         ),
-
         {
           padding:
             [50, 50]
         }
-
       );
 
 
@@ -1770,7 +1170,7 @@
         ruta,
         {
           color:
-            "#7a1730",
+            "#68162b",
 
           weight:
             3,
@@ -1786,8 +1186,7 @@
       const iconoPunto =
         L.divIcon({
 
-          className:
-            "",
+          className: "",
 
           html:
             '<div class="punto-viajero"></div>',
@@ -1803,30 +1202,20 @@
 
       const punto =
         L.marker(
-
           coordenadasPorton,
-
           {
             icon:
               iconoPunto
           }
-
         ).addTo(
           mapa
         );
 
 
-      let tramo =
-        0;
+      let tramo = 0;
+      let progreso = 0;
 
-
-      let progreso =
-        0;
-
-
-      const velocidad =
-        0.01;
-
+      const velocidad = 0.01;
 
 
       function animar() {
@@ -1836,58 +1225,45 @@
             tramo
           ];
 
-
         const final =
           ruta[
             tramo + 1
           ];
 
 
-        progreso +=
-          velocidad;
+        progreso += velocidad;
 
 
         if (
           progreso > 1
         ) {
 
-          progreso =
-            1;
+          progreso = 1;
 
         }
 
 
         const lat =
-
           inicio[0]
-
           +
-
           (
             final[0]
             -
             inicio[0]
           )
-
           *
-
           progreso;
 
 
         const lng =
-
           inicio[1]
-
           +
-
           (
             final[1]
             -
             inicio[1]
           )
-
           *
-
           progreso;
 
 
@@ -1900,8 +1276,7 @@
 
 
         if (
-          Math.random()
-          >
+          Math.random() >
           0.9
         ) {
 
@@ -1924,7 +1299,6 @@
           ) {
 
             window.setTimeout(
-
               function () {
 
                 cambiarEscena(
@@ -1934,7 +1308,6 @@
 
 
                 window.setTimeout(
-
                   function () {
 
                     cambiarEscena(
@@ -1943,15 +1316,11 @@
                     );
 
                   },
-
                   2800
-
                 );
 
               },
-
               1000
-
             );
 
 
@@ -1961,10 +1330,7 @@
 
 
           tramo++;
-
-
-          progreso =
-            0;
+          progreso = 0;
 
         }
 
@@ -1981,7 +1347,6 @@
     }
 
 
-
     function crearMarca(
       mapa,
       lat,
@@ -1989,21 +1354,14 @@
     ) {
 
       const tamaño =
-
-        5
-
-        +
-
-        Math.random()
-        *
-        7;
+        5 +
+        Math.random() * 7;
 
 
       const iconoMarca =
         L.divIcon({
 
-          className:
-            "",
+          className: "",
 
           html:
             `
@@ -2032,48 +1390,30 @@
 
 
       L.marker(
-
         [
 
-          lat
-
-          +
-
+          lat +
           (
-            Math.random()
-            -
+            Math.random() -
             0.5
-          )
-
-          *
-
+          ) *
           0.00035,
 
-
-          lng
-
-          +
-
+          lng +
           (
-            Math.random()
-            -
+            Math.random() -
             0.5
-          )
-
-          *
-
+          ) *
           0.00035
 
         ],
 
         {
-
           icon:
             iconoMarca,
 
           interactive:
             false
-
         }
 
       ).addTo(
@@ -2083,15 +1423,14 @@
     }
 
 
-    /* =================================
+    /* =========================
        RELOJ
-    ================================= */
+    ========================= */
 
     const horaDigital =
       document.querySelector(
         "#hora-digital"
       );
-
 
 
     function actualizarRelojDigital(
@@ -2100,16 +1439,13 @@
 
       const horas =
         Math.floor(
-          minutosTotales
-          /
+          minutosTotales /
           60
         );
 
-
       const minutos =
         Math.floor(
-          minutosTotales
-          %
+          minutosTotales %
           60
         );
 
@@ -2138,15 +1474,14 @@
     }
 
 
-    /* =================================
+    /* =========================
        MEÑIQUE
-    ================================= */
+    ========================= */
 
     const escenarioMano =
       document.querySelector(
         "#escenario-mano"
       );
-
 
     const ocultadorMenique =
       document.querySelector(
@@ -2180,134 +1515,100 @@
         "#estado-menique"
       );
 
-
     const mensajeFinal =
       document.querySelector(
         "#mensaje-final"
       );
 
 
-
     function easeInOutCubic(
       t
     ) {
 
-      return t < 0.5
+      if (
+        t < 0.5
+      ) {
 
-        ?
+        return
+          4 *
+          t *
+          t *
+          t;
 
-        4
-        *
-        t
-        *
-        t
-        *
-        t
+      }
 
-        :
 
-        1
-
-        -
-
+      return
+        1 -
         Math.pow(
           -2 * t + 2,
           3
-        )
-
-        /
+        ) /
         2;
 
     }
 
 
+    /*
+      ESTA ES LA FUNCIÓN
+      QUE ESTABA ROTA.
+    */
 
     function easeInQuad(
       t
     ) {
 
-      return
-        t * t;
+      return t * t;
 
     }
 
-
-
-    /*
-      IMPORTANTE:
-
-      Los movimientos son
-      MUY PEQUEÑOS.
-
-      Los pedazos no salen
-      hacia otro lado.
-
-      Solo se abren entre
-      las líneas negras.
-    */
 
     function aplicarSeparacion(
       t
     ) {
 
       const escala =
-        escenarioMano.clientWidth
-        /
+        escenarioMano.clientWidth /
         1080;
 
 
+      /*
+        Se separan siguiendo
+        el propio eje del meñique.
+
+        No salen hacia un costado.
+      */
+
       const configuraciones = [
 
-        /*
-          Punta.
-          Sube ligeramente.
-        */
-
         {
-          x: -2,
-          y: -18,
-          rot: -1.5
+          x: -7,
+          y: -13,
+          rot: -1.2
         },
 
-
-        /*
-          Segundo segmento.
-        */
-
         {
-          x: -1,
-          y: -7,
-          rot: -0.7
+          x: -3,
+          y: -5,
+          rot: -0.5
         },
 
-
-        /*
-          Tercer segmento.
-        */
-
         {
-          x: 1,
+          x: 3,
           y: 5,
-          rot: 0.6
+          rot: 0.5
         },
 
-
-        /*
-          Base.
-          Baja ligeramente.
-        */
-
         {
-          x: 2,
+          x: 7,
           y: 13,
-          rot: 1
+          rot: 1.0
         }
 
       ];
 
 
       fragmentos.forEach(
-
         function (
           fragmento,
           indice
@@ -2320,24 +1621,19 @@
 
 
           const x =
-            datos.x
-            *
-            escala
-            *
+            datos.x *
+            escala *
             t;
 
 
           const y =
-            datos.y
-            *
-            escala
-            *
+            datos.y *
+            escala *
             t;
 
 
           const rot =
-            datos.rot
-            *
+            datos.rot *
             t;
 
 
@@ -2347,31 +1643,22 @@
                 ${x}px,
                 ${y}px
               )
-
               rotate(
                 ${rot}deg
               )
             `;
 
         }
-
       );
 
 
-      /*
-        Solo aparece el hueco
-        cuando los fragmentos
-        empiezan a moverse.
-      */
-
       ocultadorMenique.style.opacity =
         Math.min(
-          t * 0.95,
-          0.95
+          t * 0.92,
+          0.92
         );
 
     }
-
 
 
     function cambiarTextoEstado(
@@ -2383,33 +1670,26 @@
 
 
       window.setTimeout(
-
         function () {
 
           estadoMenique.textContent =
             texto;
 
-
           estadoMenique.style.opacity =
             "1";
 
         },
-
-        180
-
+        150
       );
 
     }
 
 
-
     function iniciarEscenaMenique() {
 
-      mensajeFinal
-        .classList
-        .remove(
-          "visible"
-        );
+      mensajeFinal.classList.remove(
+        "visible"
+      );
 
 
       actualizarRelojDigital(
@@ -2423,24 +1703,22 @@
 
 
       /*
-        7 → 9
-
-        Se desarma lentamente.
+        7 → 9:
+        separación lenta.
       */
 
       const duracionDesarme =
-        6800;
+        7000;
 
 
       /*
-        9 → 11
-
-        Se arma y el reloj
-        acelera.
+        9 → 11:
+        reloj mucho más rápido
+        y el dedo vuelve.
       */
 
       const duracionRearme =
-        3200;
+        2800;
 
 
       const inicio =
@@ -2451,53 +1729,41 @@
         -1;
 
 
-
       function animar(
         ahora
       ) {
 
         const transcurrido =
-          ahora
-          -
+          ahora -
           inicio;
 
 
-        /* =============================
-           7:00 → 9:00
-        ============================= */
+        /* ======================
+           7 → 9
+        ====================== */
 
         if (
-          transcurrido
-          <=
+          transcurrido <=
           duracionDesarme
         ) {
 
           const progreso =
-            transcurrido
-            /
+            transcurrido /
             duracionDesarme;
 
 
-          const suave =
+          const separacion =
             easeInOutCubic(
               progreso
             );
 
 
           const minutosActuales =
-
-            7 * 60
-
-            +
-
+            7 * 60 +
             (
-              9 * 60
-              -
+              9 * 60 -
               7 * 60
-            )
-
-            *
-
+            ) *
             progreso;
 
 
@@ -2507,25 +1773,19 @@
 
 
           aplicarSeparacion(
-            suave
+            separacion
           );
 
 
           if (
-            progreso
-            <
-            0.34
+            progreso < 0.34
           ) {
 
             if (
-              etapaTexto
-              !==
-              0
+              etapaTexto !== 0
             ) {
 
-              etapaTexto =
-                0;
-
+              etapaTexto = 0;
 
               cambiarTextoEstado(
                 "De 7 a 9 se desarma el meñique con el que nací."
@@ -2535,22 +1795,15 @@
 
           }
 
-
           else if (
-            progreso
-            <
-            0.70
+            progreso < 0.70
           ) {
 
             if (
-              etapaTexto
-              !==
-              1
+              etapaTexto !== 1
             ) {
 
-              etapaTexto =
-                1;
-
+              etapaTexto = 1;
 
               cambiarTextoEstado(
                 "Ahora tengo uno nuevo que todavía no conozco."
@@ -2560,18 +1813,13 @@
 
           }
 
-
           else {
 
             if (
-              etapaTexto
-              !==
-              2
+              etapaTexto !== 2
             ) {
 
-              etapaTexto =
-                2;
-
+              etapaTexto = 2;
 
               cambiarTextoEstado(
                 "Me da miedo verlo."
@@ -2592,56 +1840,44 @@
         }
 
 
-        /* =============================
-           9:00 → 11:00
-        ============================= */
+        /* ======================
+           9 → 11
+        ====================== */
 
         const segundaFase =
-          transcurrido
-          -
+          transcurrido -
           duracionDesarme;
 
 
         if (
-          segundaFase
-          <=
+          segundaFase <=
           duracionRearme
         ) {
 
           const progreso2 =
-            segundaFase
-            /
+            segundaFase /
             duracionRearme;
 
 
           const acelerado =
-            progreso2
-            *
-            progreso2;
+            easeInQuad(
+              progreso2
+            );
 
 
           const separacion =
-            1
-            -
+            1 -
             easeInOutCubic(
               progreso2
             );
 
 
           const minutosActuales =
-
-            9 * 60
-
-            +
-
+            9 * 60 +
             (
-              11 * 60
-              -
+              11 * 60 -
               9 * 60
-            )
-
-            *
-
+            ) *
             acelerado;
 
 
@@ -2665,9 +1901,9 @@
         }
 
 
-        /* =============================
+        /* ======================
            11:00
-        ============================= */
+        ====================== */
 
         actualizarRelojDigital(
           11 * 60
@@ -2685,19 +1921,14 @@
 
 
         window.setTimeout(
-
           function () {
 
-            mensajeFinal
-              .classList
-              .add(
-                "visible"
-              );
+            mensajeFinal.classList.add(
+              "visible"
+            );
 
           },
-
-          550
-
+          500
         );
 
       }
@@ -2712,5 +1943,4 @@
   </script>
 
 </body>
-
 </html>
