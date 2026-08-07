@@ -2,7 +2,11 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
   <title>El accidente</title>
 
@@ -15,7 +19,9 @@
     src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
   ></script>
 
+
   <style>
+
     * {
       box-sizing: border-box;
     }
@@ -29,17 +35,32 @@
 
     body {
       margin: 0;
+
       background: #111;
       color: white;
-      font-family: Arial, sans-serif;
+
+      font-family:
+        Arial,
+        sans-serif;
+
+      overflow-x: hidden;
     }
+
+
+    /* =========================
+       ESCENAS
+    ========================= */
 
     .escena {
       display: none;
+
       min-height: 100vh;
-      padding: 40px;
+
+      padding: 40px 20px;
+
       align-items: center;
       justify-content: center;
+
       text-align: center;
     }
 
@@ -48,44 +69,78 @@
       flex-direction: column;
     }
 
+
     button {
       margin-top: 20px;
+
       padding: 12px 24px;
-      border: 1px solid white;
+
+      border:
+        1px solid white;
+
       border-radius: 999px;
-      background: transparent;
-      color: white;
+
+      background:
+        transparent;
+
+      color:
+        white;
+
       font-size: 16px;
+
       cursor: pointer;
     }
 
     button:hover {
-      background: white;
-      color: black;
+      background:
+        white;
+
+      color:
+        black;
     }
 
-    /* CRÉDITOS */
+
+    /* =========================
+       CRÉDITOS
+    ========================= */
 
     .credito-foto {
       position: absolute;
+
       right: 18px;
       bottom: 18px;
 
       margin: 0;
-      padding: 7px 10px;
 
-      border-radius: 6px;
-      background: rgba(0, 0, 0, 0.5);
+      padding:
+        7px 10px;
 
-      color: white;
-      font-size: 12px;
+      border-radius:
+        6px;
 
-      z-index: 20;
+      background:
+        rgba(
+          0,
+          0,
+          0,
+          0.55
+        );
+
+      color:
+        white;
+
+      font-size:
+        12px;
+
+      z-index:
+        20;
     }
 
     .credito-foto a {
-      color: white;
+      color:
+        white;
     }
+
 
     /* =========================
        1. PORTÓN
@@ -95,212 +150,936 @@
       position: relative;
 
       background-image:
-        linear-gradient(
-          rgba(0, 0, 0, 0.18),
-          rgba(0, 0, 0, 0.38)
-        ),
-        url("anya-chernykh-tvotQu_jd68-unsplash.jpg");
 
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
+        linear-gradient(
+          rgba(
+            0,
+            0,
+            0,
+            0.18
+          ),
+          rgba(
+            0,
+            0,
+            0,
+            0.38
+          )
+        ),
+
+        url(
+          "anya-chernykh-tvotQu_jd68-unsplash.jpg"
+        );
+
+      background-size:
+        cover;
+
+      background-position:
+        center;
+
+      background-repeat:
+        no-repeat;
     }
 
+
     #porton h1 {
-      margin: 0 0 12px;
-      font-size: 38px;
+      margin:
+        0 0 12px;
+
+      font-size:
+        38px;
     }
 
     #porton p {
       margin: 0;
     }
 
+
     /* =========================
        2. MAPA
     ========================= */
 
     #mapa {
-      background: #111;
+      background:
+        #111;
     }
 
     .contenido-mapa {
-      width: min(1150px, 100%);
+      width:
+        min(
+          1150px,
+          100%
+        );
     }
 
     .pregunta-mapa {
-      margin: 0 0 24px;
+      margin:
+        0 0 24px;
 
-      font-size: clamp(
-        1.7rem,
-        4vw,
-        3rem
-      );
+      font-size:
+        clamp(
+          1.7rem,
+          4vw,
+          3rem
+        );
 
-      font-weight: 400;
+      font-weight:
+        400;
     }
 
     #mapa-real {
-      width: 100%;
-      height: 72vh;
-      border: 1px solid #444;
-      overflow: hidden;
+      width:
+        100%;
+
+      height:
+        72vh;
+
+      border:
+        1px solid #444;
+
+      overflow:
+        hidden;
     }
 
     .punto-viajero {
-      width: 18px;
-      height: 18px;
-      border-radius: 50%;
-      background: #a00000;
+      width:
+        18px;
+
+      height:
+        18px;
+
+      border-radius:
+        50%;
+
+      background:
+        #a00000;
 
       box-shadow:
-        0 0 0 3px rgba(120, 0, 0, 0.25),
-        0 0 14px rgba(150, 0, 0, 0.7);
+        0 0 0
+        3px
+        rgba(
+          120,
+          0,
+          0,
+          0.25
+        ),
+
+        0 0 14px
+        rgba(
+          150,
+          0,
+          0,
+          0.7
+        );
     }
 
     .marca-roja {
-      border-radius: 50%;
-      background: #8e0000;
-      opacity: 0.7;
+      border-radius:
+        50%;
+
+      background:
+        #8e0000;
+
+      opacity:
+        0.7;
     }
 
+
     /* =========================
-       3. PÉRDIDA DE SUSTANCIA
+       3. PÉRDIDA
     ========================= */
 
     #perdida {
-      background: #050505;
+      background:
+        #050505;
     }
 
     .texto-perdida {
       margin: 0;
 
-      font-size: clamp(
-        2.5rem,
-        9vw,
-        7rem
-      );
+      font-size:
+        clamp(
+          2.5rem,
+          9vw,
+          7rem
+        );
 
-      font-weight: 400;
-      letter-spacing: -0.04em;
+      font-weight:
+        400;
+
+      letter-spacing:
+        -0.04em;
     }
 
+
     /* =========================
-       4. SALA DE OPERACIÓN
+       4. QUIRÓFANO
     ========================= */
 
     #quirofano {
-      position: relative;
-      overflow: hidden;
+      position:
+        relative;
+
+      overflow:
+        hidden;
 
       background-image:
-        linear-gradient(
-          rgba(0, 0, 0, 0.02),
-          rgba(0, 0, 0, 0.12)
-        ),
-        url("quirofano.jpg");
 
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
+        linear-gradient(
+          rgba(
+            0,
+            0,
+            0,
+            0.02
+          ),
+          rgba(
+            0,
+            0,
+            0,
+            0.12
+          )
+        ),
+
+        url(
+          "quirofano.jpg"
+        );
+
+      background-size:
+        cover;
+
+      background-position:
+        center;
+
+      background-repeat:
+        no-repeat;
     }
+
 
     .contenido-quirofano {
-      position: relative;
-      z-index: 5;
+      position:
+        relative;
 
-      width: min(680px, 90%);
-      max-height: 82vh;
+      z-index:
+        5;
 
-      overflow-y: auto;
+      width:
+        min(
+          680px,
+          90%
+        );
 
-      padding: 20px 10px;
+      max-height:
+        82vh;
 
-      background: transparent;
-      border: none;
+      overflow-y:
+        auto;
 
-      color: white;
-      text-align: left;
+      padding:
+        20px 10px;
+
+      background:
+        transparent;
+
+      border:
+        none;
+
+      color:
+        white;
+
+      text-align:
+        left;
 
       text-shadow:
-        0 2px 4px rgba(0, 0, 0, 0.95),
-        0 4px 12px rgba(0, 0, 0, 0.9);
+        0 2px 4px
+        rgba(
+          0,
+          0,
+          0,
+          0.95
+        ),
+
+        0 4px 12px
+        rgba(
+          0,
+          0,
+          0,
+          0.9
+        );
     }
+
 
     .titulo-quirofano {
-      margin: 0 0 28px;
+      margin:
+        0 0 28px;
 
-      font-size: clamp(
-        1.8rem,
-        4vw,
-        3rem
-      );
+      font-size:
+        clamp(
+          1.8rem,
+          4vw,
+          3rem
+        );
 
-      font-weight: 400;
-      text-align: center;
+      font-weight:
+        400;
+
+      text-align:
+        center;
     }
+
 
     .guion {
-      font-size: clamp(
-        1rem,
-        2vw,
-        1.18rem
-      );
+      font-size:
+        clamp(
+          1rem,
+          2vw,
+          1.18rem
+        );
 
-      line-height: 1.7;
+      line-height:
+        1.7;
     }
 
+
     .guion p {
-      margin-top: 0;
+      margin-top:
+        0;
     }
 
     .personaje {
-      margin-top: 22px !important;
-      margin-bottom: 5px !important;
+      margin-top:
+        22px !important;
 
-      font-weight: bold;
-      letter-spacing: 0.08em;
+      margin-bottom:
+        5px !important;
+
+      font-weight:
+        bold;
+
+      letter-spacing:
+        0.08em;
     }
 
     .accion {
-      margin: 20px 0 !important;
-      font-style: italic;
+      margin:
+        20px 0 !important;
+
+      font-style:
+        italic;
     }
 
     .cuenta {
-      margin: 32px 0 !important;
+      margin:
+        32px 0 !important;
 
-      font-size: clamp(
-        2rem,
-        6vw,
-        4rem
-      );
+      font-size:
+        clamp(
+          2rem,
+          6vw,
+          4rem
+        );
 
-      text-align: center;
-      letter-spacing: 0.1em;
+      text-align:
+        center;
+
+      letter-spacing:
+        0.1em;
     }
 
-    @media (max-width: 700px) {
-      .escena {
-        padding: 20px;
+    .contenedor-reconstruir {
+      margin-top:
+        40px;
+
+      text-align:
+        center;
+    }
+
+
+    /* =========================
+       5. ROMPECABEZAS
+    ========================= */
+
+    #rompecabezas {
+      position:
+        relative;
+
+      background:
+        #e9e2d3;
+
+      color:
+        #171717;
+
+      overflow-x:
+        hidden;
+    }
+
+
+    .rompecabezas-contenido {
+      width:
+        min(
+          1100px,
+          100%
+        );
+
+      margin:
+        auto;
+    }
+
+
+    .titulo-rompecabezas {
+      margin:
+        0 0 8px;
+
+      font-family:
+        Georgia,
+        serif;
+
+      font-size:
+        clamp(
+          2rem,
+          6vw,
+          4.5rem
+        );
+
+      font-weight:
+        400;
+    }
+
+
+    .instruccion-rompecabezas {
+      margin:
+        0 auto 30px;
+
+      max-width:
+        560px;
+
+      font-size:
+        15px;
+
+      opacity:
+        0.72;
+    }
+
+
+    .zona-rompecabezas {
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        center;
+
+      gap:
+        45px;
+
+      width:
+        100%;
+    }
+
+
+    /* TABLERO */
+
+    .tablero {
+      width:
+        min(
+          390px,
+          44vw
+        );
+
+      aspect-ratio:
+        2 / 3;
+
+      display:
+        grid;
+
+      grid-template-columns:
+        repeat(
+          3,
+          1fr
+        );
+
+      grid-template-rows:
+        repeat(
+          3,
+          1fr
+        );
+
+      border:
+        1px solid
+        rgba(
+          0,
+          0,
+          0,
+          0.35
+        );
+
+      background:
+        rgba(
+          255,
+          255,
+          255,
+          0.17
+        );
+
+      box-shadow:
+        0 10px 30px
+        rgba(
+          0,
+          0,
+          0,
+          0.12
+        );
+    }
+
+
+    .slot {
+      position:
+        relative;
+
+      overflow:
+        hidden;
+
+      border:
+        1px dashed
+        rgba(
+          0,
+          0,
+          0,
+          0.22
+        );
+    }
+
+
+    .slot.correcto {
+      border:
+        none;
+    }
+
+
+    /* BANDEJA */
+
+    .bandeja {
+      width:
+        min(
+          390px,
+          44vw
+        );
+
+      display:
+        grid;
+
+      grid-template-columns:
+        repeat(
+          3,
+          1fr
+        );
+
+      gap:
+        12px;
+    }
+
+
+    .pieza {
+      position:
+        relative;
+
+      width:
+        100%;
+
+      aspect-ratio:
+        2 / 3;
+
+      background-image:
+        url(
+          "mano-anatomica.jpg"
+        );
+
+      background-repeat:
+        no-repeat;
+
+      background-size:
+        300% 300%;
+
+      border:
+        1px solid
+        rgba(
+          0,
+          0,
+          0,
+          0.25
+        );
+
+      box-shadow:
+        0 6px 14px
+        rgba(
+          0,
+          0,
+          0,
+          0.15
+        );
+
+      cursor:
+        grab;
+
+      touch-action:
+        none;
+
+      user-select:
+        none;
+
+      transition:
+        box-shadow
+        0.2s,
+        transform
+        0.15s;
+    }
+
+
+    .pieza:hover {
+      transform:
+        translateY(
+          -2px
+        );
+
+      box-shadow:
+        0 10px 18px
+        rgba(
+          0,
+          0,
+          0,
+          0.2
+        );
+    }
+
+
+    .pieza.arrastrando {
+      position:
+        fixed;
+
+      z-index:
+        9999;
+
+      cursor:
+        grabbing;
+
+      pointer-events:
+        none;
+
+      margin:
+        0;
+
+      transform:
+        scale(
+          1.04
+        );
+
+      box-shadow:
+        0 14px 30px
+        rgba(
+          0,
+          0,
+          0,
+          0.32
+        );
+    }
+
+
+    .pieza.colocada {
+      width:
+        100%;
+
+      height:
+        100%;
+
+      aspect-ratio:
+        auto;
+
+      border:
+        none;
+
+      box-shadow:
+        none;
+
+      cursor:
+        default;
+
+      transform:
+        none;
+    }
+
+
+    /* POSICIONES DE LA IMAGEN */
+
+    .pieza[data-posicion="0"] {
+      background-position:
+        0% 0%;
+    }
+
+    .pieza[data-posicion="1"] {
+      background-position:
+        50% 0%;
+    }
+
+    .pieza[data-posicion="2"] {
+      background-position:
+        100% 0%;
+    }
+
+    .pieza[data-posicion="3"] {
+      background-position:
+        0% 50%;
+    }
+
+    .pieza[data-posicion="4"] {
+      background-position:
+        50% 50%;
+    }
+
+    .pieza[data-posicion="5"] {
+      background-position:
+        100% 50%;
+    }
+
+    .pieza[data-posicion="6"] {
+      background-position:
+        0% 100%;
+    }
+
+    .pieza[data-posicion="7"] {
+      background-position:
+        50% 100%;
+    }
+
+    .pieza[data-posicion="8"] {
+      background-position:
+        100% 100%;
+    }
+
+
+    /* PIEZA DEL PULGAR */
+
+    .pieza-pulgar {
+      outline:
+        2px solid
+        rgba(
+          120,
+          20,
+          20,
+          0.45
+        );
+
+      outline-offset:
+        -2px;
+    }
+
+
+    /* TEXTO QUE APARECE */
+
+    .texto-documento {
+      min-height:
+        95px;
+
+      margin:
+        35px auto 0;
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        center;
+
+      max-width:
+        750px;
+
+      padding:
+        15px;
+
+      font-family:
+        Georgia,
+        serif;
+
+      font-size:
+        clamp(
+          1.3rem,
+          3vw,
+          2.4rem
+        );
+
+      line-height:
+        1.25;
+
+      opacity:
+        0;
+
+      transition:
+        opacity
+        0.7s;
+    }
+
+    .texto-documento.visible {
+      opacity:
+        1;
+    }
+
+
+    .frase-final {
+      display:
+        none;
+
+      margin:
+        35px auto 0;
+
+      font-family:
+        Georgia,
+        serif;
+
+      font-size:
+        clamp(
+          2rem,
+          5vw,
+          4rem
+        );
+
+      font-weight:
+        400;
+    }
+
+
+    .frase-final.visible {
+      display:
+        block;
+
+      animation:
+        aparecerFinal
+        1.5s ease;
+    }
+
+
+    @keyframes aparecerFinal {
+
+      from {
+        opacity:
+          0;
+
+        transform:
+          translateY(
+            15px
+          );
       }
+
+      to {
+        opacity:
+          1;
+
+        transform:
+          translateY(
+            0
+          );
+      }
+
+    }
+
+
+    /* CRÉDITO MANO */
+
+    .credito-mano {
+      margin-top:
+        35px;
+
+      font-size:
+        12px;
+
+      opacity:
+        0.65;
+    }
+
+    .credito-mano a {
+      color:
+        inherit;
+    }
+
+
+    /* =========================
+       RESPONSIVE
+    ========================= */
+
+    @media (
+      max-width:
+      750px
+    ) {
+
+      .escena {
+        padding:
+          20px 12px;
+      }
+
 
       #mapa-real {
-        height: 68vh;
+        height:
+          68vh;
       }
 
+
       .contenido-quirofano {
-        width: 94%;
-        max-height: 82vh;
+        width:
+          94%;
+
+        max-height:
+          82vh;
       }
+
+
+      .zona-rompecabezas {
+        flex-direction:
+          column;
+
+        gap:
+          25px;
+      }
+
+
+      .tablero,
+      .bandeja {
+        width:
+          min(
+            360px,
+            88vw
+          );
+      }
+
+
+      .bandeja {
+        grid-template-columns:
+          repeat(
+            3,
+            1fr
+          );
+      }
+
+
+      .titulo-rompecabezas {
+        margin-top:
+          20px;
+      }
+
     }
+
   </style>
 </head>
+
 
 <body>
 
   <main>
 
-    <!-- ESCENA 1 -->
+
+    <!-- =========================
+         ESCENA 1
+         PORTÓN
+    ========================== -->
 
     <section
       class="escena escena-activa"
@@ -322,7 +1101,9 @@
         Entrar
       </button>
 
+
       <p class="credito-foto">
+
         Foto de
 
         <a
@@ -342,61 +1123,91 @@
         >
           Unsplash
         </a>.
+
       </p>
 
     </section>
 
 
-    <!-- ESCENA 2 -->
+
+    <!-- =========================
+         ESCENA 2
+         MAPA
+    ========================== -->
 
     <section
       class="escena"
       id="mapa"
     >
 
-      <div class="contenido-mapa">
+      <div
+        class="contenido-mapa"
+      >
 
-        <h2 class="pregunta-mapa">
+        <h2
+          class="pregunta-mapa"
+        >
           ¿Dónde está tu dedo, Pili?
         </h2>
 
-        <div id="mapa-real"></div>
+        <div
+          id="mapa-real"
+        ></div>
 
       </div>
 
     </section>
 
 
-    <!-- ESCENA 3 -->
+
+    <!-- =========================
+         ESCENA 3
+         PÉRDIDA
+    ========================== -->
 
     <section
       class="escena"
       id="perdida"
     >
 
-      <h2 class="texto-perdida">
+      <h2
+        class="texto-perdida"
+      >
         pérdida de sustancia
       </h2>
 
     </section>
 
 
-    <!-- ESCENA 4 -->
+
+    <!-- =========================
+         ESCENA 4
+         QUIRÓFANO
+    ========================== -->
 
     <section
       class="escena"
       id="quirofano"
     >
 
-      <div class="contenido-quirofano">
+      <div
+        class="contenido-quirofano"
+      >
 
-        <h2 class="titulo-quirofano">
+        <h2
+          class="titulo-quirofano"
+        >
           Sala de operación
         </h2>
 
-        <div class="guion">
 
-          <p class="personaje">
+        <div
+          class="guion"
+        >
+
+          <p
+            class="personaje"
+          >
             YO
           </p>
 
@@ -405,17 +1216,25 @@
           </p>
 
 
-          <p class="accion">
-            Se lo digo al médico. Él se ríe.
+          <p
+            class="accion"
+          >
+            Se lo digo al médico.
+            Él se ríe.
           </p>
 
 
-          <p class="accion">
-            El anestesista hace lo suyo y me explica algo.
+          <p
+            class="accion"
+          >
+            El anestesista hace lo suyo
+            y me explica algo.
           </p>
 
 
-          <p class="personaje">
+          <p
+            class="personaje"
+          >
             YO
           </p>
 
@@ -424,7 +1243,9 @@
           </p>
 
 
-          <p class="personaje">
+          <p
+            class="personaje"
+          >
             OTRO DOCTOR
           </p>
 
@@ -433,7 +1254,9 @@
           </p>
 
 
-          <p class="personaje">
+          <p
+            class="personaje"
+          >
             OTRO DOCTOR
           </p>
 
@@ -442,17 +1265,23 @@
           </p>
 
 
-          <p class="accion">
+          <p
+            class="accion"
+          >
             Inicio.
           </p>
 
 
-          <p class="cuenta">
+          <p
+            class="cuenta"
+          >
             10, 9...
           </p>
 
 
-          <p class="personaje">
+          <p
+            class="personaje"
+          >
             ANESTESISTA
           </p>
 
@@ -461,21 +1290,42 @@
           </p>
 
 
-          <p class="accion">
+          <p
+            class="accion"
+          >
             Me quejo.
           </p>
 
 
-          <p class="accion">
+          <p
+            class="accion"
+          >
             Ya no recuerdo nada.
           </p>
+
+
+          <div
+            class="contenedor-reconstruir"
+          >
+
+            <button
+              id="boton-reconstruir"
+              type="button"
+            >
+              Reconstruir
+            </button>
+
+          </div>
 
         </div>
 
       </div>
 
 
-      <p class="credito-foto">
+      <p
+        class="credito-foto"
+      >
+
         Foto de
 
         <a
@@ -495,31 +1345,260 @@
         >
           Unsplash
         </a>.
+
       </p>
+
+    </section>
+
+
+
+    <!-- =========================
+         ESCENA 5
+         ROMPECABEZAS
+    ========================== -->
+
+    <section
+      class="escena"
+      id="rompecabezas"
+    >
+
+      <div
+        class="rompecabezas-contenido"
+      >
+
+        <h2
+          class="titulo-rompecabezas"
+        >
+          colgajo
+        </h2>
+
+
+        <p
+          class="instruccion-rompecabezas"
+        >
+          Arrastra los fragmentos
+          hasta reconstruir la imagen.
+        </p>
+
+
+        <div
+          class="zona-rompecabezas"
+        >
+
+
+          <!-- TABLERO -->
+
+          <div
+            class="tablero"
+            id="tablero"
+          >
+
+            <div
+              class="slot"
+              data-posicion="0"
+            ></div>
+
+            <div
+              class="slot"
+              data-posicion="1"
+            ></div>
+
+            <div
+              class="slot"
+              data-posicion="2"
+            ></div>
+
+            <div
+              class="slot"
+              data-posicion="3"
+            ></div>
+
+            <div
+              class="slot"
+              data-posicion="4"
+            ></div>
+
+            <div
+              class="slot"
+              data-posicion="5"
+            ></div>
+
+            <div
+              class="slot"
+              data-posicion="6"
+            ></div>
+
+            <div
+              class="slot"
+              data-posicion="7"
+            ></div>
+
+            <div
+              class="slot"
+              data-posicion="8"
+            ></div>
+
+          </div>
+
+
+
+          <!-- PIEZAS -->
+
+          <div
+            class="bandeja"
+            id="bandeja"
+          >
+
+
+            <div
+              class="pieza"
+              data-posicion="4"
+            ></div>
+
+
+            <div
+              class="pieza pieza-pulgar"
+              data-posicion="5"
+            ></div>
+
+
+            <div
+              class="pieza"
+              data-posicion="0"
+            ></div>
+
+
+            <div
+              class="pieza"
+              data-posicion="8"
+            ></div>
+
+
+            <div
+              class="pieza"
+              data-posicion="2"
+            ></div>
+
+
+            <div
+              class="pieza"
+              data-posicion="6"
+            ></div>
+
+
+            <div
+              class="pieza"
+              data-posicion="1"
+            ></div>
+
+
+            <div
+              class="pieza"
+              data-posicion="7"
+            ></div>
+
+
+            <div
+              class="pieza"
+              data-posicion="3"
+            ></div>
+
+
+          </div>
+
+        </div>
+
+
+        <div
+          class="texto-documento"
+          id="texto-documento"
+        ></div>
+
+
+        <h3
+          class="frase-final"
+          id="frase-final"
+        >
+          Reconstrucción no es regreso.
+        </h3>
+
+
+        <p
+          class="credito-mano"
+        >
+
+          Imagen de
+
+          <a
+            href="https://unsplash.com/es/fotos/dibujo-anatomico-de-los-musculos-y-tendones-de-la-mano-humana-kZu3CXxZUPE"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Europeana / Unsplash
+          </a>.
+
+        </p>
+
+      </div>
 
     </section>
 
   </main>
 
 
+
   <script>
 
+    /* =========================
+       ESCENAS
+    ========================= */
+
+
     const porton =
-      document.querySelector("#porton");
+      document.querySelector(
+        "#porton"
+      );
+
 
     const escenaMapa =
-      document.querySelector("#mapa");
+      document.querySelector(
+        "#mapa"
+      );
+
 
     const escenaPerdida =
-      document.querySelector("#perdida");
+      document.querySelector(
+        "#perdida"
+      );
+
 
     const escenaQuirofano =
-      document.querySelector("#quirofano");
+      document.querySelector(
+        "#quirofano"
+      );
+
+
+    const escenaRompecabezas =
+      document.querySelector(
+        "#rompecabezas"
+      );
+
 
     const botonEntrar =
-      document.querySelector("#entrar");
+      document.querySelector(
+        "#entrar"
+      );
 
-    let mapaInicializado = false;
+
+    const botonReconstruir =
+      document.querySelector(
+        "#boton-reconstruir"
+      );
+
+
+    let mapaInicializado =
+      false;
+
 
 
     function cambiarEscena(
@@ -531,11 +1610,19 @@
         "escena-activa"
       );
 
+
       escenaNueva.classList.add(
         "escena-activa"
       );
 
+
+      window.scrollTo(
+        0,
+        0
+      );
+
     }
+
 
 
     botonEntrar.addEventListener(
@@ -547,16 +1634,40 @@
           escenaMapa
         );
 
-        if (!mapaInicializado) {
+
+        if (
+          !mapaInicializado
+        ) {
 
           crearMapa();
 
-          mapaInicializado = true;
+          mapaInicializado =
+            true;
 
         }
 
       }
     );
+
+
+
+    botonReconstruir.addEventListener(
+      "click",
+      function () {
+
+        cambiarEscena(
+          escenaQuirofano,
+          escenaRompecabezas
+        );
+
+      }
+    );
+
+
+
+    /* =========================
+       MAPA
+    ========================= */
 
 
     function crearMapa() {
@@ -566,143 +1677,274 @@
         -90.50234271356774
       ];
 
+
       const coordenadasHospital = [
         14.60393779846318,
         -90.56026555839702
       ];
 
 
+
       const mapa =
         L.map(
           "mapa-real",
           {
-            zoomControl: false
+            zoomControl:
+              false
           }
         );
 
 
+
       L.tileLayer(
+
         "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
+
         {
-          subdomains: "abcd",
-          maxZoom: 20,
+
+          subdomains:
+            "abcd",
+
+          maxZoom:
+            20,
 
           attribution:
             "&copy; OpenStreetMap contributors &copy; CARTO"
+
         }
-      ).addTo(mapa);
+
+      ).addTo(
+        mapa
+      );
+
 
 
       const ruta = [
 
         coordenadasPorton,
 
-        [14.6410, -90.5060],
-        [14.6375, -90.5115],
-        [14.6340, -90.5175],
-        [14.6300, -90.5225],
-        [14.6260, -90.5280],
-        [14.6215, -90.5340],
-        [14.6170, -90.5400],
-        [14.6135, -90.5460],
-        [14.6100, -90.5510],
-        [14.6065, -90.5560],
+        [
+          14.6410,
+          -90.5060
+        ],
+
+        [
+          14.6375,
+          -90.5115
+        ],
+
+        [
+          14.6340,
+          -90.5175
+        ],
+
+        [
+          14.6300,
+          -90.5225
+        ],
+
+        [
+          14.6260,
+          -90.5280
+        ],
+
+        [
+          14.6215,
+          -90.5340
+        ],
+
+        [
+          14.6170,
+          -90.5400
+        ],
+
+        [
+          14.6135,
+          -90.5460
+        ],
+
+        [
+          14.6100,
+          -90.5510
+        ],
+
+        [
+          14.6065,
+          -90.5560
+        ],
 
         coordenadasHospital
 
       ];
 
 
+
       mapa.fitBounds(
-        L.latLngBounds(ruta),
+
+        L.latLngBounds(
+          ruta
+        ),
+
         {
-          padding: [50, 50]
+          padding:
+            [
+              50,
+              50
+            ]
         }
+
       );
 
 
+
       L.polyline(
+
         ruta,
+
         {
-          color: "#8b0000",
-          weight: 3,
-          opacity: 0.45
+
+          color:
+            "#8b0000",
+
+          weight:
+            3,
+
+          opacity:
+            0.45
+
         }
-      ).addTo(mapa);
+
+      ).addTo(
+        mapa
+      );
+
 
 
       const iconoPunto =
         L.divIcon({
 
-          className: "",
+          className:
+            "",
 
           html:
             '<div class="punto-viajero"></div>',
 
-          iconSize: [18, 18],
+          iconSize:
+            [
+              18,
+              18
+            ],
 
-          iconAnchor: [9, 9]
+          iconAnchor:
+            [
+              9,
+              9
+            ]
 
         });
 
 
+
       const punto =
         L.marker(
+
           coordenadasPorton,
+
           {
-            icon: iconoPunto
+            icon:
+              iconoPunto
           }
-        ).addTo(mapa);
+
+        ).addTo(
+          mapa
+        );
 
 
-      let tramo = 0;
-      let progreso = 0;
 
-      const velocidad = 0.01;
+      let tramo =
+        0;
+
+
+      let progreso =
+        0;
+
+
+      const velocidad =
+        0.01;
+
 
 
       function animar() {
 
         const inicio =
-          ruta[tramo];
+          ruta[
+            tramo
+          ];
+
 
         const final =
-          ruta[tramo + 1];
+          ruta[
+            tramo + 1
+          ];
 
 
-        progreso += velocidad;
-
-
-        if (progreso > 1) {
-          progreso = 1;
-        }
-
-
-        const lat =
-          inicio[0] +
-          (
-            final[0] -
-            inicio[0]
-          ) *
-          progreso;
-
-
-        const lng =
-          inicio[1] +
-          (
-            final[1] -
-            inicio[1]
-          ) *
-          progreso;
-
-
-        punto.setLatLng(
-          [lat, lng]
-        );
+        progreso +=
+          velocidad;
 
 
         if (
-          Math.random() > 0.9
+          progreso > 1
+        ) {
+
+          progreso =
+            1;
+
+        }
+
+
+
+        const lat =
+
+          inicio[0] +
+
+          (
+            final[0] -
+            inicio[0]
+          )
+
+          *
+
+          progreso;
+
+
+
+        const lng =
+
+          inicio[1] +
+
+          (
+            final[1] -
+            inicio[1]
+          )
+
+          *
+
+          progreso;
+
+
+
+        punto.setLatLng(
+          [
+            lat,
+            lng
+          ]
+        );
+
+
+
+        if (
+          Math.random() >
+          0.9
         ) {
 
           crearMarca(
@@ -714,14 +1956,20 @@
         }
 
 
-        if (progreso >= 1) {
+
+        if (
+          progreso >= 1
+        ) {
 
           if (
+
             tramo ===
             ruta.length - 2
+
           ) {
 
             window.setTimeout(
+
               function () {
 
                 cambiarEscena(
@@ -730,7 +1978,9 @@
                 );
 
 
+
                 window.setTimeout(
+
                   function () {
 
                     cambiarEscena(
@@ -739,12 +1989,17 @@
                     );
 
                   },
+
                   3000
+
                 );
 
               },
+
               1000
+
             );
+
 
             return;
 
@@ -752,9 +2007,12 @@
 
 
           tramo++;
-          progreso = 0;
+
+          progreso =
+            0;
 
         }
+
 
 
         requestAnimationFrame(
@@ -764,9 +2022,11 @@
       }
 
 
+
       animar();
 
     }
+
 
 
     function crearMarca(
@@ -776,14 +2036,20 @@
     ) {
 
       const tamaño =
+
         5 +
-        Math.random() * 7;
+
+        Math.random()
+        *
+        7;
+
 
 
       const iconoMarca =
         L.divIcon({
 
-          className: "",
+          className:
+            "",
 
           html:
             `
@@ -796,45 +2062,486 @@
               ></div>
             `,
 
-          iconSize: [
-            tamaño,
-            tamaño
-          ],
+          iconSize:
+            [
+              tamaño,
+              tamaño
+            ],
 
-          iconAnchor: [
-            tamaño / 2,
-            tamaño / 2
-          ]
+          iconAnchor:
+            [
+              tamaño / 2,
+              tamaño / 2
+            ]
 
         });
 
 
+
       L.marker(
+
         [
 
           lat +
+
           (
             Math.random() -
             0.5
-          ) *
+          )
+
+          *
+
           0.00035,
 
 
           lng +
+
           (
             Math.random() -
             0.5
-          ) *
+          )
+
+          *
+
           0.00035
 
         ],
 
         {
-          icon: iconoMarca,
-          interactive: false
+
+          icon:
+            iconoMarca,
+
+          interactive:
+            false
+
         }
 
-      ).addTo(mapa);
+      ).addTo(
+        mapa
+      );
+
+    }
+
+
+
+    /* =========================
+       ROMPECABEZAS
+    ========================= */
+
+
+    const piezas =
+      document.querySelectorAll(
+        ".pieza"
+      );
+
+
+    const textoDocumento =
+      document.querySelector(
+        "#texto-documento"
+      );
+
+
+    const fraseFinal =
+      document.querySelector(
+        "#frase-final"
+      );
+
+
+    let piezasCorrectas =
+      0;
+
+
+
+    const textos = {
+
+      0:
+        "HERIDA",
+
+      2:
+        "PULPEJO",
+
+      4:
+        "PÉRDIDA DE SUSTANCIA",
+
+      5:
+        "INJERTO",
+
+      8:
+        "COLGAJO"
+
+    };
+
+
+
+    piezas.forEach(
+
+      function (
+        pieza
+      ) {
+
+        pieza.addEventListener(
+          "pointerdown",
+          comenzarArrastre
+        );
+
+      }
+
+    );
+
+
+
+    function comenzarArrastre(
+      evento
+    ) {
+
+      const pieza =
+        evento.currentTarget;
+
+
+      if (
+        pieza.classList.contains(
+          "colocada"
+        )
+      ) {
+
+        return;
+
+      }
+
+
+      evento.preventDefault();
+
+
+
+      const rect =
+        pieza.getBoundingClientRect();
+
+
+
+      const diferenciaX =
+        evento.clientX -
+        rect.left;
+
+
+      const diferenciaY =
+        evento.clientY -
+        rect.top;
+
+
+
+      const anchoOriginal =
+        rect.width;
+
+
+      const altoOriginal =
+        rect.height;
+
+
+
+      pieza.style.width =
+        anchoOriginal +
+        "px";
+
+
+      pieza.style.height =
+        altoOriginal +
+        "px";
+
+
+      pieza.classList.add(
+        "arrastrando"
+      );
+
+
+
+      moverPieza(
+        evento.clientX,
+        evento.clientY
+      );
+
+
+
+      function moverPieza(
+        x,
+        y
+      ) {
+
+        pieza.style.left =
+
+          (
+            x -
+            diferenciaX
+          )
+          +
+          "px";
+
+
+        pieza.style.top =
+
+          (
+            y -
+            diferenciaY
+          )
+          +
+          "px";
+
+      }
+
+
+
+      function mover(
+        eventoMover
+      ) {
+
+        moverPieza(
+          eventoMover.clientX,
+          eventoMover.clientY
+        );
+
+      }
+
+
+
+      function soltar(
+        eventoSoltar
+      ) {
+
+        document.removeEventListener(
+          "pointermove",
+          mover
+        );
+
+
+        document.removeEventListener(
+          "pointerup",
+          soltar
+        );
+
+
+
+        pieza.style.display =
+          "none";
+
+
+
+        const elementoDebajo =
+          document.elementFromPoint(
+
+            eventoSoltar.clientX,
+
+            eventoSoltar.clientY
+
+          );
+
+
+
+        pieza.style.display =
+          "";
+
+
+
+        const slot =
+
+          elementoDebajo
+          ?
+          elementoDebajo.closest(
+            ".slot"
+          )
+          :
+          null;
+
+
+
+        const posicionPieza =
+          pieza.dataset.posicion;
+
+
+
+        const posicionSlot =
+
+          slot
+          ?
+          slot.dataset.posicion
+          :
+          null;
+
+
+
+        pieza.classList.remove(
+          "arrastrando"
+        );
+
+
+        pieza.style.left =
+          "";
+
+
+        pieza.style.top =
+          "";
+
+
+        pieza.style.width =
+          "";
+
+
+        pieza.style.height =
+          "";
+
+
+
+        if (
+
+          slot
+
+          &&
+
+          posicionPieza ===
+          posicionSlot
+
+          &&
+
+          !slot.classList.contains(
+            "correcto"
+          )
+
+        ) {
+
+          colocarPieza(
+            pieza,
+            slot
+          );
+
+        }
+
+      }
+
+
+
+      document.addEventListener(
+        "pointermove",
+        mover
+      );
+
+
+      document.addEventListener(
+        "pointerup",
+        soltar
+      );
+
+    }
+
+
+
+    function colocarPieza(
+      pieza,
+      slot
+    ) {
+
+      pieza.classList.add(
+        "colocada"
+      );
+
+
+      slot.classList.add(
+        "correcto"
+      );
+
+
+      slot.appendChild(
+        pieza
+      );
+
+
+      piezasCorrectas++;
+
+
+
+      const posicion =
+        pieza.dataset.posicion;
+
+
+
+      if (
+        textos[
+          posicion
+        ]
+      ) {
+
+        mostrarTexto(
+          textos[
+            posicion
+          ]
+        );
+
+      }
+
+
+
+      if (
+        piezasCorrectas ===
+        9
+      ) {
+
+        completarRompecabezas();
+
+      }
+
+    }
+
+
+
+    function mostrarTexto(
+      texto
+    ) {
+
+      textoDocumento.classList.remove(
+        "visible"
+      );
+
+
+      window.setTimeout(
+
+        function () {
+
+          textoDocumento.textContent =
+            texto;
+
+
+          textoDocumento.classList.add(
+            "visible"
+          );
+
+        },
+
+        150
+
+      );
+
+    }
+
+
+
+    function completarRompecabezas() {
+
+      textoDocumento.classList.remove(
+        "visible"
+      );
+
+
+      window.setTimeout(
+
+        function () {
+
+          fraseFinal.classList.add(
+            "visible"
+          );
+
+        },
+
+        700
+
+      );
 
     }
 
