@@ -48,7 +48,9 @@
       flex-direction: column;
     }
 
-    /* ESCENA DEL PORTÓN */
+    /* -----------------------
+       ESCENA 1: PORTÓN
+    ----------------------- */
 
     #porton {
       position: relative;
@@ -118,27 +120,57 @@
       color: white;
     }
 
-    /* ESCENA DEL MAPA */
+    /* -----------------------
+       ESCENA 2: MAPA
+    ----------------------- */
 
     #mapa {
-      background: #0f0f0f;
+      background: #111;
       color: white;
     }
 
     .contenido-mapa {
-      width: min(1100px, 100%);
+      width: min(1150px, 100%);
     }
 
     .texto-mapa {
       margin-bottom: 20px;
+      opacity: 0.75;
     }
 
     #mapa-real {
       width: 100%;
-      height: 70vh;
+      height: 72vh;
 
-      border-radius: 12px;
+      border: 1px solid #444;
       overflow: hidden;
+    }
+
+    /* Punto rojo que se mueve */
+
+    .punto-viajero {
+      width: 18px;
+      height: 18px;
+
+      border-radius: 50%;
+
+      background: #b00000;
+
+      box-shadow:
+        0 0 0 3px rgba(120, 0, 0, 0.25),
+        0 0 14px rgba(150, 0, 0, 0.7);
+    }
+
+    /* pequeñas marcas del recorrido */
+
+    .marca-roja {
+      border-radius: 50%;
+      background: #990000;
+
+      opacity: 0.75;
+
+      box-shadow:
+        2px 5px 0 -2px rgba(120, 0, 0, 0.65);
     }
   </style>
 </head>
@@ -147,7 +179,7 @@
 
   <main>
 
-    <!-- ESCENA 1: PORTÓN -->
+    <!-- ESCENA 1 -->
     <section class="escena escena-activa" id="porton">
 
       <div class="contenido-porton">
@@ -186,7 +218,7 @@
     </section>
 
 
-    <!-- ESCENA 2: MAPA -->
+    <!-- ESCENA 2 -->
     <section class="escena" id="mapa">
 
       <div class="contenido-mapa">
@@ -194,7 +226,7 @@
         <h2>Recorrido hacia el hospital</h2>
 
         <p class="texto-mapa">
-          En el trayecto queda una marca.
+          El trayecto.
         </p>
 
         <div id="mapa-real"></div>
@@ -207,23 +239,33 @@
 
 
   <script>
+
     const botonEntrar = document.querySelector("#entrar");
     const porton = document.querySelector("#porton");
-    const mapa = document.querySelector("#mapa");
+    const escenaMapa = document.querySelector("#mapa");
 
     let mapaInicializado = false;
 
+
     botonEntrar.addEventListener("click", function () {
+
       porton.classList.remove("escena-activa");
-      mapa.classList.add("escena-activa");
+      escenaMapa.classList.add("escena-activa");
 
       if (!mapaInicializado) {
+
         crearMapa();
+
         mapaInicializado = true;
+
       }
+
     });
 
+
     function crearMapa() {
+
+      /* PUNTOS PRINCIPALES */
 
       const coordenadasPorton = [
         14.643277895439471,
@@ -235,77 +277,231 @@
         -90.56026555839702
       ];
 
-      const mapaLeaflet = L.map("mapa-real").setView(
-        [14.6235, -90.5313],
-        13
+
+      /* CREAR MAPA */
+
+      const mapa = L.map(
+        "mapa-real",
+        {
+          zoomControl: false
+        }
       );
 
+
+      /* STAMEN TONER */
+
       L.tileLayer(
-        "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+        "https://tiles.stadiamaps.com/tiles/stamen_toner/{z}/{x}/{y}{r}.png",
         {
-          attribution: "&copy; OpenStreetMap contributors"
+          maxZoom: 20,
+
+          attribution:
+            '&copy; Stadia Maps ' +
+            '&copy; Stamen Design ' +
+            '&copy; OpenMapTiles ' +
+            '&copy; OpenStreetMap'
         }
-      ).addTo(mapaLeaflet);
+      ).addTo(mapa);
 
-      L.marker(coordenadasPorton)
-        .addTo(mapaLeaflet)
-        .bindPopup("Portón");
 
-      L.marker(coordenadasHospital)
-        .addTo(mapaLeaflet)
-        .bindPopup("Hospital");
+      /* RUTA */
 
       const ruta = [
+
         coordenadasPorton,
-        [14.639, -90.507],
-        [14.635, -90.514],
-        [14.629, -90.519],
-        [14.626, -90.526],
-        [14.621, -90.531],
-        [14.618, -90.537],
-        [14.614, -90.543],
-        [14.611, -90.548],
-        [14.608, -90.553],
-        [14.606, -90.557],
+
+        [14.6410, -90.5060],
+
+        [14.6375, -90.5115],
+
+        [14.6340, -90.5175],
+
+        [14.6300, -90.5225],
+
+        [14.6260, -90.5280],
+
+        [14.6215, -90.5340],
+
+        [14.6170, -90.5400],
+
+        [14.6135, -90.5460],
+
+        [14.6100, -90.5510],
+
+        [14.6065, -90.5560],
+
         coordenadasHospital
       ];
+
+
+      mapa.fitBounds(
+        L.latLngBounds(ruta),
+        {
+          padding: [50, 50]
+        }
+      );
+
+
+      /* LÍNEA ROJA */
 
       L.polyline(
         ruta,
         {
-          color: "white",
-          weight: 4,
-          opacity: 0.95
+          color: "#8b0000",
+          weight: 3,
+          opacity: 0.45
         }
-      ).addTo(mapaLeaflet);
+      ).addTo(mapa);
 
-      const marcasRojas = [
-        [14.637, -90.510],
-        [14.632, -90.517],
-        [14.624, -90.529],
-        [14.617, -90.540],
-        [14.610, -90.551]
-      ];
 
-      marcasRojas.forEach(function (punto, index) {
+      /* UN ÚNICO PUNTO */
 
-        L.circleMarker(
-          punto,
-          {
-            radius: index % 2 === 0 ? 7 : 5,
-            color: "#8b0000",
-            fillColor: "#c00000",
-            fillOpacity: 0.8,
-            weight: 1
-          }
-        ).addTo(mapaLeaflet);
+      const iconoPunto = L.divIcon({
 
+        className: "",
+
+        html:
+          '<div class="punto-viajero"></div>',
+
+        iconSize: [18, 18],
+
+        iconAnchor: [9, 9]
       });
 
+
+      const punto = L.marker(
+        coordenadasPorton,
+        {
+          icon: iconoPunto
+        }
+      ).addTo(mapa);
+
+
+      /* ANIMACIÓN */
+
+      let tramo = 0;
+      let progreso = 0;
+
+      const velocidad = 0.008;
+
+
+      function animar() {
+
+        if (tramo >= ruta.length - 1) {
+          return;
+        }
+
+
+        const inicio = ruta[tramo];
+        const final = ruta[tramo + 1];
+
+
+        progreso += velocidad;
+
+
+        const lat =
+          inicio[0] +
+          (final[0] - inicio[0]) * progreso;
+
+
+        const lng =
+          inicio[1] +
+          (final[1] - inicio[1]) * progreso;
+
+
+        punto.setLatLng(
+          [lat, lng]
+        );
+
+
+        /* DEJAR MARCA ROJA */
+
+        if (Math.random() > 0.88) {
+
+          crearMarca(
+            mapa,
+            lat,
+            lng
+          );
+
+        }
+
+
+        if (progreso >= 1) {
+
+          progreso = 0;
+
+          tramo++;
+
+        }
+
+
+        requestAnimationFrame(animar);
+      }
+
+
+      animar();
+
     }
+
+
+    function crearMarca(
+      mapa,
+      lat,
+      lng
+    ) {
+
+      const tamaño =
+        5 +
+        Math.random() * 8;
+
+
+      const iconoMarca =
+        L.divIcon({
+
+          className: "",
+
+          html:
+            `
+              <div
+                class="marca-roja"
+                style="
+                  width:${tamaño}px;
+                  height:${tamaño}px;
+                "
+              ></div>
+            `,
+
+          iconSize: [
+            tamaño,
+            tamaño
+          ],
+
+          iconAnchor: [
+            tamaño / 2,
+            tamaño / 2
+          ]
+
+        });
+
+
+      L.marker(
+        [
+          lat +
+          (Math.random() - 0.5) * 0.00035,
+
+          lng +
+          (Math.random() - 0.5) * 0.00035
+        ],
+        {
+          icon: iconoMarca,
+          interactive: false
+        }
+      ).addTo(mapa);
+
+    }
+
   </script>
 
-</body>
-</html>
 </body>
 </html>
