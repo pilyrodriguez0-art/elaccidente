@@ -34,8 +34,8 @@
 
     :root {
       --corinto: #64152e;
-      --corinto-oscuro: #4f0d22;
-      --corinto-medio: #79233d;
+      --corinto-oscuro: #4c0c20;
+      --corinto-medio: #76233b;
     }
 
     body {
@@ -255,13 +255,19 @@
 
       padding-bottom: 100px;
 
-      background: #111;
+      /*
+        Fondo neutro.
+        Nada de corinto.
+      */
+
+      background:
+        #b0b1ae;
     }
 
     /*
-      FOTO NORMAL.
-      SIN VELO ROJO.
-      SOLO MÁS TENUE.
+      La fotografía conserva
+      sus colores originales,
+      pero queda mucho más tenue.
     */
 
     .fondo-quirofano {
@@ -276,16 +282,17 @@
 
       object-fit: cover;
 
-      opacity: 0.48;
+      opacity: 0.26;
 
       filter:
-        brightness(0.82)
-        contrast(0.95);
+        brightness(1.04)
+        contrast(0.86)
+        saturate(0.75);
     }
 
     /*
-      Solo oscurecemos ligeramente
-      para que se lea el texto.
+      Una capa NEUTRA y clara.
+      No roja.
     */
 
     .velo-quirofano {
@@ -296,7 +303,7 @@
       z-index: 1;
 
       background:
-        rgba(0, 0, 0, 0.18);
+        rgba(220, 221, 217, 0.16);
 
       pointer-events: none;
     }
@@ -337,10 +344,6 @@
 
       color:
         var(--corinto-oscuro);
-
-      text-shadow:
-        0 1px 2px
-        rgba(255, 255, 255, 0.35);
     }
 
     .guion {
@@ -355,10 +358,6 @@
 
       color:
         var(--corinto-oscuro);
-
-      text-shadow:
-        0 1px 2px
-        rgba(255, 255, 255, 0.30);
     }
 
     .guion p {
@@ -378,7 +377,7 @@
         0.08em;
 
       color:
-        #460a1d;
+        #43091b;
     }
 
     .dialogo {
@@ -393,7 +392,7 @@
       font-style: italic;
 
       color:
-        var(--corinto);
+        var(--corinto-medio);
     }
 
     .cuenta {
@@ -457,8 +456,7 @@
     }
 
     .titulo-menique {
-      margin:
-        0 0 10px;
+      margin: 0 0 10px;
 
       font-family:
         Georgia,
@@ -518,13 +516,12 @@
       aspect-ratio:
         1542 / 2048;
 
-      margin:
-        0 auto;
+      margin: 0 auto;
 
       overflow: hidden;
 
       background:
-        #777;
+        #8f908d;
 
       border:
         1px solid
@@ -550,8 +547,7 @@
     /* =========================
        RELOJ
 
-       SOLO UNO.
-       SIN reloj.jpg.
+       SOLO UN RELOJ.
     ========================= */
 
     .reloj-hospital {
@@ -573,10 +569,10 @@
 
       background:
         rgba(
-          12,
-          12,
-          12,
-          0.13
+          20,
+          20,
+          20,
+          0.10
         );
 
       border:
@@ -585,7 +581,7 @@
           79,
           13,
           34,
-          0.34
+          0.32
         );
 
       pointer-events: none;
@@ -671,38 +667,6 @@
         );
 
       color: white;
-    }
-
-    .inicio-audios {
-      display: none;
-
-      margin:
-        20px auto 0;
-
-      max-width: 760px;
-
-      font-family:
-        Georgia,
-        serif;
-
-      font-size:
-        clamp(
-          1.05rem,
-          2.4vw,
-          1.35rem
-        );
-
-      color:
-        rgba(
-          255,
-          255,
-          255,
-          0.66
-        );
-    }
-
-    .inicio-audios.visible {
-      display: block;
     }
 
     /* =========================
@@ -1086,13 +1050,6 @@
           id="estado-menique"
         >
           De 7 a 9 se desarma el meñique con el que nací.
-        </p>
-
-        <p
-          class="inicio-audios"
-          id="inicio-audios"
-        >
-          A partir de las 11 comienzan las voces.
         </p>
 
       </div>
@@ -1524,11 +1481,6 @@
         "#estado-menique"
       );
 
-    const inicioAudios =
-      document.querySelector(
-        "#inicio-audios"
-      );
-
     const imagenMano =
       new Image();
 
@@ -1542,130 +1494,101 @@
       2048;
 
     /*
-      RECORTES REALES DEL MEÑIQUE.
+      TRES PIEZAS.
 
-      Primera sección:
-      punta → primera línea negra.
+      PIEZA 1:
+      punta.
     */
 
-    const segmento1 = [
-      [420, 752],
-      [449, 731],
-      [481, 737],
-      [514, 765],
-      [540, 813],
-      [536, 858],
-      [521, 884],
-      [467, 862],
-      [438, 826]
+    const pieza1 = [
+      [425, 746],
+      [452, 731],
+      [484, 738],
+      [515, 768],
+      [540, 812],
+      [538, 849],
+      [520, 874],
+      [493, 867],
+      [463, 843],
+      [439, 813]
     ];
 
     /*
-      Primera línea → segunda línea.
+      PIEZA 2:
+      zona media.
     */
 
-    const segmento2 = [
-      [467, 862],
-      [521, 884],
-      [558, 914],
-      [596, 951],
-      [594, 977],
-      [575, 994],
-      [521, 965],
-      [490, 922]
+    const pieza2 = [
+      [463, 843],
+      [493, 867],
+      [520, 874],
+      [558, 906],
+      [594, 940],
+      [601, 963],
+      [588, 982],
+      [559, 981],
+      [526, 953],
+      [496, 917]
     ];
 
     /*
-      Segunda línea → tercera línea.
+      PIEZA 3:
+      base.
     */
 
-    const segmento3 = [
-      [521, 965],
-      [575, 994],
-      [617, 1023],
-      [675, 1051],
-      [679, 1075],
-      [657, 1091],
-      [600, 1064],
-      [555, 1024]
+    const pieza3 = [
+      [526, 953],
+      [559, 981],
+      [588, 982],
+      [628, 1010],
+      [671, 1039],
+      [684, 1060],
+      [671, 1084],
+      [640, 1088],
+      [605, 1067],
+      [567, 1028]
+    ];
+
+    const piezas = [
+      pieza1,
+      pieza2,
+      pieza3
     ];
 
     /*
-      Tercera línea → nacimiento del dedo.
+      CORTE 1:
+      primero divide el dedo
+      aproximadamente a la mitad.
+
+      Es la SEGUNDA línea negra
+      transversal.
     */
 
-    const segmento4 = [
-      [600, 1064],
-      [657, 1091],
-      [698, 1109],
-      [713, 1130],
-      [699, 1152],
-      [668, 1159],
-      [632, 1139],
-      [607, 1108]
-    ];
+    const corteMitad = {
+      a:
+        [526, 953],
 
-    const segmentos = [
-      segmento1,
-      segmento2,
-      segmento3,
-      segmento4
-    ];
+      b:
+        [588, 982]
+    };
 
     /*
-      Las tres líneas negras reales.
+      CORTE 2:
+      después divide la parte
+      superior para producir
+      tres piezas.
+
+      Coincide con la primera
+      línea transversal.
     */
 
-    const cortes = [
-      {
-        a: [467, 862],
-        b: [521, 884]
-      },
+    const corteSuperior = {
+      a:
+        [463, 843],
 
-      {
-        a: [521, 965],
-        b: [594, 977]
-      },
-
-      {
-        a: [600, 1064],
-        b: [679, 1075]
-      }
-    ];
-
-    /*
-      MOVIMIENTOS MÍNIMOS.
-
-      No se van al lado.
-      Solo abren espacio entre
-      una línea negra y otra.
-    */
-
-    const movimientos = [
-      {
-        x: -7,
-        y: -6,
-        rot: -0.004
-      },
-
-      {
-        x: -2,
-        y: -2,
-        rot: -0.002
-      },
-
-      {
-        x: 2,
-        y: 2,
-        rot: 0.002
-      },
-
-      {
-        x: 6,
-        y: 6,
-        rot: 0.004
-      }
-    ];
+      b:
+        [520, 874]
+    };
 
     function trazarPoligono(
       puntos
@@ -1680,7 +1603,8 @@
 
       for (
         let i = 1;
-        i < puntos.length;
+        i <
+        puntos.length;
         i++
       ) {
 
@@ -1704,6 +1628,7 @@
         function (
           punto
         ) {
+
           x +=
             punto[0];
 
@@ -1723,15 +1648,16 @@
       };
     }
 
-    /*
-      Crea una apertura EXACTAMENTE
-      sobre la línea negra original.
-    */
-
-    function dibujarCorte(
+    function dibujarHueco(
       corte,
-      progreso
+      cantidad
     ) {
+
+      if (
+        cantidad <= 0
+      ) {
+        return;
+      }
 
       const x1 =
         corte.a[0];
@@ -1757,85 +1683,93 @@
           dy
         );
 
-      const normalX =
+      const nx =
         -dy /
         longitud;
 
-      const normalY =
+      const ny =
         dx /
         longitud;
 
       /*
-        Empieza como la línea negra
-        existente y se ensancha
-        lentamente hasta crear
-        un espacio visible.
+        El hueco crece
+        sobre la línea negra.
       */
 
-      const mitad =
-        1 +
-        7 *
-        progreso;
+      const grosor =
+        2 +
+        10 *
+        cantidad;
 
       ctx.beginPath();
 
       ctx.moveTo(
         x1 +
-        normalX *
-        mitad,
+        nx *
+        grosor,
         y1 +
-        normalY *
-        mitad
+        ny *
+        grosor
       );
 
       ctx.lineTo(
         x2 +
-        normalX *
-        mitad,
+        nx *
+        grosor,
         y2 +
-        normalY *
-        mitad
+        ny *
+        grosor
       );
 
       ctx.lineTo(
         x2 -
-        normalX *
-        mitad,
+        nx *
+        grosor,
         y2 -
-        normalY *
-        mitad
+        ny *
+        grosor
       );
 
       ctx.lineTo(
         x1 -
-        normalX *
-        mitad,
+        nx *
+        grosor,
         y1 -
-        normalY *
-        mitad
+        ny *
+        grosor
       );
 
       ctx.closePath();
 
       /*
-        Gris oscuro:
-        se lee como espacio,
-        no como una nueva línea roja.
+        Fondo similar al gris
+        de la fotografía.
       */
 
       ctx.fillStyle =
         `rgba(
-          48,
-          48,
-          47,
-          ${0.28 + 0.56 * progreso}
+          115,
+          116,
+          113,
+          ${0.18 + 0.70 * cantidad}
         )`;
 
       ctx.fill();
     }
 
+    /*
+      estadoMitad:
+      0 → unido
+      1 → primera división completa
+
+      estadoTres:
+      0 → aún dos piezas
+      1 → tres piezas completas
+    */
+
     function renderizarMano(
-      separacion
+      estadoMitad,
+      estadoTres
     ) {
 
       if (
@@ -1853,12 +1787,11 @@
       );
 
       /*
-        FONDO NATURAL.
-        NO ROJO.
+        Fondo natural.
       */
 
       ctx.fillStyle =
-        "#8f8f8b";
+        "#999a96";
 
       ctx.fillRect(
         0,
@@ -1868,19 +1801,17 @@
       );
 
       /*
-        FOTO COMPLETA.
-
-        Se mantiene natural,
-        solo ligeramente tenue.
+        Mano completa,
+        colores naturales.
       */
 
       ctx.save();
 
       ctx.globalAlpha =
-        0.76;
+        0.80;
 
       ctx.filter =
-        "brightness(0.88) contrast(0.96) saturate(0.90)";
+        "brightness(0.93) contrast(0.96) saturate(0.88)";
 
       ctx.drawImage(
         imagenMano,
@@ -1893,17 +1824,90 @@
       ctx.restore();
 
       /*
-        Dibujamos por encima las
-        cuatro secciones exactas
-        del mismo meñique.
+        MOVIMIENTOS.
 
-        El desplazamiento máximo
-        es de unos pocos píxeles.
+        En la primera fase,
+        pieza 1 + pieza 2 se
+        comportan como una mitad.
+
+        La pieza 3 forma
+        la otra mitad.
       */
 
-      segmentos.forEach(
+      const movimientos = [
+
+        /*
+          Punta:
+          además de moverse con
+          la mitad superior,
+          se separa en la fase 2.
+        */
+
+        {
+          x:
+            -7 *
+            estadoMitad
+            -
+            8 *
+            estadoTres,
+
+          y:
+            -5 *
+            estadoMitad
+            -
+            6 *
+            estadoTres,
+
+          rot:
+            -0.004 *
+            estadoTres
+        },
+
+        /*
+          Zona media:
+          se mueve solo con
+          la mitad superior.
+        */
+
+        {
+          x:
+            -7 *
+            estadoMitad,
+
+          y:
+            -5 *
+            estadoMitad,
+
+          rot:
+            0
+        },
+
+        /*
+          Base:
+          se aleja en sentido
+          contrario en la
+          primera división.
+        */
+
+        {
+          x:
+            9 *
+            estadoMitad,
+
+          y:
+            7 *
+            estadoMitad,
+
+          rot:
+            0.003 *
+            estadoMitad
+        }
+
+      ];
+
+      piezas.forEach(
         function (
-          segmento,
+          pieza,
           indice
         ) {
 
@@ -1914,16 +1918,14 @@
 
           const centro =
             centroPoligono(
-              segmento
+              pieza
             );
 
           ctx.save();
 
           ctx.translate(
-            movimiento.x *
-            separacion,
-            movimiento.y *
-            separacion
+            movimiento.x,
+            movimiento.y
           );
 
           ctx.translate(
@@ -1932,8 +1934,7 @@
           );
 
           ctx.rotate(
-            movimiento.rot *
-            separacion
+            movimiento.rot
           );
 
           ctx.translate(
@@ -1942,16 +1943,16 @@
           );
 
           trazarPoligono(
-            segmento
+            pieza
           );
 
           ctx.clip();
 
           ctx.globalAlpha =
-            0.98;
+            1;
 
           ctx.filter =
-            "brightness(0.95) contrast(1) saturate(0.96)";
+            "brightness(0.98) contrast(1) saturate(0.95)";
 
           ctx.drawImage(
             imagenMano,
@@ -1966,20 +1967,24 @@
       );
 
       /*
-        Las tres líneas negras
-        ahora son las aperturas.
+        PRIMERA APERTURA:
+        divide el dedo en dos.
       */
 
-      cortes.forEach(
-        function (
-          corte
-        ) {
+      dibujarHueco(
+        corteMitad,
+        estadoMitad
+      );
 
-          dibujarCorte(
-            corte,
-            separacion
-          );
-        }
+      /*
+        SEGUNDA APERTURA:
+        convierte esas dos
+        partes en tres.
+      */
+
+      dibujarHueco(
+        corteSuperior,
+        estadoTres
       );
     }
 
@@ -1988,6 +1993,7 @@
       function () {
 
         renderizarMano(
+          0,
           0
         );
       }
@@ -1999,6 +2005,7 @@
     ) {
 
       renderizarMano(
+        0,
         0
       );
     }
@@ -2100,6 +2107,7 @@
 
           estadoMenique.style.opacity =
             "1";
+
         },
         150
       );
@@ -2114,18 +2122,43 @@
         );
 
         renderizarMano(
+          0,
           0
         );
 
-        inicioAudios.classList.remove(
-          "visible"
+        estadoMenique.classList.remove(
+          "final"
         );
 
-        const duracionDesarme =
-          7200;
+        /*
+          7 → 8:
+          primera división.
+
+          6 segundos.
+        */
+
+        const duracionMitad =
+          6000;
+
+        /*
+          8 → 9:
+          pasa de dos a
+          tres piezas.
+
+          otros 6 segundos.
+        */
+
+        const duracionTres =
+          6000;
+
+        /*
+          9 → 11:
+          se vuelve a unir
+          y el reloj acelera.
+        */
 
         const duracionRearme =
-          2600;
+          3200;
 
         const inicio =
           performance.now();
@@ -2137,23 +2170,23 @@
           ahora
         ) {
 
-          const transcurrido =
+          const tiempo =
             ahora -
             inicio;
 
           /* =====================
-             7 → 9
-             SE ABREN LOS CORTES
+             7:00 → 8:00
+             PRIMERO EN DOS
           ===================== */
 
           if (
-            transcurrido <=
-            duracionDesarme
+            tiempo <=
+            duracionMitad
           ) {
 
             const progreso =
-              transcurrido /
-              duracionDesarme;
+              tiempo /
+              duracionMitad;
 
             const suave =
               easeInOutCubic(
@@ -2162,10 +2195,7 @@
 
             const minutos =
               7 * 60 +
-              (
-                9 * 60 -
-                7 * 60
-              ) *
+              60 *
               progreso;
 
             actualizarReloj(
@@ -2173,30 +2203,70 @@
             );
 
             renderizarMano(
+              suave,
+              0
+            );
+
+            if (
+              etapaTexto !==
+              0
+            ) {
+
+              etapaTexto =
+                0;
+
+              cambiarTexto(
+                "De 7 a 9 se desarma el meñique con el que nací."
+              );
+            }
+
+            requestAnimationFrame(
+              animar
+            );
+
+            return;
+          }
+
+          /* =====================
+             8:00 → 9:00
+             DE DOS A TRES
+          ===================== */
+
+          const tiempoTres =
+            tiempo -
+            duracionMitad;
+
+          if (
+            tiempoTres <=
+            duracionTres
+          ) {
+
+            const progreso =
+              tiempoTres /
+              duracionTres;
+
+            const suave =
+              easeInOutCubic(
+                progreso
+              );
+
+            const minutos =
+              8 * 60 +
+              60 *
+              progreso;
+
+            actualizarReloj(
+              minutos
+            );
+
+            renderizarMano(
+              1,
               suave
             );
 
             if (
               progreso <
-              0.33
-            ) {
-
-              if (
-                etapaTexto !==
-                0
-              ) {
-
-                etapaTexto =
-                  0;
-
-                cambiarTexto(
-                  "De 7 a 9 se desarma el meñique con el que nací."
-                );
-              }
-
-            } else if (
-              progreso <
-              0.67
+              0.5
             ) {
 
               if (
@@ -2237,21 +2307,27 @@
 
           /* =====================
              9 → 11
-             SE VUELVE A ARMAR
+             SE REARMA
           ===================== */
 
-          const faseDos =
-            transcurrido -
-            duracionDesarme;
+          const tiempoRearme =
+            tiempo -
+            duracionMitad -
+            duracionTres;
 
           if (
-            faseDos <=
+            tiempoRearme <=
             duracionRearme
           ) {
 
             const progreso =
-              faseDos /
+              tiempoRearme /
               duracionRearme;
+
+            const suave =
+              easeInOutCubic(
+                progreso
+              );
 
             const acelerado =
               progreso *
@@ -2259,21 +2335,34 @@
 
             const minutos =
               9 * 60 +
-              (
-                11 * 60 -
-                9 * 60
-              ) *
+              120 *
               acelerado;
 
             actualizarReloj(
               minutos
             );
 
-            renderizarMano(
+            /*
+              Desaparece primero
+              la tercera división
+              y después la mitad.
+            */
+
+            const estadoTres =
+              Math.max(
+                0,
+                1 -
+                suave *
+                1.6
+              );
+
+            const estadoMitad =
               1 -
-              easeInOutCubic(
-                progreso
-              )
+              suave;
+
+            renderizarMano(
+              estadoMitad,
+              estadoTres
             );
 
             requestAnimationFrame(
@@ -2285,7 +2374,6 @@
 
           /* =====================
              11:00
-             COMIENZAN LOS AUDIOS
           ===================== */
 
           actualizarReloj(
@@ -2293,6 +2381,7 @@
           );
 
           renderizarMano(
+            0,
             0
           );
 
@@ -2301,14 +2390,12 @@
             true
           );
 
-          inicioAudios.classList.add(
-            "visible"
-          );
-
           /*
-            Este evento queda preparado
-            para conectar los WhatsApp Ptt
-            en la siguiente etapa.
+            Aquí queda preparada
+            la señal para conectar
+            los audios después.
+
+            NO muestra ningún texto.
           */
 
           window.dispatchEvent(
@@ -2345,4 +2432,5 @@
   </script>
 
 </body>
+
 </html>
