@@ -48,9 +48,9 @@
       flex-direction: column;
     }
 
-    /* -----------------------
+    /* =========================
        ESCENA 1: PORTÓN
-    ----------------------- */
+    ========================= */
 
     #porton {
       position: relative;
@@ -120,9 +120,9 @@
       color: white;
     }
 
-    /* -----------------------
+    /* =========================
        ESCENA 2: MAPA
-    ----------------------- */
+    ========================= */
 
     #mapa {
       background: #111;
@@ -161,7 +161,7 @@
         0 0 14px rgba(150, 0, 0, 0.7);
     }
 
-    /* pequeñas marcas del recorrido */
+    /* Marcas rojas */
 
     .marca-roja {
       border-radius: 50%;
@@ -179,7 +179,10 @@
 
   <main>
 
-    <!-- ESCENA 1 -->
+    <!-- =========================
+         ESCENA 1
+    ========================== -->
+
     <section class="escena escena-activa" id="porton">
 
       <div class="contenido-porton">
@@ -218,7 +221,10 @@
     </section>
 
 
-    <!-- ESCENA 2 -->
+    <!-- =========================
+         ESCENA 2
+    ========================== -->
+
     <section class="escena" id="mapa">
 
       <div class="contenido-mapa">
@@ -240,32 +246,47 @@
 
   <script>
 
-    const botonEntrar = document.querySelector("#entrar");
-    const porton = document.querySelector("#porton");
-    const escenaMapa = document.querySelector("#mapa");
+    const botonEntrar =
+      document.querySelector("#entrar");
+
+    const porton =
+      document.querySelector("#porton");
+
+    const escenaMapa =
+      document.querySelector("#mapa");
 
     let mapaInicializado = false;
 
 
-    botonEntrar.addEventListener("click", function () {
+    botonEntrar.addEventListener(
+      "click",
+      function () {
 
-      porton.classList.remove("escena-activa");
-      escenaMapa.classList.add("escena-activa");
+        porton.classList.remove(
+          "escena-activa"
+        );
 
-      if (!mapaInicializado) {
+        escenaMapa.classList.add(
+          "escena-activa"
+        );
 
-        crearMapa();
+        if (!mapaInicializado) {
 
-        mapaInicializado = true;
+          crearMapa();
+
+          mapaInicializado = true;
+
+        }
 
       }
-
-    });
+    );
 
 
     function crearMapa() {
 
-      /* PUNTOS PRINCIPALES */
+      /* =========================
+         COORDENADAS
+      ========================== */
 
       const coordenadasPorton = [
         14.643277895439471,
@@ -278,7 +299,9 @@
       ];
 
 
-      /* CREAR MAPA */
+      /* =========================
+         CREAR MAPA
+      ========================== */
 
       const mapa = L.map(
         "mapa-real",
@@ -288,23 +311,27 @@
       );
 
 
-      /* STAMEN TONER */
+      /* =========================
+         MAPA BASE CARTO
+         Blanco / gris
+      ========================== */
 
       L.tileLayer(
-        "https://tiles.stadiamaps.com/tiles/stamen_toner/{z}/{x}/{y}{r}.png",
+        "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
         {
+          subdomains: "abcd",
           maxZoom: 20,
 
           attribution:
-            '&copy; Stadia Maps ' +
-            '&copy; Stamen Design ' +
-            '&copy; OpenMapTiles ' +
-            '&copy; OpenStreetMap'
+            '&copy; OpenStreetMap contributors ' +
+            '&copy; CARTO'
         }
       ).addTo(mapa);
 
 
-      /* RUTA */
+      /* =========================
+         RECORRIDO
+      ========================== */
 
       const ruta = [
 
@@ -342,7 +369,9 @@
       );
 
 
-      /* LÍNEA ROJA */
+      /* =========================
+         LÍNEA ROJA
+      ========================== */
 
       L.polyline(
         ruta,
@@ -354,32 +383,40 @@
       ).addTo(mapa);
 
 
-      /* UN ÚNICO PUNTO */
+      /* =========================
+         PUNTO ROJO
+      ========================== */
 
-      const iconoPunto = L.divIcon({
+      const iconoPunto =
+        L.divIcon({
 
-        className: "",
+          className: "",
 
-        html:
-          '<div class="punto-viajero"></div>',
+          html:
+            '<div class="punto-viajero"></div>',
 
-        iconSize: [18, 18],
+          iconSize: [18, 18],
 
-        iconAnchor: [9, 9]
-      });
+          iconAnchor: [9, 9]
 
-
-      const punto = L.marker(
-        coordenadasPorton,
-        {
-          icon: iconoPunto
-        }
-      ).addTo(mapa);
+        });
 
 
-      /* ANIMACIÓN */
+      const punto =
+        L.marker(
+          coordenadasPorton,
+          {
+            icon: iconoPunto
+          }
+        ).addTo(mapa);
+
+
+      /* =========================
+         ANIMACIÓN
+      ========================== */
 
       let tramo = 0;
+
       let progreso = 0;
 
       const velocidad = 0.008;
@@ -387,13 +424,21 @@
 
       function animar() {
 
-        if (tramo >= ruta.length - 1) {
+        if (
+          tramo >=
+          ruta.length - 1
+        ) {
+
           return;
+
         }
 
 
-        const inicio = ruta[tramo];
-        const final = ruta[tramo + 1];
+        const inicio =
+          ruta[tramo];
+
+        const final =
+          ruta[tramo + 1];
 
 
         progreso += velocidad;
@@ -401,12 +446,20 @@
 
         const lat =
           inicio[0] +
-          (final[0] - inicio[0]) * progreso;
+          (
+            final[0] -
+            inicio[0]
+          ) *
+          progreso;
 
 
         const lng =
           inicio[1] +
-          (final[1] - inicio[1]) * progreso;
+          (
+            final[1] -
+            inicio[1]
+          ) *
+          progreso;
 
 
         punto.setLatLng(
@@ -414,9 +467,14 @@
         );
 
 
-        /* DEJAR MARCA ROJA */
+        /* =========================
+           DEJAR MARCAS
+        ========================== */
 
-        if (Math.random() > 0.88) {
+        if (
+          Math.random() >
+          0.88
+        ) {
 
           crearMarca(
             mapa,
@@ -427,7 +485,9 @@
         }
 
 
-        if (progreso >= 1) {
+        if (
+          progreso >= 1
+        ) {
 
           progreso = 0;
 
@@ -436,7 +496,10 @@
         }
 
 
-        requestAnimationFrame(animar);
+        requestAnimationFrame(
+          animar
+        );
+
       }
 
 
@@ -444,6 +507,10 @@
 
     }
 
+
+    /* =========================
+       CREAR MARCA ROJA
+    ========================== */
 
     function crearMarca(
       mapa,
@@ -488,10 +555,18 @@
       L.marker(
         [
           lat +
-          (Math.random() - 0.5) * 0.00035,
+          (
+            Math.random() -
+            0.5
+          ) *
+          0.00035,
 
           lng +
-          (Math.random() - 0.5) * 0.00035
+          (
+            Math.random() -
+            0.5
+          ) *
+          0.00035
         ],
         {
           icon: iconoMarca,
