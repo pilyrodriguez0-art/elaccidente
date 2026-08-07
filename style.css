@@ -24,7 +24,18 @@ body {
 }
 
 #porton {
-  background: #1b1b1b;
+  position: relative;
+
+  background-image:
+    linear-gradient(
+      rgba(0, 0, 0, 0.25),
+      rgba(0, 0, 0, 0.45)
+    ),
+    url("anya-chernykh-tvotQu_jd68-unsplash.jpg");
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 #mapa {
@@ -51,14 +62,4 @@ button {
 button:hover {
   background: white;
   color: black;
-}
-#porton {
-  position: relative;
-  background-image:
-    linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.45)),
-    url("anya-chernykh-tvotQu_jd68-unsplash.jpg");
-
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
 }
