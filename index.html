@@ -620,44 +620,261 @@
         rgba(255, 255, 255, 0.84);
     }
 
-    .escenario-mano-interactiva {
-      width: min(420px, 82vw);
-      aspect-ratio: 540 / 718;
+    /* =========================
+       TELÉFONO / WHATSAPP
+    ========================= */
 
-      margin: 0 auto 16px;
+    .telefono {
+      width: min(300px, 78vw);
+      aspect-ratio: 300 / 610;
+
+      margin: 0 auto 10px;
+
+      padding: 14px;
+
+      background:
+        linear-gradient(
+          160deg,
+          #2b2b2b,
+          #050505
+        );
+
+      border-radius: 46px;
+
+      box-shadow:
+        0 20px 50px
+        rgba(0, 0, 0, 0.55);
+    }
+
+    .pantalla {
+      position: relative;
+
+      width: 100%;
+      height: 100%;
 
       overflow: hidden;
 
-      background: #0a0a0a;
+      border-radius: 32px;
 
-      border:
-        1px solid
-        rgba(216, 21, 37, 0.3);
+      background: #e5ddd5;
+    }
+
+    .notch {
+      position: absolute;
+      top: 10px;
+      left: 50%;
+
+      transform:
+        translateX(-50%);
+
+      width: 34%;
+      height: 20px;
+
+      border-radius: 999px;
+
+      background: #050505;
+
+      z-index: 20;
+    }
+
+    .vista-wa {
+      position: absolute;
+      inset: 0;
+
+      display: none;
+
+      flex-direction: column;
+    }
+
+    .vista-wa-activa {
+      display: flex;
+    }
+
+    .barra-wa {
+      flex: 0 0 auto;
+
+      display: flex;
+      align-items: center;
+      gap: 8px;
+
+      padding: 38px 14px 10px;
+
+      background: #075e54;
+
+      color: white;
+    }
+
+    .titulo-wa {
+      font-family: Arial, sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+    }
+
+    .volver-wa {
+      padding: 0 4px;
+
+      border: none;
+      background: none;
+
+      color: white;
+      font-size: 1.4rem;
+      line-height: 1;
+    }
+
+    .avatar-wa {
+      flex: 0 0 auto;
+
+      width: 26px;
+      height: 26px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 50%;
+
+      background: var(--corinto);
+
+      color: white;
+      font-size: 0.6rem;
+      font-weight: 700;
+      font-family: Arial, sans-serif;
+      letter-spacing: -0.02em;
+    }
+
+    .lista-chats {
+      flex: 1 1 auto;
+
+      overflow-y: auto;
+
+      background: white;
+    }
+
+    .item-chat {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+      padding: 10px 12px;
+
+      border-bottom: 1px solid #eee;
+
+      text-align: left;
 
       cursor: pointer;
     }
 
-    #canvas-mano-interactiva {
-      display: block;
-      width: 100%;
-      height: 100%;
+    .item-chat .avatar-wa {
+      width: 38px;
+      height: 38px;
+      font-size: 0.8rem;
     }
 
-    .estado-audio {
-      margin: 0 0 26px;
+    .info-chat {
+      flex: 1 1 auto;
+      min-width: 0;
+    }
 
-      min-height: 26px;
+    .nombre-chat {
+      font-family: Arial, sans-serif;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #111;
+    }
 
-      font-family:
-        Georgia,
-        serif;
+    .previa-chat {
+      font-family: Arial, sans-serif;
+      font-size: 0.72rem;
+      color: #667781;
+    }
 
-      font-style: italic;
+    .hora-chat {
+      flex: 0 0 auto;
 
-      font-size: 0.95rem;
+      font-family: Arial, sans-serif;
+      font-size: 0.65rem;
+      color: #667781;
+    }
 
-      color:
-        rgba(255, 255, 255, 0.72);
+    .fondo-hilo {
+      flex: 1 1 auto;
+
+      overflow-y: auto;
+
+      padding: 10px 8px;
+
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .burbuja {
+      align-self: flex-end;
+
+      display: flex;
+      align-items: center;
+      gap: 8px;
+
+      max-width: 84%;
+
+      padding: 7px 9px;
+
+      border-radius: 10px 10px 2px 10px;
+
+      background: #dcf8c6;
+
+      cursor: pointer;
+    }
+
+    .boton-audio-wa {
+      flex: 0 0 auto;
+
+      width: 24px;
+      height: 24px;
+
+      border-radius: 50%;
+
+      border: none;
+
+      background: var(--corinto);
+
+      color: white;
+      font-size: 0.7rem;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .barra-audio-wa {
+      position: relative;
+
+      width: 78px;
+      height: 3px;
+
+      border-radius: 999px;
+
+      background:
+        rgba(7, 94, 84, 0.25);
+    }
+
+    .relleno-audio-wa {
+      position: absolute;
+      inset: 0;
+
+      width: 0%;
+
+      border-radius: 999px;
+
+      background: #075e54;
+    }
+
+    .hora-burbuja {
+      flex: 0 0 auto;
+
+      font-family: Arial, sans-serif;
+      font-size: 0.62rem;
+      color: #667781;
     }
 
     /* =========================
@@ -994,36 +1211,77 @@
         <p class="texto-drogas">
           El 4 de agosto, entre las 11:19 de la mañana
           y la 1:00 de la tarde, mandé estos audios
+          por WhatsApp a mi familia y a mis amigos,
           todavía bajo el efecto de la anestesia.
           No recuerdo haberlo hecho.
-          Cada sutura es uno de esos audios: tocá
-          una para escucharlo.
         </p>
 
         <div
-          class="escenario-mano-interactiva"
-          id="escenario-mano-interactiva"
+          class="telefono"
+          id="telefono"
         >
 
-          <canvas
-            id="canvas-mano-interactiva"
-            width="540"
-            height="718"
-          ></canvas>
+          <div class="pantalla">
+
+            <div class="notch"></div>
+
+            <div
+              class="vista-wa vista-wa-activa"
+              id="vista-chats"
+            >
+
+              <div class="barra-wa">
+
+                <span class="titulo-wa">
+                  Chats
+                </span>
+
+              </div>
+
+              <div
+                class="lista-chats"
+                id="lista-chats"
+              ></div>
+
+            </div>
+
+            <div
+              class="vista-wa"
+              id="vista-hilo"
+            >
+
+              <div class="barra-wa barra-hilo">
+
+                <button
+                  type="button"
+                  class="volver-wa"
+                  id="volver-wa"
+                >
+                  ‹
+                </button>
+
+                <div
+                  class="avatar-wa"
+                  id="avatar-hilo"
+                ></div>
+
+                <span
+                  class="titulo-wa"
+                  id="titulo-hilo"
+                ></span>
+
+              </div>
+
+              <div
+                class="fondo-hilo"
+                id="mensajes-hilo"
+              ></div>
+
+            </div>
+
+          </div>
 
         </div>
-
-        <p
-          class="estado-audio"
-          id="estado-audio"
-        >
-          Tocá una sutura para escuchar.
-        </p>
-
-        <div
-          id="audios-ocultos"
-          style="display: none;"
-        ></div>
 
       </div>
 
@@ -1079,11 +1337,6 @@
         const escenaDrogas =
           document.getElementById(
             "drogas"
-          );
-
-        const estadoAudio =
-          document.getElementById(
-            "estado-audio"
           );
 
         const botonEntrar =
@@ -1268,22 +1521,145 @@
             return;
           }
 
-          try {
+          crearMapa().catch(
+            function (error) {
 
-            crearMapa();
+              console.error(
+                "Error del mapa:",
+                error
+              );
 
-          } catch (error) {
-
-            console.error(
-              "Error del mapa:",
-              error
-            );
-
-            continuarDesdeMapa();
-          }
+              continuarDesdeMapa();
+            }
+          );
         }
 
-        function crearMapa() {
+        /*
+          Reduce la cantidad de
+          puntos de una ruta real
+          (que puede traer cientos),
+          manteniendo inicio y fin,
+          para que la animación no
+          tarde una eternidad.
+        */
+
+        function decimarRuta(
+          puntos,
+          maximo
+        ) {
+
+          if (
+            puntos.length <=
+            maximo
+          ) {
+
+            return puntos;
+          }
+
+          const resultado =
+            [];
+
+          const paso =
+            (
+              puntos.length - 1
+            ) /
+            (
+              maximo - 1
+            );
+
+          for (
+            let i = 0;
+            i < maximo;
+            i++
+          ) {
+
+            resultado.push(
+              puntos[
+                Math.round(
+                  i * paso
+                )
+              ]
+            );
+          }
+
+          return resultado;
+        }
+
+        /*
+          Trae la ruta real en
+          auto entre los dos
+          puntos, siguiendo calles
+          (OSRM, servicio público
+          y gratuito). Si falla
+          por red o CORS, se usa
+          rutaFallback.
+        */
+
+        async function obtenerRutaReal(
+          origen,
+          destino
+        ) {
+
+          const url =
+            "https://router.project-osrm.org/route/v1/driving/" +
+            origen[1] +
+            "," +
+            origen[0] +
+            ";" +
+            destino[1] +
+            "," +
+            destino[0] +
+            "?overview=full&geometries=geojson";
+
+          const respuesta =
+            await fetch(
+              url
+            );
+
+          if (
+            !respuesta.ok
+          ) {
+
+            throw new Error(
+              "OSRM respondió " +
+              respuesta.status
+            );
+          }
+
+          const datos =
+            await respuesta.json();
+
+          const coords =
+            datos.routes &&
+            datos.routes[0] &&
+            datos.routes[0].geometry &&
+            datos.routes[0].geometry.coordinates;
+
+          if (
+            !coords ||
+            !coords.length
+          ) {
+
+            throw new Error(
+              "OSRM sin geometría"
+            );
+          }
+
+          return decimarRuta(
+            coords.map(
+              function (c) {
+
+                return [
+                  c[1],
+                  c[0]
+                ];
+              }
+            ),
+            34
+          );
+        }
+
+        async function crearMapa() {
 
           const coordenadasPorton = [
             14.643277895439471,
@@ -1294,6 +1670,49 @@
             14.60393779846318,
             -90.56026555839702
           ];
+
+          /*
+            Ruta de respaldo, por si
+            no hay red o el servicio
+            de rutas falla.
+          */
+
+          const rutaFallback = [
+            coordenadasPorton,
+            [14.6410, -90.5060],
+            [14.6375, -90.5115],
+            [14.6340, -90.5175],
+            [14.6300, -90.5225],
+            [14.6260, -90.5280],
+            [14.6215, -90.5340],
+            [14.6170, -90.5400],
+            [14.6135, -90.5460],
+            [14.6100, -90.5510],
+            [14.6065, -90.5560],
+            coordenadasHospital
+          ];
+
+          let ruta =
+            rutaFallback;
+
+          try {
+
+            ruta =
+              await obtenerRutaReal(
+                coordenadasPorton,
+                coordenadasHospital
+              );
+
+          } catch (error) {
+
+            console.error(
+              "Ruta real no disponible, uso el trayecto de respaldo:",
+              error
+            );
+
+            ruta =
+              rutaFallback;
+          }
 
           const mapa =
             L.map(
@@ -1319,21 +1738,6 @@
           ).addTo(
             mapa
           );
-
-          const ruta = [
-            coordenadasPorton,
-            [14.6410, -90.5060],
-            [14.6375, -90.5115],
-            [14.6340, -90.5175],
-            [14.6300, -90.5225],
-            [14.6260, -90.5280],
-            [14.6215, -90.5340],
-            [14.6170, -90.5400],
-            [14.6135, -90.5460],
-            [14.6100, -90.5510],
-            [14.6065, -90.5560],
-            coordenadasHospital
-          ];
 
           mapa.fitBounds(
             L.latLngBounds(
@@ -1617,6 +2021,66 @@
           [660, 938]
         ];
 
+        /*
+          Tercera línea negra real
+          (la de la base, antes
+          decorativa). Ahora también
+          es un corte.
+        */
+
+        const corte3 = [
+          [617, 1013],
+          [658, 978],
+          [700, 1045],
+          [738, 1015]
+        ];
+
+        /*
+          Corte vertical: parte
+          cada franja (punta,
+          medio, base) en mitad
+          izquierda y mitad
+          derecha. Con los 3 cortes
+          horizontales de arriba,
+          esto da 6 pedazos.
+        */
+
+        const corteV = [
+          [533, 745],
+          [560, 820],
+          [525, 865],
+          [565, 905],
+          [530, 950],
+          [570, 995],
+          [545, 1030]
+        ];
+
+        /*
+          Máscaras grandes a cada
+          lado de corteV. Se usan
+          junto con la forma de
+          cada franja para recortar
+          su mitad izquierda o
+          derecha (dos clips
+          combinados).
+        */
+
+        const mascaraIzquierda =
+          corteV.concat(
+            [
+              [350, 1030],
+              [350, 745]
+            ]
+          );
+
+        const mascaraDerecha =
+          corteV.concat(
+            [
+              [750, 1030],
+              [750, 745]
+            ]
+          );
+
         const piezaPunta = [
           [464, 745],
           [497, 773],
@@ -1635,7 +2099,7 @@
 
         /*
           PIEZA 2:
-          entre las dos líneas.
+          entre corte1 y corte2.
         */
 
         const piezaMedia = [
@@ -1658,9 +2122,34 @@
         ];
 
         /*
-          La base queda quieta.
-          Solo necesitamos borrar
-          punta y zona media.
+          PIEZA 3:
+          entre corte2 y corte3
+          (antes era la base fija,
+          ahora también se mueve).
+        */
+
+        const piezaBase = [
+          [660, 938],
+          [680, 955],
+          [700, 978],
+          [720, 998],
+          [738, 1015],
+          [700, 1045],
+          [658, 978],
+          [617, 1013],
+          [600, 995],
+          [580, 975],
+          [560, 955],
+          [547, 937],
+          [588, 902],
+          [622, 968]
+        ];
+
+        /*
+          Debajo de corte3 ya no
+          se mueve nada. Solo
+          necesitamos borrar la
+          zona hasta ahí.
         */
 
         const zonaMovible = [
@@ -1676,6 +2165,12 @@
           [645, 919],
           [658, 934],
           [660, 938],
+          [680, 955],
+          [700, 978],
+          [720, 998],
+          [738, 1015],
+          [617, 1013],
+          [560, 955],
           [547, 937],
           [527, 919],
           [507, 899],
@@ -1782,10 +2277,10 @@
             "#878681";
 
           ctx.fillRect(
-            415,
+            340,
             725,
-            265,
-            235
+            420,
+            330
           );
 
           ctx.restore();
@@ -1967,6 +2462,53 @@
             corte2,
             alpha
           );
+
+          dibujarLineaSutura(
+            corte3,
+            alpha
+          );
+
+          dibujarLineaSutura(
+            corteV,
+            alpha
+          );
+        }
+
+        function dibujarMitad(
+          banda,
+          mascara,
+          dx,
+          dy
+        ) {
+
+          ctx.save();
+
+          ctx.translate(
+            dx,
+            dy
+          );
+
+          trazarPoligono(
+            banda
+          );
+
+          ctx.clip();
+
+          trazarPoligono(
+            mascara
+          );
+
+          ctx.clip();
+
+          ctx.drawImage(
+            imagenMano,
+            0,
+            0,
+            ANCHO,
+            ALTO
+          );
+
+          ctx.restore();
         }
 
         function dibujarPieza(
@@ -2070,79 +2612,160 @@
             ALTO
           );
 
-          const mayor =
-            Math.max(
-              separacion1,
+          /*
+            Un solo valor de 0 a 1
+            que resume qué tan
+            desarmado está el dedo,
+            combinando las dos
+            fases (7→8 y 8→9).
+          */
+
+          const separado =
+            (
+              separacion1 +
               separacion2
-            );
+            ) /
+            2;
 
           cubrirZonaOriginal(
-            mayor
+            separado
           );
 
           /*
-            PRIMERA SEPARACIÓN:
-
-            punta y medio se mueven
-            juntos a lo largo del
-            propio eje del dedo
-            (hacia donde apunta).
+            Cada franja (punta,
+            medio, base) se aleja
+            a lo largo del eje del
+            dedo, más la punta que
+            la base. Dentro de cada
+            franja, la mitad
+            izquierda y la derecha
+            además se separan entre
+            sí. 3 franjas x 2
+            mitades = 6 pedazos.
           */
 
-          const grupoX =
-            -26 *
-            separacion1;
+          const eje =
+            {
+              x: -0.586,
+              y: -0.810
+            };
 
-          const grupoY =
-            -37 *
-            separacion1;
+          function offsetFranja(
+            magnitud,
+            lado
+          ) {
 
-          /*
-            SEGUNDA SEPARACIÓN:
+            const lejos =
+              magnitud *
+              separado;
 
-            solo la punta continúa
-            alejándose del medio.
-          */
+            const laterales =
+              (
+                lado === "izq" ?
+                -1 :
+                1
+              )
+              *
+              8
+              *
+              separado
+              *
+              (
+                magnitud / 44
+              );
 
-          const puntaX =
-            grupoX
-            -
-            21 *
-            separacion2;
+            return {
+              x:
+                eje.x *
+                lejos
+                +
+                laterales,
 
-          const puntaY =
-            grupoY
-            -
-            28 *
-            separacion2;
+              y:
+                eje.y *
+                lejos
+            };
+          }
 
-          const medioX =
-            grupoX;
+          const off =
+            {
+              puntaIzq:
+                offsetFranja(
+                  44,
+                  "izq"
+                ),
 
-          const medioY =
-            grupoY;
+              puntaDer:
+                offsetFranja(
+                  44,
+                  "der"
+                ),
 
-          /*
-            Zona media.
-          */
+              medioIzq:
+                offsetFranja(
+                  30,
+                  "izq"
+                ),
 
-          dibujarPieza(
+              medioDer:
+                offsetFranja(
+                  30,
+                  "der"
+                ),
+
+              baseIzq:
+                offsetFranja(
+                  16,
+                  "izq"
+                ),
+
+              baseDer:
+                offsetFranja(
+                  16,
+                  "der"
+                )
+            };
+
+          dibujarMitad(
+            piezaBase,
+            mascaraIzquierda,
+            off.baseIzq.x,
+            off.baseIzq.y
+          );
+
+          dibujarMitad(
+            piezaBase,
+            mascaraDerecha,
+            off.baseDer.x,
+            off.baseDer.y
+          );
+
+          dibujarMitad(
             piezaMedia,
-            medioX,
-            medioY,
-            0
+            mascaraIzquierda,
+            off.medioIzq.x,
+            off.medioIzq.y
           );
 
-          /*
-            Punta.
-          */
+          dibujarMitad(
+            piezaMedia,
+            mascaraDerecha,
+            off.medioDer.x,
+            off.medioDer.y
+          );
 
-          dibujarPieza(
+          dibujarMitad(
             piezaPunta,
-            puntaX,
-            puntaY,
-            -0.01 *
-            separacion2
+            mascaraIzquierda,
+            off.puntaIzq.x,
+            off.puntaIzq.y
+          );
+
+          dibujarMitad(
+            piezaPunta,
+            mascaraDerecha,
+            off.puntaDer.x,
+            off.puntaDer.y
           );
 
           /*
@@ -2670,569 +3293,486 @@
         }
 
         /*
-          Un punto por audio, ubicado
-          sobre una sutura real del
-          dedo (coordenadas dentro de
-          canvas-mano-interactiva,
-          540x718). El orden sigue el
-          orden cronológico de
-          archivosAudio.
+          Contactos a los que les
+          mandé audios ese día,
+          nombrados como los
+          medicamentos que tomé
+          después de la operación.
+          Los 20 audios están
+          repartidos entre ellos
+          en orden cronológico.
         */
 
-        const puntosSutura = [
-          { x: 163, y: 261 },
-          { x: 185, y: 301 },
-          { x: 211, y: 328 },
-          { x: 262, y: 359 },
-          { x: 236, y: 204 },
-          { x: 250, y: 248 },
-          { x: 254, y: 290 },
-          { x: 258, y: 323 },
-          { x: 281, y: 181 },
-          { x: 290, y: 223 },
-          { x: 291, y: 271 },
-          { x: 297, y: 320 },
-          { x: 346, y: 192 },
-          { x: 352, y: 236 },
-          { x: 355, y: 280 },
-          { x: 358, y: 322 },
-          { x: 413, y: 353 },
-          { x: 380, y: 410 },
-          { x: 253, y: 373 },
-          { x: 272, y: 413 }
+        const contactos = [
+          {
+            nombre: "Tramadol",
+            inicial: "TR",
+            audios: [0, 1, 2, 3]
+          },
+          {
+            nombre: "Diclofenaco",
+            inicial: "DI",
+            audios: [4, 5, 6, 7, 8, 9]
+          },
+          {
+            nombre: "Ketorolaco",
+            inicial: "KE",
+            audios: [10, 11, 12, 13, 14]
+          },
+          {
+            nombre: "Dexametasona",
+            inicial: "DX",
+            audios: [15, 16, 17, 18, 19]
+          }
         ];
 
-        let audiosCreados =
-          false;
-
-        function construirAudiosOcultos() {
-
-          if (
-            audiosCreados
-          ) {
-
-            return;
-          }
-
-          audiosCreados =
-            true;
-
-          const contenedor =
-            document.getElementById(
-              "audios-ocultos"
-            );
-
-          archivosAudio.forEach(
-            function (
-              nombre,
-              indice
-            ) {
-
-              const audio =
-                document.createElement(
-                  "audio"
-                );
-
-              audio.preload =
-                "none";
-
-              audio.src =
-                encodeURI(
-                  nombre
-                );
-
-              audio.addEventListener(
-                "ended",
-                function () {
-
-                  if (
-                    puntoActivo ===
-                    indice
-                  ) {
-
-                    puntoActivo =
-                      null;
-
-                    estadoAudio.textContent =
-                      "Tocá una sutura para escuchar.";
-                  }
-                }
-              );
-
-              contenedor.appendChild(
-                audio
-              );
-
-              puntosSutura[
-                indice
-              ].audio =
-                audio;
-
-              puntosSutura[
-                indice
-              ].hora =
-                horaDesdeArchivo(
-                  nombre
-                );
-            }
-          );
-        }
-
-        construirAudiosOcultos();
-
         /* =========================
-           MANO INTERACTIVA
+           WHATSAPP
 
-           Cada punto está sobre
-           una sutura real. Tocarlo
-           reproduce un audio, y
-           mientras suena, ese punto
-           tiembla y brilla según
-           su volumen.
+           Lista de chats → hilo
+           de cada contacto → cada
+           burbuja reproduce uno
+           de los audios reales.
         ========================= */
 
-        const canvasManoInteractiva =
+        const vistaChats =
           document.getElementById(
-            "canvas-mano-interactiva"
+            "vista-chats"
           );
 
-        const ctxMi =
-          canvasManoInteractiva.getContext(
-            "2d"
+        const vistaHilo =
+          document.getElementById(
+            "vista-hilo"
           );
 
-        let audioCtx =
+        const listaChats =
+          document.getElementById(
+            "lista-chats"
+          );
+
+        const mensajesHilo =
+          document.getElementById(
+            "mensajes-hilo"
+          );
+
+        const avatarHilo =
+          document.getElementById(
+            "avatar-hilo"
+          );
+
+        const tituloHilo =
+          document.getElementById(
+            "titulo-hilo"
+          );
+
+        const botonVolverWa =
+          document.getElementById(
+            "volver-wa"
+          );
+
+        let audioSonando =
           null;
 
-        let analizador =
-          null;
-
-        let datosAudio =
-          null;
-
-        const fuentesConectadas =
-          new WeakSet();
-
-        function obtenerAudioCtx() {
-
-          if (
-            !audioCtx
-          ) {
-
-            audioCtx =
-              new (
-                window.AudioContext ||
-                window.webkitAudioContext
-              )();
-
-            analizador =
-              audioCtx.createAnalyser();
-
-            analizador.fftSize =
-              256;
-
-            datosAudio =
-              new Uint8Array(
-                analizador.frequencyBinCount
-              );
-
-            analizador.connect(
-              audioCtx.destination
-            );
-          }
-
-          return audioCtx;
-        }
-
-        function conectarAudioReactivo(
-          elemento
+        function formatearTiempo(
+          segundos
         ) {
 
-          const ctxAudio =
-            obtenerAudioCtx();
-
           if (
-            ctxAudio.state ===
-            "suspended"
-          ) {
-
-            ctxAudio.resume();
-          }
-
-          if (
-            fuentesConectadas.has(
-              elemento
+            !isFinite(
+              segundos
             )
           ) {
 
-            return;
+            return "0:00";
           }
 
-          fuentesConectadas.add(
-            elemento
-          );
-
-          const fuente =
-            ctxAudio.createMediaElementSource(
-              elemento
+          const m =
+            Math.floor(
+              segundos / 60
             );
 
-          fuente.connect(
-            analizador
+          const s =
+            Math.floor(
+              segundos % 60
+            );
+
+          return (
+            m +
+            ":" +
+            String(
+              s
+            ).padStart(
+              2,
+              "0"
+            )
           );
         }
 
-        function volumenActual() {
-
-          if (
-            !analizador
-          ) {
-
-            return 0;
-          }
-
-          analizador.getByteTimeDomainData(
-            datosAudio
-          );
-
-          let suma =
-            0;
-
-          for (
-            let i = 0;
-            i < datosAudio.length;
-            i++
-          ) {
-
-            const v =
-              (
-                datosAudio[i] -
-                128
-              ) /
-              128;
-
-            suma +=
-              v * v;
-          }
-
-          return Math.sqrt(
-            suma /
-            datosAudio.length
-          );
-        }
-
-        let puntoActivo =
-          null;
-
-        function tocarPunto(
-          indice
+        function crearBurbuja(
+          indiceAudio
         ) {
 
-          const punto =
-            puntosSutura[
-              indice
+          const nombreArchivo =
+            archivosAudio[
+              indiceAudio
             ];
 
-          if (
-            !punto.audio
-          ) {
+          const burbuja =
+            document.createElement(
+              "div"
+            );
 
-            return;
-          }
+          burbuja.className =
+            "burbuja";
 
-          if (
-            puntoActivo ===
-            indice
-          ) {
+          const boton =
+            document.createElement(
+              "button"
+            );
 
-            punto.audio.pause();
+          boton.type =
+            "button";
 
-            puntoActivo =
-              null;
+          boton.className =
+            "boton-audio-wa";
 
-            estadoAudio.textContent =
-              "Tocá una sutura para escuchar.";
+          boton.textContent =
+            "▶";
 
-            return;
-          }
+          const barra =
+            document.createElement(
+              "div"
+            );
 
-          if (
-            puntoActivo !==
-            null
-          ) {
+          barra.className =
+            "barra-audio-wa";
 
-            const anterior =
-              puntosSutura[
-                puntoActivo
-              ];
+          const relleno =
+            document.createElement(
+              "div"
+            );
 
-            if (
-              anterior.audio
-            ) {
+          relleno.className =
+            "relleno-audio-wa";
 
-              anterior.audio.pause();
-
-              anterior.audio.currentTime =
-                0;
-            }
-          }
-
-          conectarAudioReactivo(
-            punto.audio
+          barra.appendChild(
+            relleno
           );
 
-          punto.audio.currentTime =
-            0;
+          const hora =
+            document.createElement(
+              "span"
+            );
 
-          punto.audio.play();
+          hora.className =
+            "hora-burbuja";
 
-          puntoActivo =
-            indice;
+          hora.textContent =
+            horaDesdeArchivo(
+              nombreArchivo
+            );
 
-          estadoAudio.textContent =
-            "Reproduciendo — " +
-            punto.hora;
-        }
+          const audio =
+            document.createElement(
+              "audio"
+            );
 
-        canvasManoInteractiva.addEventListener(
-          "click",
-          function (
-            evento
-          ) {
+          audio.preload =
+            "none";
 
-            const rect =
-              canvasManoInteractiva.getBoundingClientRect();
+          audio.src =
+            encodeURI(
+              nombreArchivo
+            );
 
-            const escalaX =
-              canvasManoInteractiva.width /
-              rect.width;
+          audio.addEventListener(
+            "timeupdate",
+            function () {
 
-            const escalaY =
-              canvasManoInteractiva.height /
-              rect.height;
-
-            const x =
-              (
-                evento.clientX -
-                rect.left
-              ) *
-              escalaX;
-
-            const y =
-              (
-                evento.clientY -
-                rect.top
-              ) *
-              escalaY;
-
-            let masCercano =
-              null;
-
-            let distMin =
-              26;
-
-            puntosSutura.forEach(
-              function (
-                punto,
-                indice
+              if (
+                audio.duration
               ) {
 
-                const d =
-                  Math.hypot(
-                    punto.x - x,
-                    punto.y - y
-                  );
-
-                if (
-                  d < distMin
-                ) {
-
-                  distMin =
-                    d;
-
-                  masCercano =
-                    indice;
-                }
+                relleno.style.width =
+                  (
+                    (
+                      audio.currentTime /
+                      audio.duration
+                    ) *
+                    100
+                  ) +
+                  "%";
               }
-            );
+            }
+          );
+
+          audio.addEventListener(
+            "ended",
+            function () {
+
+              boton.textContent =
+                "▶";
+
+              relleno.style.width =
+                "0%";
+
+              audioSonando =
+                null;
+            }
+          );
+
+          function alternar() {
 
             if (
-              masCercano !==
-              null
+              !audio.paused
             ) {
 
-              tocarPunto(
-                masCercano
-              );
+              audio.pause();
+
+              boton.textContent =
+                "▶";
+
+              audioSonando =
+                null;
+
+              return;
             }
+
+            if (
+              audioSonando &&
+              audioSonando !==
+              audio
+            ) {
+
+              audioSonando.pause();
+            }
+
+            audio.play();
+
+            boton.textContent =
+              "⏸";
+
+            audioSonando =
+              audio;
           }
-        );
 
-        let tiempoMi =
-          0;
+          boton.addEventListener(
+            "click",
+            function (
+              evento
+            ) {
 
-        function dibujarPuntoSutura(
-          punto,
-          activo,
-          rms
+              evento.stopPropagation();
+
+              alternar();
+            }
+          );
+
+          burbuja.addEventListener(
+            "click",
+            alternar
+          );
+
+          burbuja.appendChild(
+            boton
+          );
+
+          burbuja.appendChild(
+            barra
+          );
+
+          burbuja.appendChild(
+            hora
+          );
+
+          return burbuja;
+        }
+
+        function mostrarHilo(
+          contacto
         ) {
 
-          const radioBase =
-            activo ?
-            4 + rms * 6 :
-            4;
-
-          ctxMi.save();
-
-          ctxMi.strokeStyle =
-            "#ff2d3d";
-
-          ctxMi.lineCap =
-            "round";
-
           if (
-            activo
+            audioSonando
           ) {
 
-            ctxMi.shadowColor =
-              "rgba(255, 45, 61, 0.75)";
+            audioSonando.pause();
 
-            ctxMi.shadowBlur =
-              6 +
-              rms * 26;
-
-            /*
-              Onda expansiva, como
-              un pulso de sonido
-              saliendo de la sutura.
-            */
-
-            const faseOnda =
-              (
-                tiempoMi %
-                1.2
-              ) /
-              1.2;
-
-            ctxMi.globalAlpha =
-              1 - faseOnda;
-
-            ctxMi.lineWidth =
-              1.2;
-
-            ctxMi.beginPath();
-
-            ctxMi.arc(
-              punto.x,
-              punto.y,
-              6 +
-              faseOnda * 22,
-              0,
-              Math.PI * 2
-            );
-
-            ctxMi.stroke();
-
-            ctxMi.globalAlpha =
-              1;
-
-          } else {
-
-            ctxMi.shadowColor =
-              "rgba(255, 45, 61, 0.5)";
-
-            ctxMi.shadowBlur =
-              3;
-
-            ctxMi.globalAlpha =
-              0.8;
+            audioSonando =
+              null;
           }
 
-          ctxMi.lineWidth =
-            activo ?
-            2.4 :
-            1.8;
+          avatarHilo.textContent =
+            contacto.inicial;
 
-          ctxMi.beginPath();
+          tituloHilo.textContent =
+            contacto.nombre;
 
-          ctxMi.moveTo(
-            punto.x - radioBase,
-            punto.y
-          );
+          mensajesHilo.innerHTML =
+            "";
 
-          ctxMi.lineTo(
-            punto.x + radioBase,
-            punto.y
-          );
-
-          ctxMi.moveTo(
-            punto.x,
-            punto.y - radioBase
-          );
-
-          ctxMi.lineTo(
-            punto.x,
-            punto.y + radioBase
-          );
-
-          ctxMi.stroke();
-
-          ctxMi.restore();
-        }
-
-        function dibujarManoInteractiva() {
-
-          tiempoMi +=
-            0.016;
-
-          const rms =
-            puntoActivo !==
-            null ?
-            volumenActual() :
-            0;
-
-          ctxMi.clearRect(
-            0,
-            0,
-            canvasManoInteractiva.width,
-            canvasManoInteractiva.height
-          );
-
-          ctxMi.drawImage(
-            canvas,
-            0,
-            0,
-            ANCHO,
-            ALTO,
-            0,
-            0,
-            canvasManoInteractiva.width,
-            canvasManoInteractiva.height
-          );
-
-          puntosSutura.forEach(
+          contacto.audios.forEach(
             function (
-              punto,
-              indice
+              indiceAudio
             ) {
 
-              dibujarPuntoSutura(
-                punto,
-                indice ===
-                puntoActivo,
-                rms
+              mensajesHilo.appendChild(
+                crearBurbuja(
+                  indiceAudio
+                )
               );
             }
           );
 
-          requestAnimationFrame(
-            dibujarManoInteractiva
+          vistaChats.classList.remove(
+            "vista-wa-activa"
+          );
+
+          vistaHilo.classList.add(
+            "vista-wa-activa"
           );
         }
 
-        requestAnimationFrame(
-          dibujarManoInteractiva
+        botonVolverWa.addEventListener(
+          "click",
+          function () {
+
+            if (
+              audioSonando
+            ) {
+
+              audioSonando.pause();
+
+              audioSonando =
+                null;
+            }
+
+            vistaHilo.classList.remove(
+              "vista-wa-activa"
+            );
+
+            vistaChats.classList.add(
+              "vista-wa-activa"
+            );
+          }
         );
+
+        function construirListaChats() {
+
+          contactos.forEach(
+            function (
+              contacto
+            ) {
+
+              const fila =
+                document.createElement(
+                  "div"
+                );
+
+              fila.className =
+                "item-chat";
+
+              const avatar =
+                document.createElement(
+                  "div"
+                );
+
+              avatar.className =
+                "avatar-wa";
+
+              avatar.textContent =
+                contacto.inicial;
+
+              const info =
+                document.createElement(
+                  "div"
+                );
+
+              info.className =
+                "info-chat";
+
+              const nombre =
+                document.createElement(
+                  "div"
+                );
+
+              nombre.className =
+                "nombre-chat";
+
+              nombre.textContent =
+                contacto.nombre;
+
+              const previa =
+                document.createElement(
+                  "div"
+                );
+
+              previa.className =
+                "previa-chat";
+
+              previa.textContent =
+                "🎤 Nota de voz";
+
+              info.appendChild(
+                nombre
+              );
+
+              info.appendChild(
+                previa
+              );
+
+              const hora =
+                document.createElement(
+                  "span"
+                );
+
+              hora.className =
+                "hora-chat";
+
+              const ultimoAudio =
+                contacto.audios[
+                  contacto.audios.length -
+                  1
+                ];
+
+              hora.textContent =
+                horaDesdeArchivo(
+                  archivosAudio[
+                    ultimoAudio
+                  ]
+                );
+
+              fila.appendChild(
+                avatar
+              );
+
+              fila.appendChild(
+                info
+              );
+
+              fila.appendChild(
+                hora
+              );
+
+              fila.addEventListener(
+                "click",
+                function () {
+
+                  mostrarHilo(
+                    contacto
+                  );
+                }
+              );
+
+              listaChats.appendChild(
+                fila
+              );
+            }
+          );
+        }
+
+        construirListaChats();
+
 
         window.addEventListener(
           "inicioAudios11",
@@ -3256,5 +3796,4 @@
   </script>
 
 </body>
-</html>
 </html>
