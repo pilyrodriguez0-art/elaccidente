@@ -64,9 +64,7 @@
       color: black;
     }
 
-    /* =========================
-       CRÉDITOS
-    ========================= */
+    /* CRÉDITOS */
 
     .credito-foto {
       position: absolute;
@@ -77,7 +75,7 @@
       padding: 7px 10px;
 
       border-radius: 6px;
-      background: rgba(0, 0, 0, 0.55);
+      background: rgba(0, 0, 0, 0.5);
 
       color: white;
       font-size: 12px;
@@ -196,8 +194,8 @@
 
       background-image:
         linear-gradient(
-          rgba(0, 0, 0, 0.03),
-          rgba(0, 0, 0, 0.18)
+          rgba(0, 0, 0, 0.02),
+          rgba(0, 0, 0, 0.12)
         ),
         url("quirofano.jpg");
 
@@ -206,63 +204,35 @@
       background-repeat: no-repeat;
     }
 
-    .luz-quirofano {
-      position: absolute;
-
-      top: -34vh;
-      left: 50%;
-
-      width: 95vh;
-      height: 95vh;
-
-      transform: translateX(-50%);
-
-      border-radius: 50%;
-
-      background:
-        radial-gradient(
-          circle,
-          rgba(255, 255, 255, 0.62) 0%,
-          rgba(255, 255, 255, 0.20) 22%,
-          rgba(255, 255, 255, 0.04) 46%,
-          rgba(255, 255, 255, 0) 72%
-        );
-
-      pointer-events: none;
-      z-index: 1;
-    }
-
     .contenido-quirofano {
       position: relative;
       z-index: 5;
 
-      width: min(720px, 92%);
-      max-height: 78vh;
-
-      padding: 28px;
+      width: min(680px, 90%);
+      max-height: 82vh;
 
       overflow-y: auto;
 
-      border: 1px solid rgba(255, 255, 255, 0.18);
-      border-radius: 12px;
+      padding: 20px 10px;
 
-      background: rgba(0, 0, 0, 0.18);
+      background: transparent;
+      border: none;
 
       color: white;
       text-align: left;
 
       text-shadow:
-        0 1px 4px rgba(0, 0, 0, 0.95),
-        0 2px 10px rgba(0, 0, 0, 0.8);
+        0 2px 4px rgba(0, 0, 0, 0.95),
+        0 4px 12px rgba(0, 0, 0, 0.9);
     }
 
     .titulo-quirofano {
-      margin: 0 0 26px;
+      margin: 0 0 28px;
 
       font-size: clamp(
-        1.7rem,
+        1.8rem,
         4vw,
-        2.8rem
+        3rem
       );
 
       font-weight: 400;
@@ -293,9 +263,7 @@
 
     .accion {
       margin: 20px 0 !important;
-
       font-style: italic;
-      opacity: 0.92;
     }
 
     .cuenta {
@@ -321,9 +289,8 @@
       }
 
       .contenido-quirofano {
-        max-height: 80vh;
-        padding: 20px;
-        background: rgba(0, 0, 0, 0.22);
+        width: 94%;
+        max-height: 82vh;
       }
     }
   </style>
@@ -334,6 +301,7 @@
   <main>
 
     <!-- ESCENA 1 -->
+
     <section
       class="escena escena-activa"
       id="porton"
@@ -356,6 +324,7 @@
 
       <p class="credito-foto">
         Foto de
+
         <a
           href="https://unsplash.com/es/@anyachernykh"
           target="_blank"
@@ -363,7 +332,9 @@
         >
           Anya Chernykh
         </a>
+
         en
+
         <a
           href="https://unsplash.com/es/fotos/una-puerta-azul-con-una-cerradura-oxidada-tvotQu_jd68"
           target="_blank"
@@ -377,6 +348,7 @@
 
 
     <!-- ESCENA 2 -->
+
     <section
       class="escena"
       id="mapa"
@@ -396,6 +368,7 @@
 
 
     <!-- ESCENA 3 -->
+
     <section
       class="escena"
       id="perdida"
@@ -409,20 +382,17 @@
 
 
     <!-- ESCENA 4 -->
+
     <section
       class="escena"
       id="quirofano"
     >
-
-      <div class="luz-quirofano"></div>
-
 
       <div class="contenido-quirofano">
 
         <h2 class="titulo-quirofano">
           Sala de operación
         </h2>
-
 
         <div class="guion">
 
@@ -533,6 +503,7 @@
 
 
   <script>
+
     const porton =
       document.querySelector("#porton");
 
@@ -774,7 +745,6 @@
               },
               1000
             );
-
 
             return;
 
