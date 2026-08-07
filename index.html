@@ -6,6 +6,16 @@
 
   <title>El accidente</title>
 
+  <!-- Leaflet -->
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+  >
+
+  <script
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+  ></script>
+
   <style>
     * {
       box-sizing: border-box;
@@ -38,6 +48,8 @@
       flex-direction: column;
     }
 
+    /* ESCENA DEL PORTÓN */
+
     #porton {
       position: relative;
 
@@ -59,8 +71,12 @@
       align-items: center;
     }
 
-    h1 {
+    h1,
+    h2 {
       margin: 0 0 12px;
+    }
+
+    h1 {
       font-size: 38px;
     }
 
@@ -102,9 +118,27 @@
       color: white;
     }
 
+    /* ESCENA DEL MAPA */
+
     #mapa {
-      background: #e9e9e9;
-      color: #111;
+      background: #0f0f0f;
+      color: white;
+    }
+
+    .contenido-mapa {
+      width: min(1100px, 100%);
+    }
+
+    .texto-mapa {
+      margin-bottom: 20px;
+    }
+
+    #mapa-real {
+      width: 100%;
+      height: 70vh;
+
+      border-radius: 12px;
+      overflow: hidden;
     }
   </style>
 </head>
@@ -113,14 +147,16 @@
 
   <main>
 
-    <!-- PORTÓN -->
+    <!-- ESCENA 1: PORTÓN -->
     <section class="escena escena-activa" id="porton">
 
       <div class="contenido-porton">
 
         <h1>El portón</h1>
 
-        <p>Aquí comienza el recorrido.</p>
+        <p>
+          Aquí comienza el recorrido.
+        </p>
 
         <button id="entrar" type="button">
           Entrar
@@ -150,12 +186,19 @@
     </section>
 
 
-    <!-- MAPA -->
+    <!-- ESCENA 2: MAPA -->
     <section class="escena" id="mapa">
 
-      <div>
+      <div class="contenido-mapa">
+
         <h2>Recorrido hacia el hospital</h2>
-        <p>Aquí aparecerá el mapa.</p>
+
+        <p class="texto-mapa">
+          En el trayecto queda una marca.
+        </p>
+
+        <div id="mapa-real"></div>
+
       </div>
 
     </section>
@@ -168,11 +211,101 @@
     const porton = document.querySelector("#porton");
     const mapa = document.querySelector("#mapa");
 
+    let mapaInicializado = false;
+
     botonEntrar.addEventListener("click", function () {
       porton.classList.remove("escena-activa");
       mapa.classList.add("escena-activa");
+
+      if (!mapaInicializado) {
+        crearMapa();
+        mapaInicializado = true;
+      }
     });
+
+    function crearMapa() {
+
+      const coordenadasPorton = [
+        14.643277895439471,
+        -90.50234271356774
+      ];
+
+      const coordenadasHospital = [
+        14.60393779846318,
+        -90.56026555839702
+      ];
+
+      const mapaLeaflet = L.map("mapa-real").setView(
+        [14.6235, -90.5313],
+        13
+      );
+
+      L.tileLayer(
+        "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+        {
+          attribution: "&copy; OpenStreetMap contributors"
+        }
+      ).addTo(mapaLeaflet);
+
+      L.marker(coordenadasPorton)
+        .addTo(mapaLeaflet)
+        .bindPopup("Portón");
+
+      L.marker(coordenadasHospital)
+        .addTo(mapaLeaflet)
+        .bindPopup("Hospital");
+
+      const ruta = [
+        coordenadasPorton,
+        [14.639, -90.507],
+        [14.635, -90.514],
+        [14.629, -90.519],
+        [14.626, -90.526],
+        [14.621, -90.531],
+        [14.618, -90.537],
+        [14.614, -90.543],
+        [14.611, -90.548],
+        [14.608, -90.553],
+        [14.606, -90.557],
+        coordenadasHospital
+      ];
+
+      L.polyline(
+        ruta,
+        {
+          color: "white",
+          weight: 4,
+          opacity: 0.95
+        }
+      ).addTo(mapaLeaflet);
+
+      const marcasRojas = [
+        [14.637, -90.510],
+        [14.632, -90.517],
+        [14.624, -90.529],
+        [14.617, -90.540],
+        [14.610, -90.551]
+      ];
+
+      marcasRojas.forEach(function (punto, index) {
+
+        L.circleMarker(
+          punto,
+          {
+            radius: index % 2 === 0 ? 7 : 5,
+            color: "#8b0000",
+            fillColor: "#c00000",
+            fillOpacity: 0.8,
+            weight: 1
+          }
+        ).addTo(mapaLeaflet);
+
+      });
+
+    }
   </script>
 
+</body>
+</html>
 </body>
 </html>
