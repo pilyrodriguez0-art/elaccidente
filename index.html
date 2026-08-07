@@ -81,12 +81,16 @@
       position: absolute;
       right: 18px;
       bottom: 18px;
+
       margin: 0;
       padding: 7px 10px;
+
       border-radius: 6px;
       background: rgba(0, 0, 0, 0.55);
+
       color: white;
       font-size: 12px;
+
       z-index: 20;
     }
 
@@ -155,14 +159,18 @@
     #mapa-real {
       width: 100%;
       height: 72vh;
+
       border: 1px solid #444;
+
       overflow: hidden;
     }
 
     .punto-viajero {
       width: 18px;
       height: 18px;
+
       border-radius: 50%;
+
       background: #a00000;
 
       box-shadow:
@@ -204,6 +212,7 @@
     #quirofano {
       position: relative;
       overflow: hidden;
+
       padding-bottom: 100px;
 
       background-image:
@@ -222,6 +231,7 @@
 
     .contenido-quirofano {
       position: relative;
+
       z-index: 5;
 
       width: min(680px, 90%);
@@ -232,7 +242,6 @@
       padding: 20px 10px;
 
       background: transparent;
-
       border: none;
 
       color: white;
@@ -274,12 +283,15 @@
     .personaje {
       margin-top: 22px !important;
       margin-bottom: 5px !important;
+
       font-weight: bold;
+
       letter-spacing: 0.08em;
     }
 
     .accion {
       margin: 20px 0 !important;
+
       font-style: italic;
     }
 
@@ -293,15 +305,20 @@
       );
 
       text-align: center;
+
       letter-spacing: 0.1em;
     }
 
     .siguiente-quirofano {
       position: absolute;
+
       left: 50%;
       bottom: 32px;
+
       transform: translateX(-50%);
+
       z-index: 30;
+
       white-space: nowrap;
     }
 
@@ -361,9 +378,12 @@
 
     .zona-rompecabezas {
       display: flex;
+
       align-items: center;
       justify-content: center;
+
       gap: 45px;
+
       width: 100%;
     }
 
@@ -534,15 +554,14 @@
       background-position: 100% 100%;
     }
 
-    /* PULGAR */
+    /* PIEZA DEL PULGAR */
 
     .pieza-pulgar {
       outline:
         2px solid
         rgba(150, 0, 0, 0.75);
 
-      outline-offset:
-        -2px;
+      outline-offset: -2px;
 
       box-shadow:
         0 0 18px
@@ -559,16 +578,13 @@
       display: flex;
 
       align-items: center;
-
       justify-content: center;
 
       max-width: 750px;
 
       padding: 15px;
 
-      font-family:
-        Georgia,
-        serif;
+      font-family: Georgia, serif;
 
       font-size: clamp(
         1.3rem,
@@ -590,16 +606,14 @@
       opacity: 1;
     }
 
-    /* FINAL */
+    /* FINAL ROMPECABEZAS */
 
     .frase-final {
       display: none;
 
       margin: 35px auto 0;
 
-      font-family:
-        Georgia,
-        serif;
+      font-family: Georgia, serif;
 
       font-size: clamp(
         2rem,
@@ -653,36 +667,533 @@
     }
 
     /* =========================
+       6. RELOJ / PULSIÓN
+    ========================= */
+
+    #tiempo {
+      position: relative;
+
+      min-height: 100vh;
+
+      background: #050505;
+
+      color: white;
+
+      overflow: hidden;
+    }
+
+    .escena-tiempo {
+      position: relative;
+
+      width: min(620px, 90vw);
+      height: min(620px, 90vw);
+
+      display: flex;
+
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* HORA DIGITAL */
+
+    .hora-digital {
+      position: absolute;
+
+      top: -15px;
+      left: 50%;
+
+      transform:
+        translateX(-50%);
+
+      margin: 0;
+
+      color:
+        rgba(255, 255, 255, 0.78);
+
+      font-size:
+        clamp(
+          1rem,
+          3vw,
+          1.45rem
+        );
+
+      font-weight: 400;
+
+      letter-spacing:
+        0.12em;
+
+      font-variant-numeric:
+        tabular-nums;
+
+      transition:
+        opacity 1.5s ease;
+    }
+
+    /* RELOJ */
+
+    .reloj {
+      position: relative;
+
+      width: min(430px, 72vw);
+      height: min(430px, 72vw);
+
+      border:
+        1px solid
+        rgba(255, 255, 255, 0.32);
+
+      border-radius: 50%;
+
+      transition:
+        opacity 2s ease,
+        transform 2s ease,
+        border-color 2s ease;
+    }
+
+    .reloj.memoria {
+      opacity: 0.32;
+
+      transform:
+        scale(1.12);
+
+      border-color:
+        rgba(255, 255, 255, 0.12);
+    }
+
+    /* MARCAS */
+
+    .marca-hora {
+      position: absolute;
+
+      left: 50%;
+      top: 50%;
+
+      width: 1px;
+      height: 12px;
+
+      background:
+        rgba(255, 255, 255, 0.38);
+
+      transform-origin:
+        50% 0;
+
+      pointer-events: none;
+    }
+
+    .numero-reloj {
+      position: absolute;
+
+      color:
+        rgba(255, 255, 255, 0.6);
+
+      font-family: Georgia, serif;
+
+      font-size:
+        clamp(
+          0.8rem,
+          2vw,
+          1rem
+        );
+    }
+
+    .numero-12 {
+      top: 18px;
+      left: 50%;
+
+      transform:
+        translateX(-50%);
+    }
+
+    .numero-3 {
+      top: 50%;
+      right: 20px;
+
+      transform:
+        translateY(-50%);
+    }
+
+    .numero-6 {
+      bottom: 18px;
+      left: 50%;
+
+      transform:
+        translateX(-50%);
+    }
+
+    .numero-9 {
+      top: 50%;
+      left: 20px;
+
+      transform:
+        translateY(-50%);
+    }
+
+    /* CENTRO */
+
+    .centro-reloj {
+      position: absolute;
+
+      left: 50%;
+      top: 50%;
+
+      width: 8px;
+      height: 8px;
+
+      transform:
+        translate(-50%, -50%);
+
+      border-radius: 50%;
+
+      background: white;
+
+      z-index: 8;
+
+      transition:
+        opacity 1.5s ease;
+    }
+
+    /* AGUJAS */
+
+    .aguja {
+      position: absolute;
+
+      left: 50%;
+      bottom: 50%;
+
+      transform-origin:
+        50% 100%;
+
+      border-radius:
+        999px;
+
+      z-index: 5;
+    }
+
+    .aguja-hora {
+      width: 3px;
+      height: 27%;
+
+      margin-left:
+        -1.5px;
+
+      background:
+        rgba(255, 255, 255, 0.92);
+    }
+
+    .aguja-minuto {
+      width: 1px;
+      height: 38%;
+
+      margin-left:
+        -0.5px;
+
+      background:
+        rgba(255, 255, 255, 0.68);
+    }
+
+    /* MEMBRANA */
+
+    .membrana-contenedor {
+      position: absolute;
+
+      left: 50%;
+      top: 50%;
+
+      width:
+        min(
+          210px,
+          38vw
+        );
+
+      height:
+        min(
+          210px,
+          38vw
+        );
+
+      transform:
+        translate(
+          -50%,
+          -50%
+        );
+
+      display: flex;
+
+      align-items: center;
+      justify-content: center;
+
+      opacity: 0;
+
+      pointer-events: none;
+
+      transition:
+        opacity 2s ease;
+
+      z-index: 15;
+    }
+
+    .membrana-contenedor.visible {
+      opacity: 1;
+    }
+
+    .membrana {
+      position: relative;
+
+      width: 110px;
+      height: 110px;
+
+      border-radius:
+        47% 53% 49% 51% /
+        54% 46% 54% 46%;
+
+      background:
+        radial-gradient(
+          circle at 42% 38%,
+          #b31515 0%,
+          #7f0505 45%,
+          #3f0000 78%,
+          #230000 100%
+        );
+
+      box-shadow:
+        0 0 20px
+        rgba(145, 0, 0, 0.35),
+
+        0 0 55px
+        rgba(110, 0, 0, 0.18);
+
+      animation:
+        pulsoMembrana
+        1.15s
+        ease-in-out
+        infinite;
+    }
+
+    .membrana::before {
+      content: "";
+
+      position: absolute;
+
+      inset: -18px;
+
+      border:
+        1px solid
+        rgba(130, 0, 0, 0.22);
+
+      border-radius:
+        52% 48% 55% 45% /
+        47% 53% 46% 54%;
+
+      animation:
+        ondaMembrana
+        1.15s
+        ease-out
+        infinite;
+    }
+
+    .membrana::after {
+      content: "";
+
+      position: absolute;
+
+      inset: -38px;
+
+      border:
+        1px solid
+        rgba(110, 0, 0, 0.11);
+
+      border-radius:
+        45% 55% 48% 52% /
+        52% 48% 56% 44%;
+
+      animation:
+        ondaMembranaDos
+        1.15s
+        ease-out
+        infinite;
+    }
+
+    @keyframes pulsoMembrana {
+
+      0% {
+        transform:
+          scale(0.92)
+          rotate(-1deg);
+
+        border-radius:
+          47% 53% 49% 51% /
+          54% 46% 54% 46%;
+
+        filter:
+          brightness(0.75);
+      }
+
+      16% {
+        transform:
+          scale(1.12)
+          rotate(1deg);
+
+        border-radius:
+          52% 48% 45% 55% /
+          46% 54% 49% 51%;
+
+        filter:
+          brightness(1.15);
+      }
+
+      30% {
+        transform:
+          scale(0.97);
+
+        border-radius:
+          49% 51% 53% 47% /
+          52% 48% 46% 54%;
+
+        filter:
+          brightness(0.9);
+      }
+
+      42% {
+        transform:
+          scale(1.04);
+
+        filter:
+          brightness(1);
+      }
+
+      100% {
+        transform:
+          scale(0.92)
+          rotate(-1deg);
+
+        border-radius:
+          47% 53% 49% 51% /
+          54% 46% 54% 46%;
+
+        filter:
+          brightness(0.75);
+      }
+
+    }
+
+    @keyframes ondaMembrana {
+
+      0% {
+        opacity: 0.1;
+
+        transform:
+          scale(0.8);
+      }
+
+      18% {
+        opacity: 0.42;
+      }
+
+      100% {
+        opacity: 0;
+
+        transform:
+          scale(1.5);
+      }
+
+    }
+
+    @keyframes ondaMembranaDos {
+
+      0% {
+        opacity: 0.05;
+
+        transform:
+          scale(0.72);
+      }
+
+      22% {
+        opacity: 0.22;
+      }
+
+      100% {
+        opacity: 0;
+
+        transform:
+          scale(1.45);
+      }
+
+    }
+
+    .texto-pulsion {
+      position: absolute;
+
+      left: 50%;
+      bottom: 10px;
+
+      transform:
+        translateX(-50%);
+
+      width: 100%;
+
+      margin: 0;
+
+      color:
+        rgba(255, 255, 255, 0.42);
+
+      font-size:
+        12px;
+
+      letter-spacing:
+        0.14em;
+
+      text-transform:
+        lowercase;
+
+      opacity: 0;
+
+      transition:
+        opacity 2s ease;
+    }
+
+    .texto-pulsion.visible {
+      opacity: 1;
+    }
+
+    /* =========================
        CELULAR
     ========================= */
 
     @media (max-width: 750px) {
 
       .escena {
-        padding: 20px 12px;
+        padding:
+          20px 12px;
       }
 
       #mapa-real {
-        height: 68vh;
+        height:
+          68vh;
       }
 
       #quirofano {
-        padding-bottom: 95px;
+        padding-bottom:
+          95px;
       }
 
       .contenido-quirofano {
-        width: 94%;
-        max-height: 65vh;
+        width:
+          94%;
+
+        max-height:
+          65vh;
       }
 
       .siguiente-quirofano {
-        bottom: 26px;
+        bottom:
+          26px;
       }
 
       .zona-rompecabezas {
-        flex-direction: column;
+        flex-direction:
+          column;
 
-        gap: 25px;
+        gap:
+          25px;
       }
 
       .tablero,
@@ -696,11 +1207,39 @@
 
       .bandeja {
         grid-template-columns:
-          repeat(3, 1fr);
+          repeat(
+            3,
+            1fr
+          );
       }
 
       .titulo-rompecabezas {
-        margin-top: 20px;
+        margin-top:
+          20px;
+      }
+
+      .escena-tiempo {
+        width:
+          92vw;
+
+        height:
+          92vw;
+      }
+
+      .reloj {
+        width:
+          78vw;
+
+        height:
+          78vw;
+      }
+
+      .membrana {
+        width:
+          82px;
+
+        height:
+          82px;
       }
 
     }
@@ -712,7 +1251,10 @@
 
   <main>
 
-    <!-- ESCENA 1 -->
+    <!-- =========================
+         ESCENA 1
+         PORTÓN
+    ========================== -->
 
     <section
       class="escena escena-activa"
@@ -760,7 +1302,11 @@
 
     </section>
 
-    <!-- ESCENA 2 -->
+
+    <!-- =========================
+         ESCENA 2
+         MAPA
+    ========================== -->
 
     <section
       class="escena"
@@ -779,7 +1325,11 @@
 
     </section>
 
-    <!-- ESCENA 3 -->
+
+    <!-- =========================
+         ESCENA 3
+         PÉRDIDA
+    ========================== -->
 
     <section
       class="escena"
@@ -792,7 +1342,11 @@
 
     </section>
 
-    <!-- ESCENA 4 -->
+
+    <!-- =========================
+         ESCENA 4
+         QUIRÓFANO
+    ========================== -->
 
     <section
       class="escena"
@@ -914,7 +1468,11 @@
 
     </section>
 
-    <!-- ESCENA 5 -->
+
+    <!-- =========================
+         ESCENA 5
+         ROMPECABEZAS
+    ========================== -->
 
     <section
       class="escena"
@@ -933,6 +1491,8 @@
         </p>
 
         <div class="zona-rompecabezas">
+
+          <!-- TABLERO -->
 
           <div
             class="tablero"
@@ -953,34 +1513,69 @@
 
           </div>
 
+
+          <!-- PIEZAS -->
+
           <div
             class="bandeja"
             id="bandeja"
           >
 
-            <div class="pieza" data-posicion="4"></div>
+            <div
+              class="pieza"
+              data-posicion="4"
+            ></div>
 
             <div
               class="pieza pieza-pulgar"
               data-posicion="5"
             ></div>
 
-            <div class="pieza" data-posicion="0"></div>
-            <div class="pieza" data-posicion="8"></div>
-            <div class="pieza" data-posicion="2"></div>
-            <div class="pieza" data-posicion="6"></div>
-            <div class="pieza" data-posicion="1"></div>
-            <div class="pieza" data-posicion="7"></div>
-            <div class="pieza" data-posicion="3"></div>
+            <div
+              class="pieza"
+              data-posicion="0"
+            ></div>
+
+            <div
+              class="pieza"
+              data-posicion="8"
+            ></div>
+
+            <div
+              class="pieza"
+              data-posicion="2"
+            ></div>
+
+            <div
+              class="pieza"
+              data-posicion="6"
+            ></div>
+
+            <div
+              class="pieza"
+              data-posicion="1"
+            ></div>
+
+            <div
+              class="pieza"
+              data-posicion="7"
+            ></div>
+
+            <div
+              class="pieza"
+              data-posicion="3"
+            ></div>
 
           </div>
 
         </div>
 
+
         <div
           class="texto-documento"
           id="texto-documento"
         ></div>
+
 
         <h3
           class="frase-final"
@@ -988,6 +1583,7 @@
         >
           Reconstrucción no es regreso.
         </h3>
+
 
         <p class="credito-mano">
 
@@ -1007,9 +1603,110 @@
 
     </section>
 
+
+    <!-- =========================
+         ESCENA 6
+         RELOJ Y PULSIÓN
+    ========================== -->
+
+    <section
+      class="escena"
+      id="tiempo"
+    >
+
+      <div
+        class="escena-tiempo"
+      >
+
+        <p
+          class="hora-digital"
+          id="hora-digital"
+        >
+          7:00
+        </p>
+
+
+        <div
+          class="reloj"
+          id="reloj"
+        >
+
+          <span
+            class="numero-reloj numero-12"
+          >
+            12
+          </span>
+
+          <span
+            class="numero-reloj numero-3"
+          >
+            3
+          </span>
+
+          <span
+            class="numero-reloj numero-6"
+          >
+            6
+          </span>
+
+          <span
+            class="numero-reloj numero-9"
+          >
+            9
+          </span>
+
+
+          <div
+            class="aguja aguja-hora"
+            id="aguja-hora"
+          ></div>
+
+
+          <div
+            class="aguja aguja-minuto"
+            id="aguja-minuto"
+          ></div>
+
+
+          <div
+            class="centro-reloj"
+            id="centro-reloj"
+          ></div>
+
+        </div>
+
+
+        <div
+          class="membrana-contenedor"
+          id="membrana-contenedor"
+        >
+
+          <div
+            class="membrana"
+          ></div>
+
+        </div>
+
+
+        <p
+          class="texto-pulsion"
+          id="texto-pulsion"
+        >
+          11:00
+        </p>
+
+      </div>
+
+    </section>
+
   </main>
 
+
   <script>
+
+    /* =========================
+       ESCENAS
+    ========================= */
 
     const porton =
       document.querySelector(
@@ -1036,6 +1733,11 @@
         "#rompecabezas"
       );
 
+    const escenaTiempo =
+      document.querySelector(
+        "#tiempo"
+      );
+
     const botonEntrar =
       document.querySelector(
         "#entrar"
@@ -1048,6 +1750,7 @@
 
     let mapaInicializado =
       false;
+
 
     function cambiarEscena(
       escenaActual,
@@ -1068,6 +1771,7 @@
       );
 
     }
+
 
     botonEntrar.addEventListener(
       "click",
@@ -1092,6 +1796,7 @@
       }
     );
 
+
     botonReconstruir.addEventListener(
       "click",
       function () {
@@ -1103,6 +1808,7 @@
 
       }
     );
+
 
     /* =========================
        MAPA
@@ -1120,24 +1826,33 @@
         -90.56026555839702
       ];
 
+
       const mapa =
         L.map(
           "mapa-real",
           {
-            zoomControl: false
+            zoomControl:
+              false
           }
         );
+
 
       L.tileLayer(
         "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
         {
-          subdomains: "abcd",
-          maxZoom: 20,
+          subdomains:
+            "abcd",
+
+          maxZoom:
+            20,
 
           attribution:
             "&copy; OpenStreetMap contributors &copy; CARTO"
         }
-      ).addTo(mapa);
+      ).addTo(
+        mapa
+      );
+
 
       const ruta = [
 
@@ -1158,87 +1873,138 @@
 
       ];
 
+
       mapa.fitBounds(
-        L.latLngBounds(ruta),
+        L.latLngBounds(
+          ruta
+        ),
         {
-          padding: [50, 50]
+          padding:
+            [50, 50]
         }
       );
+
 
       L.polyline(
         ruta,
         {
-          color: "#8b0000",
-          weight: 3,
-          opacity: 0.45
+          color:
+            "#8b0000",
+
+          weight:
+            3,
+
+          opacity:
+            0.45
         }
-      ).addTo(mapa);
+      ).addTo(
+        mapa
+      );
+
 
       const iconoPunto =
         L.divIcon({
 
-          className: "",
+          className:
+            "",
 
           html:
             '<div class="punto-viajero"></div>',
 
-          iconSize: [18, 18],
+          iconSize:
+            [18, 18],
 
-          iconAnchor: [9, 9]
+          iconAnchor:
+            [9, 9]
 
         });
+
 
       const punto =
         L.marker(
           coordenadasPorton,
           {
-            icon: iconoPunto
+            icon:
+              iconoPunto
           }
-        ).addTo(mapa);
+        ).addTo(
+          mapa
+        );
 
-      let tramo = 0;
-      let progreso = 0;
 
-      const velocidad = 0.01;
+      let tramo =
+        0;
+
+      let progreso =
+        0;
+
+      const velocidad =
+        0.01;
+
 
       function animar() {
 
         const inicio =
-          ruta[tramo];
+          ruta[
+            tramo
+          ];
 
         const final =
-          ruta[tramo + 1];
+          ruta[
+            tramo + 1
+          ];
 
-        progreso += velocidad;
+
+        progreso +=
+          velocidad;
+
 
         if (
           progreso > 1
         ) {
-          progreso = 1;
+
+          progreso =
+            1;
+
         }
 
+
         const lat =
+
           inicio[0] +
+
           (
             final[0] -
             inicio[0]
-          ) *
+          )
+
+          *
+
           progreso;
 
+
         const lng =
+
           inicio[1] +
+
           (
             final[1] -
             inicio[1]
-          ) *
+          )
+
+          *
+
           progreso;
+
 
         punto.setLatLng(
           [lat, lng]
         );
 
+
         if (
-          Math.random() > 0.9
+          Math.random() >
+          0.9
         ) {
 
           crearMarca(
@@ -1248,6 +2014,7 @@
           );
 
         }
+
 
         if (
           progreso >= 1
@@ -1266,6 +2033,7 @@
                   escenaPerdida
                 );
 
+
                 window.setTimeout(
                   function () {
 
@@ -1282,15 +2050,19 @@
               1000
             );
 
+
             return;
 
           }
 
+
           tramo++;
 
-          progreso = 0;
+          progreso =
+            0;
 
         }
+
 
         requestAnimationFrame(
           animar
@@ -1298,9 +2070,11 @@
 
       }
 
+
       animar();
 
     }
+
 
     function crearMarca(
       mapa,
@@ -1309,13 +2083,18 @@
     ) {
 
       const tamaño =
+
         5 +
-        Math.random() * 7;
+
+        Math.random() *
+        7;
+
 
       const iconoMarca =
         L.divIcon({
 
-          className: "",
+          className:
+            "",
 
           html:
             `
@@ -1328,45 +2107,65 @@
               ></div>
             `,
 
-          iconSize: [
-            tamaño,
-            tamaño
-          ],
+          iconSize:
+            [
+              tamaño,
+              tamaño
+            ],
 
-          iconAnchor: [
-            tamaño / 2,
-            tamaño / 2
-          ]
+          iconAnchor:
+            [
+              tamaño / 2,
+              tamaño / 2
+            ]
 
         });
+
 
       L.marker(
         [
 
           lat +
+
           (
             Math.random() -
             0.5
-          ) *
+          )
+
+          *
+
           0.00035,
 
+
           lng +
+
           (
             Math.random() -
             0.5
-          ) *
+          )
+
+          *
+
           0.00035
 
         ],
 
         {
-          icon: iconoMarca,
-          interactive: false
+
+          icon:
+            iconoMarca,
+
+          interactive:
+            false
+
         }
 
-      ).addTo(mapa);
+      ).addTo(
+        mapa
+      );
 
     }
+
 
     /* =========================
        ROMPECABEZAS
@@ -1387,7 +2186,9 @@
         "#frase-final"
       );
 
-    let piezasCorrectas = 0;
+    let piezasCorrectas =
+      0;
+
 
     const textos = {
 
@@ -1408,8 +2209,11 @@
 
     };
 
+
     piezas.forEach(
-      function (pieza) {
+      function (
+        pieza
+      ) {
 
         pieza.addEventListener(
           "pointerdown",
@@ -1419,6 +2223,7 @@
       }
     );
 
+
     function comenzarArrastre(
       evento
     ) {
@@ -1426,49 +2231,63 @@
       const pieza =
         evento.currentTarget;
 
+
       if (
         pieza.classList.contains(
           "colocada"
         )
       ) {
+
         return;
+
       }
+
 
       evento.preventDefault();
 
+
       const rect =
         pieza.getBoundingClientRect();
+
 
       const diferenciaX =
         evento.clientX -
         rect.left;
 
+
       const diferenciaY =
         evento.clientY -
         rect.top;
 
+
       const anchoOriginal =
         rect.width;
 
+
       const altoOriginal =
         rect.height;
+
 
       pieza.style.width =
         anchoOriginal +
         "px";
 
+
       pieza.style.height =
         altoOriginal +
         "px";
+
 
       pieza.classList.add(
         "arrastrando"
       );
 
+
       moverPieza(
         evento.clientX,
         evento.clientY
       );
+
 
       function moverPieza(
         x,
@@ -1483,6 +2302,7 @@
           +
           "px";
 
+
         pieza.style.top =
           (
             y -
@@ -1492,6 +2312,7 @@
           "px";
 
       }
+
 
       function mover(
         eventoMover
@@ -1504,6 +2325,7 @@
 
       }
 
+
       function soltar(
         eventoSoltar
       ) {
@@ -1513,13 +2335,16 @@
           mover
         );
 
+
         document.removeEventListener(
           "pointerup",
           soltar
         );
 
+
         pieza.style.display =
           "none";
+
 
         const elementoDebajo =
           document.elementFromPoint(
@@ -1527,10 +2352,13 @@
             eventoSoltar.clientY
           );
 
+
         pieza.style.display =
           "";
 
+
         const slot =
+
           elementoDebajo
           ?
           elementoDebajo.closest(
@@ -1539,39 +2367,56 @@
           :
           null;
 
+
         const posicionPieza =
           pieza.dataset.posicion;
 
+
         const posicionSlot =
+
           slot
           ?
           slot.dataset.posicion
           :
           null;
 
+
         pieza.classList.remove(
           "arrastrando"
         );
 
+
         pieza.style.left =
           "";
+
 
         pieza.style.top =
           "";
 
+
         pieza.style.width =
           "";
+
 
         pieza.style.height =
           "";
 
+
         if (
-          slot &&
+
+          slot
+
+          &&
+
           posicionPieza ===
-          posicionSlot &&
+          posicionSlot
+
+          &&
+
           !slot.classList.contains(
             "correcto"
           )
+
         ) {
 
           colocarPieza(
@@ -1583,10 +2428,12 @@
 
       }
 
+
       document.addEventListener(
         "pointermove",
         mover
       );
+
 
       document.addEventListener(
         "pointerup",
@@ -1594,6 +2441,7 @@
       );
 
     }
+
 
     function colocarPieza(
       pieza,
@@ -1604,31 +2452,42 @@
         "colocada"
       );
 
+
       slot.classList.add(
         "correcto"
       );
+
 
       slot.appendChild(
         pieza
       );
 
+
       piezasCorrectas++;
+
 
       const posicion =
         pieza.dataset.posicion;
 
+
       if (
-        textos[posicion]
+        textos[
+          posicion
+        ]
       ) {
 
         mostrarTexto(
-          textos[posicion]
+          textos[
+            posicion
+          ]
         );
 
       }
 
+
       if (
-        piezasCorrectas === 9
+        piezasCorrectas ===
+        9
       ) {
 
         completarRompecabezas();
@@ -1636,6 +2495,7 @@
       }
 
     }
+
 
     function mostrarTexto(
       texto
@@ -1645,11 +2505,13 @@
         "visible"
       );
 
+
       window.setTimeout(
         function () {
 
           textoDocumento.textContent =
             texto;
+
 
           textoDocumento.classList.add(
             "visible"
@@ -1661,11 +2523,13 @@
 
     }
 
+
     function completarRompecabezas() {
 
       textoDocumento.classList.remove(
         "visible"
       );
+
 
       window.setTimeout(
         function () {
@@ -1676,6 +2540,405 @@
 
         },
         700
+      );
+
+
+      window.setTimeout(
+        function () {
+
+          cambiarEscena(
+            escenaRompecabezas,
+            escenaTiempo
+          );
+
+          iniciarReloj();
+
+        },
+        3600
+      );
+
+    }
+
+
+    /* =========================
+       RELOJ
+    ========================= */
+
+    const reloj =
+      document.querySelector(
+        "#reloj"
+      );
+
+    const agujaHora =
+      document.querySelector(
+        "#aguja-hora"
+      );
+
+    const agujaMinuto =
+      document.querySelector(
+        "#aguja-minuto"
+      );
+
+    const horaDigital =
+      document.querySelector(
+        "#hora-digital"
+      );
+
+    const membranaContenedor =
+      document.querySelector(
+        "#membrana-contenedor"
+      );
+
+    const textoPulsion =
+      document.querySelector(
+        "#texto-pulsion"
+      );
+
+
+    function crearMarcasReloj() {
+
+      for (
+        let i = 0;
+        i < 12;
+        i++
+      ) {
+
+        const marca =
+          document.createElement(
+            "div"
+          );
+
+
+        marca.className =
+          "marca-hora";
+
+
+        marca.style.transform =
+          `
+            rotate(
+              ${i * 30}deg
+            )
+            translateY(
+              -50%
+            )
+          `;
+
+
+        marca.style.top =
+          "50%";
+
+
+        marca.style.height =
+          i % 3 === 0
+          ?
+          "17px"
+          :
+          "9px";
+
+
+        marca.style.opacity =
+          i % 3 === 0
+          ?
+          "0.9"
+          :
+          "0.5";
+
+
+        const radio =
+          49;
+
+
+        const angulo =
+          (
+            i *
+            30
+            -
+            90
+          )
+          *
+          Math.PI
+          /
+          180;
+
+
+        marca.style.left =
+          (
+            50 +
+            Math.cos(
+              angulo
+            )
+            *
+            radio
+          )
+          +
+          "%";
+
+
+        marca.style.top =
+          (
+            50 +
+            Math.sin(
+              angulo
+            )
+            *
+            radio
+          )
+          +
+          "%";
+
+
+        reloj.appendChild(
+          marca
+        );
+
+      }
+
+    }
+
+
+    crearMarcasReloj();
+
+
+    let relojYaInicio =
+      false;
+
+
+    function iniciarReloj() {
+
+      if (
+        relojYaInicio
+      ) {
+
+        return;
+
+      }
+
+
+      relojYaInicio =
+        true;
+
+
+      const duracion =
+        8500;
+
+
+      const inicio =
+        performance.now();
+
+
+      const minutosIniciales =
+        7 *
+        60;
+
+
+      const minutosFinales =
+        11 *
+        60;
+
+
+      function animarReloj(
+        ahora
+      ) {
+
+        const transcurrido =
+          ahora -
+          inicio;
+
+
+        let progreso =
+          transcurrido /
+          duracion;
+
+
+        if (
+          progreso > 1
+        ) {
+
+          progreso =
+            1;
+
+        }
+
+
+        /*
+          Esta curva hace que
+          al principio avance despacio
+          y después acelere.
+        */
+
+        const acelerado =
+          progreso *
+          progreso;
+
+
+        const minutosActuales =
+
+          minutosIniciales
+
+          +
+
+          (
+            minutosFinales -
+            minutosIniciales
+          )
+
+          *
+
+          acelerado;
+
+
+        actualizarReloj(
+          minutosActuales
+        );
+
+
+        if (
+          progreso < 1
+        ) {
+
+          requestAnimationFrame(
+            animarReloj
+          );
+
+        }
+
+        else {
+
+          actualizarReloj(
+            minutosFinales
+          );
+
+
+          window.setTimeout(
+            mostrarPulsion,
+            700
+          );
+
+        }
+
+      }
+
+
+      requestAnimationFrame(
+        animarReloj
+      );
+
+    }
+
+
+    function actualizarReloj(
+      minutosTotales
+    ) {
+
+      const horas =
+        Math.floor(
+          minutosTotales /
+          60
+        );
+
+
+      const minutos =
+        Math.floor(
+          minutosTotales %
+          60
+        );
+
+
+      const segundosVisuales =
+
+        (
+          minutosTotales -
+          Math.floor(
+            minutosTotales
+          )
+        )
+
+        *
+        60;
+
+
+      const gradosMinuto =
+
+        (
+          minutos +
+          segundosVisuales /
+          60
+        )
+
+        *
+        6;
+
+
+      const gradosHora =
+
+        (
+          horas %
+          12
+        )
+
+        *
+        30
+
+        +
+
+        (
+          minutos /
+          60
+        )
+
+        *
+        30;
+
+
+      agujaHora.style.transform =
+        `
+          rotate(
+            ${gradosHora}deg
+          )
+        `;
+
+
+      agujaMinuto.style.transform =
+        `
+          rotate(
+            ${gradosMinuto}deg
+          )
+        `;
+
+
+      const minutosTexto =
+        String(
+          minutos
+        ).padStart(
+          2,
+          "0"
+        );
+
+
+      horaDigital.textContent =
+        `${horas}:${minutosTexto}`;
+
+    }
+
+
+    function mostrarPulsion() {
+
+      reloj.classList.add(
+        "memoria"
+      );
+
+
+      horaDigital.style.opacity =
+        "0.25";
+
+
+      membranaContenedor.classList.add(
+        "visible"
+      );
+
+
+      textoPulsion.classList.add(
+        "visible"
       );
 
     }
