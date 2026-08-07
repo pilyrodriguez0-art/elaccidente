@@ -1,0 +1,54 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #111;
+  color: white;
+  font-family: Arial, sans-serif;
+}
+
+.escena {
+  display: none;
+  min-height: 100vh;
+  padding: 40px;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.escena-activa {
+  display: flex;
+  flex-direction: column;
+}
+
+#porton {
+  background: #1b1b1b;
+}
+
+#mapa {
+  background: #e9e9e9;
+  color: #111;
+}
+
+h1,
+h2 {
+  margin-bottom: 12px;
+}
+
+button {
+  margin-top: 20px;
+  padding: 12px 24px;
+  border: 1px solid white;
+  border-radius: 999px;
+  background: transparent;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: white;
+  color: black;
+}
