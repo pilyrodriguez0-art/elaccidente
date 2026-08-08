@@ -145,6 +145,7 @@
     ========================= */
 
     #mapa {
+      position: relative;
       background: #111;
     }
 
@@ -198,6 +199,7 @@
     ========================= */
 
     #perdida {
+      position: relative;
       background: #050505;
     }
 
@@ -249,11 +251,12 @@
       object-fit: cover;
 
       /*
-        MUY TRANSPARENTE.
-        SIN filtros oscuros.
+        Visible como luces de
+        quirófano, pero sin tapar
+        el texto.
       */
 
-      opacity: 0.13;
+      opacity: 0.4;
       filter: none;
     }
 
@@ -354,33 +357,74 @@
         var(--corinto-oscuro);
     }
 
-    .siguiente-quirofano {
+    /*
+      Botones de "atrás / adelante",
+      con el mismo espíritu que una
+      señal de salida de hospital,
+      pero como ícono vectorial
+      propio: así no pierde calidad
+      al recortarlo ni al agrandarlo.
+    */
+
+    .flecha-lateral {
       position: absolute;
-      left: 50%;
-      bottom: 32px;
-
-      transform:
-        translateX(-50%);
-
+      top: 50%;
+      transform: translateY(-50%);
       z-index: 30;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      width: 44px;
+      height: 44px;
+      padding: 0;
+
+      border: none;
+      border-radius: 9px;
+
+      background: #0a0f0c;
+
+      box-shadow:
+        0 3px 12px
+        rgba(0, 0, 0, 0.45);
+
+      cursor: pointer;
+
+      opacity: 0.92;
     }
 
-    #boton-menique {
-      border-color:
-        var(--corinto-oscuro);
-
-      background:
-        rgba(255, 255, 255, 0.72);
-
-      color:
-        var(--corinto-oscuro);
+    .flecha-lateral:hover {
+      opacity: 1;
+      background: #0a0f0c;
+      color: inherit;
     }
 
-    #boton-menique:hover {
-      background:
-        var(--corinto-oscuro);
+    .flecha-lateral-izq {
+      left: 14px;
+    }
 
-      color: white;
+    .flecha-lateral-der {
+      right: 14px;
+    }
+
+    .icono-flecha {
+      display: block;
+      width: 55%;
+      height: 55%;
+      flex-shrink: 0;
+
+      stroke: #3ddc97;
+      stroke-width: 2.6;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      fill: none;
+
+      filter:
+        drop-shadow(
+          0 0 3px
+          rgba(61, 220, 151, 0.75)
+        );
     }
 
     /* =========================
@@ -443,27 +487,103 @@
 
       width:
         min(
-          820px,
-          92vw
+          520px,
+          80vw
         );
 
       aspect-ratio:
-        1542 / 2048;
+        1452 / 2074;
 
       margin: 0 auto;
 
       overflow: hidden;
 
-      background: #999a97;
+      /*
+        Ambiente de quirófano en vez
+        del fondo beige del papel
+        (la foto de la mano se
+        recorta a mano limpia, sin
+        fondo, en el canvas).
+      */
+
+      background:
+        radial-gradient(
+          ellipse at 50% 15%,
+          #29404a,
+          #0a1114 72%
+        );
 
       border:
         1px solid
         rgba(255, 255, 255, 0.12);
+
+      transition:
+        transform 1.1s
+        ease-in-out;
+
+      touch-action: none;
+    }
+
+    .escenario-mano.zoom-incision {
+      transform: scale(1.22);
+
+      /*
+        Anclado arriba: al agrandar
+        nunca "sube" por encima del
+        reloj, y la guía completa
+        (hasta la articulación)
+        sigue cabiendo en pantalla.
+      */
+
+      transform-origin: 18% 0%;
+    }
+
+    .kit-quirurgico {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      z-index: 4;
+
+      width: 76px;
+      height: auto;
+
+      opacity: 0.55;
+
+      pointer-events: none;
+    }
+
+    .instruccion-mano {
+      position: relative;
+      z-index: 6;
+
+      width:
+        min(
+          520px,
+          80vw
+        );
+
+      margin: 0 auto 12px;
+      padding: 6px 14px;
+
+      border-radius: 999px;
+
+      background: rgba(0, 0, 0, 0.55);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+
+      color: rgba(255, 255, 255, 0.95);
+      font-family: Georgia, serif;
+      font-size: 13.5px;
+      font-style: italic;
+      text-align: center;
+
+      pointer-events: none;
     }
 
     #canvas-mano {
       position: absolute;
       inset: 0;
+
+      touch-action: none;
 
       display: block;
 
@@ -475,36 +595,55 @@
        RELOJ
     ========================= */
 
+    /*
+      Reloj propio, sin foto:
+      una sola hora (la que corre),
+      con números tipo LED dentro
+      de su caja.
+    */
+
     .reloj-hospital {
-      position: absolute;
+      position: relative;
+      z-index: 5;
 
-      left: 6%;
-      right: 6%;
-      top: 41%;
+      width:
+        min(
+          320px,
+          62vw
+        );
 
-      height: 17%;
+      aspect-ratio:
+        5 / 2;
 
-      z-index: 10;
+      margin: 0 auto 34px;
 
       display: flex;
       align-items: center;
       justify-content: center;
 
       background:
-        rgba(255, 255, 255, 0.07);
+        linear-gradient(
+          165deg,
+          #1c1c1c,
+          #060606
+        );
 
       border:
-        1px solid
-        rgba(75, 13, 34, 0.25);
+        2px solid #2c2c2c;
 
-      pointer-events: none;
+      border-radius: 14px;
+
+      box-shadow:
+        inset 0 0 26px
+        rgba(0, 0, 0, 0.85),
+        0 6px 18px
+        rgba(0, 0, 0, 0.5);
     }
 
     .hora-digital {
       margin: 0;
 
-      color:
-        rgba(75, 13, 34, 0.90);
+      color: #ff2e2e;
 
       font-family:
         "Courier New",
@@ -512,19 +651,41 @@
 
       font-size:
         clamp(
-          2.3rem,
-          8vw,
-          5rem
+          2.4rem,
+          9vw,
+          3.6rem
         );
 
       font-weight: 700;
 
-      letter-spacing: 0.08em;
+      letter-spacing: 0.09em;
 
       font-variant-numeric:
         tabular-nums;
 
-      text-shadow: none;
+      text-shadow:
+        0 0 6px rgba(255, 46, 46, 0.9),
+        0 0 18px rgba(255, 46, 46, 0.65);
+    }
+
+    .credito-menique {
+      position: static;
+
+      margin: 14px auto 0;
+      max-width: 700px;
+
+      background: none;
+
+      color:
+        rgba(255, 255, 255, 0.45);
+
+      font-size: 11px;
+      line-height: 1.5;
+    }
+
+    .credito-menique a {
+      color:
+        rgba(255, 255, 255, 0.65);
     }
 
     /* =========================
@@ -574,6 +735,7 @@
     ========================= */
 
     #drogas {
+      position: relative;
       background: #050505;
     }
 
@@ -877,6 +1039,125 @@
       color: #667781;
     }
 
+    .check-burbuja {
+      flex: 0 0 auto;
+      margin-left: -4px;
+      color: #53bdeb;
+      font-size: 0.68rem;
+    }
+
+    .pie-burbuja {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      max-width: 84%;
+    }
+
+    .transcripcion-wa {
+      align-self: flex-end;
+
+      max-width: 84%;
+      padding: 0 4px;
+
+      font-family: Arial, sans-serif;
+      font-size: 0.68rem;
+      font-style: italic;
+      line-height: 1.35;
+      color: rgba(0, 0, 0, 0.45);
+
+      cursor: default;
+    }
+
+    .enlace-transcribir {
+      align-self: flex-end;
+
+      margin: -3px 4px 0 0;
+
+      border: none;
+      background: none;
+      padding: 0;
+
+      font-family: Arial, sans-serif;
+      font-size: 0.64rem;
+      color: #075e54;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+
+    .burbuja-texto {
+      align-self: flex-end;
+
+      max-width: 78%;
+
+      padding: 7px 9px;
+
+      border-radius: 10px 10px 2px 10px;
+
+      background: #dcf8c6;
+
+      font-family: Arial, sans-serif;
+      font-size: 0.82rem;
+      color: #111;
+      line-height: 1.35;
+
+      display: flex;
+      align-items: flex-end;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .compositor-wa {
+      flex: 0 0 auto;
+
+      display: flex;
+      align-items: center;
+      gap: 8px;
+
+      padding: 8px;
+
+      background: #ececec;
+    }
+
+    .entrada-wa {
+      flex: 1 1 auto;
+      min-width: 0;
+
+      padding: 8px 12px;
+
+      border: none;
+      border-radius: 999px;
+
+      background: white;
+
+      font-family: Arial, sans-serif;
+      font-size: 0.78rem;
+    }
+
+    .entrada-wa:focus {
+      outline: 2px solid #075e54;
+    }
+
+    .enviar-wa {
+      flex: 0 0 auto;
+
+      width: 30px;
+      height: 30px;
+
+      border: none;
+      border-radius: 50%;
+
+      background: var(--corinto);
+
+      color: white;
+      font-size: 0.85rem;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      cursor: pointer;
+    }
+
     /* =========================
        MÓVIL
     ========================= */
@@ -891,27 +1172,23 @@
         height: 68vh;
       }
 
-      #quirofano {
-        padding-bottom: 95px;
-      }
-
       .contenido-quirofano {
         width: 94%;
         max-height: 65vh;
       }
 
-      .reloj-hospital {
-        left: 4%;
-        right: 4%;
-      }
-
       .hora-digital {
         font-size:
           clamp(
-            2rem,
-            10vw,
-            4rem
+            1.7rem,
+            9vw,
+            3.4rem
           );
+      }
+
+      .flecha-lateral {
+        width: 36px;
+        height: 36px;
       }
 
     }
@@ -945,6 +1222,17 @@
         type="button"
       >
         Entrar
+      </button>
+
+      <button
+        type="button"
+        class="flecha-lateral flecha-lateral-der"
+        id="porton-adelante"
+        aria-label="Adelante"
+      >
+        <svg viewBox="0 0 24 24" class="icono-flecha" aria-hidden="true">
+          <path d="M9 4 L17 12 L9 20"></path>
+        </svg>
       </button>
 
       <p class="credito-foto">
@@ -992,6 +1280,28 @@
 
       </div>
 
+      <button
+        type="button"
+        class="flecha-lateral flecha-lateral-izq"
+        id="mapa-atras"
+        aria-label="Atrás"
+      >
+        <svg viewBox="0 0 24 24" class="icono-flecha" aria-hidden="true">
+          <path d="M15 4 L7 12 L15 20"></path>
+        </svg>
+      </button>
+
+      <button
+        type="button"
+        class="flecha-lateral flecha-lateral-der"
+        id="mapa-adelante"
+        aria-label="Adelante"
+      >
+        <svg viewBox="0 0 24 24" class="icono-flecha" aria-hidden="true">
+          <path d="M9 4 L17 12 L9 20"></path>
+        </svg>
+      </button>
+
     </section>
 
     <!-- =========================
@@ -1006,6 +1316,28 @@
       <h2 class="texto-perdida">
         Diagnóstico: pérdida de sustancia
       </h2>
+
+      <button
+        type="button"
+        class="flecha-lateral flecha-lateral-izq"
+        id="perdida-atras"
+        aria-label="Atrás"
+      >
+        <svg viewBox="0 0 24 24" class="icono-flecha" aria-hidden="true">
+          <path d="M15 4 L7 12 L15 20"></path>
+        </svg>
+      </button>
+
+      <button
+        type="button"
+        class="flecha-lateral flecha-lateral-der"
+        id="perdida-adelante"
+        aria-label="Adelante"
+      >
+        <svg viewBox="0 0 24 24" class="icono-flecha" aria-hidden="true">
+          <path d="M9 4 L17 12 L9 20"></path>
+        </svg>
+      </button>
 
     </section>
 
@@ -1100,16 +1432,27 @@
 
       </div>
 
-      <div class="siguiente-quirofano">
+      <button
+        type="button"
+        class="flecha-lateral flecha-lateral-izq"
+        id="quirofano-atras"
+        aria-label="Atrás"
+      >
+        <svg viewBox="0 0 24 24" class="icono-flecha" aria-hidden="true">
+          <path d="M15 4 L7 12 L15 20"></path>
+        </svg>
+      </button>
 
-        <button
-          id="boton-menique"
-          type="button"
-        >
-          Siguiente →
-        </button>
-
-      </div>
+      <button
+        type="button"
+        class="flecha-lateral flecha-lateral-der"
+        id="boton-menique"
+        aria-label="Adelante"
+      >
+        <svg viewBox="0 0 24 24" class="icono-flecha" aria-hidden="true">
+          <path d="M9 4 L17 12 L9 20"></path>
+        </svg>
+      </button>
 
       <p class="credito-foto">
 
@@ -1158,6 +1501,21 @@
           Colgajo para reconstrucción del pulpejo y del lecho ungueal.
         </p>
 
+        <div class="reloj-hospital">
+
+          <p
+            class="hora-digital"
+            id="hora-digital"
+          >
+            07:00
+          </p>
+
+        </div>
+
+        <p class="instruccion-mano" id="instruccion-mano">
+          Toma el bisturí: arrastra siguiendo la guía para hacer la incisión.
+        </p>
+
         <div
           class="escenario-mano"
           id="escenario-mano"
@@ -1165,20 +1523,55 @@
 
           <canvas
             id="canvas-mano"
-            width="1542"
-            height="2048"
+            width="726"
+            height="1037"
           ></canvas>
 
-          <div class="reloj-hospital">
+          <svg viewBox="0 0 120 70" class="kit-quirurgico" aria-hidden="true">
 
-            <p
-              class="hora-digital"
-              id="hora-digital"
-            >
-              07:00
-            </p>
+            <rect
+              x="3" y="46" width="114" height="20" rx="3"
+              fill="none" stroke="#cfd8dc" stroke-width="1.6"
+            ></rect>
 
-          </div>
+            <line x1="12" y1="52" x2="46" y2="52" stroke="#cfd8dc" stroke-width="1.3"></line>
+            <path d="M46 52 L56 48 L56 56 Z" fill="#cfd8dc"></path>
+
+            <line x1="66" y1="50" x2="94" y2="50" stroke="#cfd8dc" stroke-width="1.3"></line>
+            <line x1="66" y1="58" x2="94" y2="58" stroke="#cfd8dc" stroke-width="1.3"></line>
+            <line x1="94" y1="50" x2="102" y2="54" stroke="#cfd8dc" stroke-width="1.3"></line>
+            <line x1="94" y1="58" x2="102" y2="54" stroke="#cfd8dc" stroke-width="1.3"></line>
+
+            <circle cx="20" cy="24" r="9" fill="none" stroke="#cfd8dc" stroke-width="1.4"></circle>
+            <circle cx="20" cy="24" r="4" fill="none" stroke="#cfd8dc" stroke-width="1.1"></circle>
+
+            <rect x="60" y="14" width="26" height="18" rx="2" fill="none" stroke="#cfd8dc" stroke-width="1.3"></rect>
+            <line x1="65" y1="20" x2="81" y2="20" stroke="#cfd8dc" stroke-width="1"></line>
+            <line x1="65" y1="25" x2="81" y2="25" stroke="#cfd8dc" stroke-width="1"></line>
+
+          </svg>
+
+          <button
+            type="button"
+            class="flecha-lateral flecha-lateral-izq"
+            id="flecha-menique-atras"
+            aria-label="Atrás"
+          >
+            <svg viewBox="0 0 24 24" class="icono-flecha" aria-hidden="true">
+              <path d="M15 4 L7 12 L15 20"></path>
+            </svg>
+          </button>
+
+          <button
+            type="button"
+            class="flecha-lateral flecha-lateral-der"
+            id="flecha-menique-adelante"
+            aria-label="Adelante"
+          >
+            <svg viewBox="0 0 24 24" class="icono-flecha" aria-hidden="true">
+              <path d="M9 4 L17 12 L9 20"></path>
+            </svg>
+          </button>
 
         </div>
 
@@ -1187,6 +1580,22 @@
           id="estado-menique"
         >
           De 7 a 9 se desarma el meñique con el que nací.
+        </p>
+
+        <p class="credito-foto credito-menique">
+
+          Ilustración de
+
+          <a
+            href="https://www.flickr.com/photos/internetarchivebookimages/19723451683/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Internet Archive Book Images
+          </a>
+
+          (sin restricciones de derechos conocidas).
+
         </p>
 
       </div>
@@ -1202,6 +1611,17 @@
       id="drogas"
     >
 
+      <button
+        type="button"
+        class="flecha-lateral flecha-lateral-izq"
+        id="drogas-atras"
+        aria-label="Atrás"
+      >
+        <svg viewBox="0 0 24 24" class="icono-flecha" aria-hidden="true">
+          <path d="M15 4 L7 12 L15 20"></path>
+        </svg>
+      </button>
+
       <div class="contenedor-drogas">
 
         <h2 class="titulo-drogas">
@@ -1213,7 +1633,6 @@
           y la 1:00 de la tarde, mandé estos audios
           por WhatsApp a mi familia y a mis amigos,
           todavía bajo el efecto de la anestesia.
-          No recuerdo haberlo hecho.
         </p>
 
         <div
@@ -1276,6 +1695,24 @@
                 class="fondo-hilo"
                 id="mensajes-hilo"
               ></div>
+
+              <form class="compositor-wa" id="compositor-wa">
+
+                <input
+                  type="text"
+                  class="entrada-wa"
+                  id="entrada-wa"
+                  placeholder="Escribe una respuesta"
+                  autocomplete="off"
+                >
+
+                <button
+                  type="submit"
+                  class="enviar-wa"
+                  aria-label="Enviar"
+                >➤</button>
+
+              </form>
 
             </div>
 
@@ -1354,6 +1791,11 @@
             "canvas-mano"
           );
 
+        const escenarioMano =
+          document.getElementById(
+            "escenario-mano"
+          );
+
         const horaDigital =
           document.getElementById(
             "hora-digital"
@@ -1362,6 +1804,11 @@
         const estadoMenique =
           document.getElementById(
             "estado-menique"
+          );
+
+        const instruccionMano =
+          document.getElementById(
+            "instruccion-mano"
           );
 
         const ctx =
@@ -1374,6 +1821,94 @@
 
         let meniqueIniciado =
           false;
+
+        let avanceMapaHecho =
+          false;
+
+        let temporizadorPerdida =
+          null;
+
+        let temporizadorQuirofano =
+          null;
+
+        /*
+          Sonido ambiente: tráfico
+          mientras se recorre el
+          mapa, preparación al
+          entrar al quirófano,
+          hospital al entrar a la
+          escena del meñique.
+        */
+
+        const audioTrafico =
+          new Audio(
+            encodeURI(
+              "trafico.wav"
+            )
+          );
+
+        audioTrafico.loop =
+          true;
+
+        const audioPreparacion =
+          new Audio(
+            encodeURI(
+              "preparacion hospital.m4a"
+            )
+          );
+
+        const audioHospital =
+          new Audio(
+            encodeURI(
+              "hospital.mp3"
+            )
+          );
+
+        /*
+          En bucle: como ahora el
+          corte y la sutura los
+          hace quien lee (no una
+          animación de tiempo fijo),
+          la escena puede durar más
+          de lo que dura el audio.
+        */
+
+        audioHospital.loop =
+          true;
+
+        /*
+          El tráfico suena sin
+          parar desde el Mapa hasta
+          Quirófano (nunca se pausa
+          en el camino). Si algún
+          día "preparación hospital"
+          se puede reproducir de
+          verdad, este aviso la deja
+          tomar el lugar del
+          tráfico; mientras tanto,
+          como siempre falla, el
+          tráfico sigue sonando y
+          Quirófano nunca queda en
+          silencio.
+        */
+
+        audioPreparacion.addEventListener(
+          "playing",
+          function () {
+
+            audioTrafico.pause();
+          }
+        );
+
+        function reproducirPreparacion() {
+
+          audioPreparacion.currentTime =
+            0;
+
+          audioPreparacion.play().catch(
+            function () {}
+          );
+        }
 
         /* =========================
            CAMBIAR ESCENA
@@ -1426,6 +1961,13 @@
               escenaMapa
             );
 
+            audioTrafico.currentTime =
+              0;
+
+            audioTrafico.play().catch(
+              function () {}
+            );
+
             /*
               El mapa se crea después.
 
@@ -1448,6 +1990,17 @@
               escenaMenique
             );
 
+            audioTrafico.pause();
+
+            audioPreparacion.pause();
+
+            audioHospital.currentTime =
+              0;
+
+            audioHospital.play().catch(
+              function () {}
+            );
+
             if (
               !meniqueIniciado
             ) {
@@ -1460,33 +2013,255 @@
           }
         );
 
+        document.getElementById(
+          "porton-adelante"
+        ).addEventListener(
+          "click",
+          function () {
+
+            botonEntrar.click();
+          }
+        );
+
+        document.getElementById(
+          "mapa-atras"
+        ).addEventListener(
+          "click",
+          function () {
+
+            cancelarTransicionesMapa();
+
+            avanceMapaHecho =
+              false;
+
+            audioTrafico.pause();
+
+            mostrarEscena(
+              porton
+            );
+          }
+        );
+
+        document.getElementById(
+          "mapa-adelante"
+        ).addEventListener(
+          "click",
+          function () {
+
+            continuarDesdeMapa();
+          }
+        );
+
+        document.getElementById(
+          "perdida-atras"
+        ).addEventListener(
+          "click",
+          function () {
+
+            cancelarTransicionesMapa();
+
+            avanceMapaHecho =
+              false;
+
+            mostrarEscena(
+              escenaMapa
+            );
+
+            audioTrafico.play().catch(
+              function () {}
+            );
+          }
+        );
+
+        document.getElementById(
+          "perdida-adelante"
+        ).addEventListener(
+          "click",
+          function () {
+
+            irAQuirofanoDesdePerdida();
+          }
+        );
+
+        document.getElementById(
+          "quirofano-atras"
+        ).addEventListener(
+          "click",
+          function () {
+
+            audioPreparacion.pause();
+
+            mostrarEscena(
+              escenaPerdida
+            );
+
+            audioTrafico.play().catch(
+              function () {}
+            );
+          }
+        );
+
+        document.getElementById(
+          "drogas-atras"
+        ).addEventListener(
+          "click",
+          function () {
+
+            mostrarEscena(
+              escenaMenique
+            );
+
+            audioHospital.currentTime =
+              0;
+
+            audioHospital.play().catch(
+              function () {}
+            );
+          }
+        );
+
+        document.getElementById(
+          "flecha-menique-atras"
+        ).addEventListener(
+          "click",
+          function () {
+
+            audioHospital.pause();
+
+            mostrarEscena(
+              escenaQuirofano
+            );
+
+            reproducirPreparacion();
+          }
+        );
+
+        document.getElementById(
+          "flecha-menique-adelante"
+        ).addEventListener(
+          "click",
+          function () {
+
+            /*
+              Después de las drogas
+              va sin sonido: se
+              pausan los tres audios
+              por si acaso, sin
+              importar de dónde
+              vengan.
+            */
+
+            audioHospital.pause();
+
+            audioTrafico.pause();
+
+            audioPreparacion.pause();
+
+            mostrarEscena(
+              escenaDrogas
+            );
+          }
+        );
+
         /* =========================
            MAPA SEGURO
         ========================= */
 
+        function irAQuirofanoDesdePerdida() {
+
+          if (
+            temporizadorQuirofano
+          ) {
+
+            window.clearTimeout(
+              temporizadorQuirofano
+            );
+
+            temporizadorQuirofano =
+              null;
+          }
+
+          mostrarEscena(
+            escenaQuirofano
+          );
+
+          /*
+            Aquí termina el tráfico
+            y empieza el sonido de
+            Quirófano.
+          */
+
+          audioTrafico.pause();
+
+          reproducirPreparacion();
+        }
+
+        function cancelarTransicionesMapa() {
+
+          if (
+            temporizadorPerdida
+          ) {
+
+            window.clearTimeout(
+              temporizadorPerdida
+            );
+
+            temporizadorPerdida =
+              null;
+          }
+
+          if (
+            temporizadorQuirofano
+          ) {
+
+            window.clearTimeout(
+              temporizadorQuirofano
+            );
+
+            temporizadorQuirofano =
+              null;
+          }
+        }
+
         function continuarDesdeMapa() {
 
-          window.setTimeout(
-            function () {
+          if (
+            avanceMapaHecho
+          ) {
 
-              mostrarEscena(
-                escenaPerdida
-              );
+            return;
+          }
 
-              window.setTimeout(
-                function () {
+          avanceMapaHecho =
+            true;
 
-                  mostrarEscena(
-                    escenaQuirofano
+          temporizadorPerdida =
+            window.setTimeout(
+              function () {
+
+                /*
+                  El tráfico sigue
+                  sonando durante este
+                  paso breve por
+                  Diagnóstico; se
+                  detiene justo al
+                  entrar a Quirófano
+                  (en irAQuirofanoDesdePerdida).
+                */
+
+                mostrarEscena(
+                  escenaPerdida
+                );
+
+                temporizadorQuirofano =
+                  window.setTimeout(
+                    irAQuirofanoDesdePerdida,
+                    2800
                   );
 
-                },
-                2800
-              );
-
-            },
-            900
-          );
+              },
+              900
+            );
         }
 
         function iniciarMapaSeguro() {
@@ -1677,18 +2452,34 @@
             de rutas falla.
           */
 
+          /*
+            Calcada del trayecto real
+            (captura de Google Maps):
+            primero hacia el oeste
+            por la CA9 / zona 7, y
+            luego hacia el sur hasta
+            la zona 11. No es una
+            línea recta.
+          */
+
           const rutaFallback = [
             coordenadasPorton,
-            [14.6410, -90.5060],
-            [14.6375, -90.5115],
-            [14.6340, -90.5175],
-            [14.6300, -90.5225],
-            [14.6260, -90.5280],
-            [14.6215, -90.5340],
-            [14.6170, -90.5400],
-            [14.6135, -90.5460],
-            [14.6100, -90.5510],
-            [14.6065, -90.5560],
+            [14.6420, -90.5075],
+            [14.6410, -90.5130],
+            [14.6396, -90.5190],
+            [14.6378, -90.5250],
+            [14.6355, -90.5310],
+            [14.6325, -90.5370],
+            [14.6290, -90.5415],
+            [14.6245, -90.5435],
+            [14.6195, -90.5440],
+            [14.6145, -90.5430],
+            [14.6095, -90.5420],
+            [14.6055, -90.5435],
+            [14.6025, -90.5470],
+            [14.6010, -90.5520],
+            [14.6015, -90.5565],
+            [14.6030, -90.5595],
             coordenadasHospital
           ];
 
@@ -1800,7 +2591,7 @@
             0;
 
           const velocidad =
-            0.01;
+            0.028;
 
           function animarRuta() {
 
@@ -1973,10 +2764,10 @@
         ========================= */
 
         const ANCHO =
-          1542;
+          726;
 
         const ALTO =
-          2048;
+          1037;
 
         const imagenMano =
           new Image();
@@ -1985,202 +2776,280 @@
           "mano.jpg";
 
         /*
-          Estas coordenadas están
-          medidas directamente sobre
-          mano.jpg (escaladas a
-          1542x2048), para que el
-          corte caiga justo encima
-          de las líneas negras que
-          están dibujadas en el dedo.
-
-          PIEZA 1:
-          punta hasta la primera
-          línea negra.
+          Incisión sobre el borde
+          cubital (externo) del
+          meñique, calcada de la
+          guía enviada: una franja
+          angosta desde la punta
+          hasta la articulación
+          media, medida sobre
+          mano.jpg (1452x2074,
+          escalada a 726x1037).
         */
 
         /*
-          Los cortes no son rectos:
-          van en zigzag, como una
-          incisión real de colgajo
-          (Z-plastia), cruzando la
-          línea negra en diagonal
-          en vez de cortarla derecho.
+          Corte en zigzag, calcado
+          de la guía amarilla:
+          desde la punta baja por
+          el borde, forma una V en
+          el primer pliegue y sigue
+          bajando hasta cerca de la
+          base del dedo (no se
+          detiene en la mitad).
         */
 
-        const corte1 = [
-          [477, 861],
-          [515, 828],
-          [548, 890],
-          [582, 861]
+        const corteBorde = [
+          [17, 178],
+          [3, 205],
+          [0, 230],
+          [10, 260],
+          [35, 290],
+          [65, 315],
+          [90, 335],
+          [70, 355],
+          [55, 375],
+          [70, 400],
+          [85, 425],
+          [92, 450],
+          [88, 470]
         ];
 
-        const corte2 = [
-          [547, 937],
-          [588, 902],
-          [622, 968],
-          [660, 938]
+        const piezaBorde = [
+          [17, 178],
+          [3, 205],
+          [0, 230],
+          [10, 260],
+          [35, 290],
+          [65, 315],
+          [90, 335],
+          [70, 355],
+          [55, 375],
+          [70, 400],
+          [85, 425],
+          [92, 450],
+          [88, 470],
+          [121, 460],
+          [125, 440],
+          [118, 415],
+          [103, 390],
+          [88, 365],
+          [103, 345],
+          [123, 325],
+          [98, 305],
+          [68, 280],
+          [43, 250],
+          [33, 220],
+          [36, 195],
+          [50, 168]
         ];
 
         /*
-          Tercera línea negra real
-          (la de la base, antes
-          decorativa). Ahora también
-          es un corte.
+          Cuánto se separa la
+          franja del resto del
+          dedo (en píxeles del
+          canvas), hacia afuera
+          del borde.
         */
 
-        const corte3 = [
-          [617, 1013],
-          [658, 978],
-          [700, 1045],
-          [738, 1015]
-        ];
+        const separacionBorde =
+          {
+            x: -30,
+            y: -14
+          };
 
         /*
-          Corte vertical: parte
-          cada franja (punta,
-          medio, base) en mitad
-          izquierda y mitad
-          derecha. Con los 3 cortes
-          horizontales de arriba,
-          esto da 6 pedazos.
+          RECORTE DE LA MANO:
+
+          quita el fondo beige de
+          la ilustración (croma por
+          distancia de color) para
+          que solo quede la mano,
+          sobre el fondo oscuro del
+          quirófano.
         */
 
-        const corteV = [
-          [533, 745],
-          [560, 820],
-          [525, 865],
-          [565, 905],
-          [530, 950],
-          [570, 995],
-          [545, 1030]
-        ];
+        let manoRecortada = null;
+
+        function prepararManoRecortada() {
+
+          const off = document.createElement("canvas");
+          off.width = imagenMano.naturalWidth;
+          off.height = imagenMano.naturalHeight;
+
+          const octx = off.getContext("2d");
+          octx.drawImage(imagenMano, 0, 0);
+
+          let datos;
+
+          try {
+            datos = octx.getImageData(0, 0, off.width, off.height);
+          } catch (error) {
+            return;
+          }
+
+          const d = datos.data;
+          const refR = d[0];
+          const refG = d[1];
+          const refB = d[2];
+          const interno = 26;
+          const externo = 68;
+
+          for (let i = 0; i < d.length; i += 4) {
+
+            const dr = d[i] - refR;
+            const dg = d[i + 1] - refG;
+            const db = d[i + 2] - refB;
+            const dist = Math.sqrt(dr * dr + dg * dg + db * db);
+
+            if (dist < interno) {
+              d[i + 3] = 0;
+            } else if (dist < externo) {
+              d[i + 3] = Math.round(255 * (dist - interno) / (externo - interno));
+            }
+          }
+
+          octx.putImageData(datos, 0, 0);
+          manoRecortada = off;
+        }
+
+        function fuenteMano() {
+          return manoRecortada || imagenMano;
+        }
 
         /*
-          Máscaras grandes a cada
-          lado de corteV. Se usan
-          junto con la forma de
-          cada franja para recortar
-          su mitad izquierda o
-          derecha (dos clips
-          combinados).
+          CAMINO CON LONGITUD:
+
+          convierte la lista de
+          puntos de la incisión en
+          un recorrido medible, para
+          poder saber a qué "tanto
+          por ciento" del corte
+          corresponde cualquier
+          punto del canvas (o al
+          revés).
         */
 
-        const mascaraIzquierda =
-          corteV.concat(
-            [
-              [350, 1030],
-              [350, 745]
-            ]
-          );
+        function construirCamino(puntos) {
 
-        const mascaraDerecha =
-          corteV.concat(
-            [
-              [750, 1030],
-              [750, 745]
-            ]
-          );
+          const acumulado = [0];
 
-        const piezaPunta = [
-          [464, 745],
-          [497, 773],
-          [524, 803],
-          [547, 828],
-          [568, 848],
-          [582, 861],
-          [548, 890],
-          [515, 828],
-          [477, 861],
-          [448, 828],
-          [431, 798],
-          [428, 783],
-          [435, 763]
-        ];
+          for (let i = 1; i < puntos.length; i++) {
 
-        /*
-          PIEZA 2:
-          entre corte1 y corte2.
-        */
+            const dx = puntos[i][0] - puntos[i - 1][0];
+            const dy = puntos[i][1] - puntos[i - 1][1];
 
-        const piezaMedia = [
-          [582, 861],
-          [595, 868],
-          [613, 879],
-          [629, 899],
-          [645, 919],
-          [658, 934],
-          [660, 938],
-          [622, 968],
-          [588, 902],
-          [547, 937],
-          [527, 919],
-          [507, 899],
-          [496, 884],
-          [477, 861],
-          [515, 828],
-          [548, 890]
-        ];
+            acumulado.push(
+              acumulado[i - 1] + Math.hypot(dx, dy)
+            );
+          }
 
-        /*
-          PIEZA 3:
-          entre corte2 y corte3
-          (antes era la base fija,
-          ahora también se mueve).
-        */
+          return {
+            puntos: puntos,
+            acumulado: acumulado,
+            total: acumulado[acumulado.length - 1]
+          };
+        }
 
-        const piezaBase = [
-          [660, 938],
-          [680, 955],
-          [700, 978],
-          [720, 998],
-          [738, 1015],
-          [700, 1045],
-          [658, 978],
-          [617, 1013],
-          [600, 995],
-          [580, 975],
-          [560, 955],
-          [547, 937],
-          [588, 902],
-          [622, 968]
-        ];
+        function puntoEnCamino(camino, progreso) {
 
-        /*
-          Debajo de corte3 ya no
-          se mueve nada. Solo
-          necesitamos borrar la
-          zona hasta ahí.
-        */
+          progreso = Math.max(0, Math.min(1, progreso));
 
-        const zonaMovible = [
-          [464, 745],
-          [497, 773],
-          [524, 803],
-          [547, 828],
-          [568, 848],
-          [582, 861],
-          [595, 868],
-          [613, 879],
-          [629, 899],
-          [645, 919],
-          [658, 934],
-          [660, 938],
-          [680, 955],
-          [700, 978],
-          [720, 998],
-          [738, 1015],
-          [617, 1013],
-          [560, 955],
-          [547, 937],
-          [527, 919],
-          [507, 899],
-          [496, 884],
-          [477, 861],
-          [448, 828],
-          [431, 798],
-          [428, 783],
-          [435, 763]
-        ];
+          const objetivo = progreso * camino.total;
+
+          for (let i = 0; i < camino.puntos.length - 1; i++) {
+
+            if (camino.acumulado[i + 1] >= objetivo) {
+
+              const a = camino.puntos[i];
+              const b = camino.puntos[i + 1];
+              const largo = camino.acumulado[i + 1] - camino.acumulado[i];
+              const t = largo < 1e-6 ? 0 : (objetivo - camino.acumulado[i]) / largo;
+
+              return [
+                a[0] + (b[0] - a[0]) * t,
+                a[1] + (b[1] - a[1]) * t
+              ];
+            }
+          }
+
+          return camino.puntos[camino.puntos.length - 1];
+        }
+
+        function direccionEnCamino(camino, progreso) {
+
+          const paso = 0.02;
+          const a = puntoEnCamino(camino, Math.max(0, progreso - paso));
+          const b = puntoEnCamino(camino, Math.min(1, progreso + paso));
+          const dx = b[0] - a[0];
+          const dy = b[1] - a[1];
+          const largo = Math.hypot(dx, dy);
+
+          if (largo < 1e-6) {
+            return [0, 1];
+          }
+
+          return [dx / largo, dy / largo];
+        }
+
+        function subCamino(camino, progreso) {
+
+          progreso = Math.max(0, Math.min(1, progreso));
+
+          const objetivo = progreso * camino.total;
+          const resultado = [camino.puntos[0]];
+
+          for (let i = 0; i < camino.puntos.length - 1; i++) {
+
+            if (camino.acumulado[i + 1] <= objetivo) {
+
+              resultado.push(camino.puntos[i + 1]);
+
+            } else {
+
+              resultado.push(puntoEnCamino(camino, progreso));
+              break;
+            }
+          }
+
+          return resultado;
+        }
+
+        function proyectarEnCamino(camino, px, py) {
+
+          let mejor = null;
+
+          for (let i = 0; i < camino.puntos.length - 1; i++) {
+
+            const a = camino.puntos[i];
+            const b = camino.puntos[i + 1];
+            const dx = b[0] - a[0];
+            const dy = b[1] - a[1];
+            const largoSeg2 = dx * dx + dy * dy;
+
+            let t = largoSeg2 < 1e-6
+              ? 0
+              : ((px - a[0]) * dx + (py - a[1]) * dy) / largoSeg2;
+
+            t = Math.max(0, Math.min(1, t));
+
+            const cx = a[0] + dx * t;
+            const cy = a[1] + dy * t;
+            const dist = Math.hypot(px - cx, py - cy);
+            const largoSeg = Math.sqrt(largoSeg2);
+            const arco = camino.acumulado[i] + largoSeg * t;
+
+            if (!mejor || dist < mejor.dist) {
+              mejor = { dist: dist, arco: arco };
+            }
+          }
+
+          return {
+            dist: mejor.dist,
+            progreso: camino.total < 1e-6 ? 0 : mejor.arco / camino.total
+          };
+        }
+
+        const caminoCorte = construirCamino(corteBorde);
 
         function trazarPoligono(
           puntos
@@ -2255,16 +3124,23 @@
           ctx.save();
 
           trazarPoligono(
-            zonaMovible
+            piezaBorde
           );
 
           ctx.clip();
 
           /*
-            Gris del fondo de mano.jpg,
-            muestreado detrás del
-            meñique real.
+            En vez de tapar con un
+            color, se BORRA esa zona
+            (destination-out): queda
+            transparente y se ve el
+            fondo oscuro del
+            quirófano detrás, como
+            un hueco real.
           */
+
+          ctx.globalCompositeOperation =
+            "destination-out";
 
           ctx.globalAlpha =
             Math.min(
@@ -2274,13 +3150,13 @@
             );
 
           ctx.fillStyle =
-            "#878681";
+            "#000";
 
           ctx.fillRect(
-            340,
-            725,
-            420,
-            330
+            0,
+            165,
+            135,
+            320
           );
 
           ctx.restore();
@@ -2308,7 +3184,7 @@
             alpha;
 
           ctx.strokeStyle =
-            "#d81525";
+            "#ff2e2e";
 
           ctx.lineCap =
             "round";
@@ -2454,61 +3330,9 @@
           }
 
           dibujarLineaSutura(
-            corte1,
+            corteBorde,
             alpha
           );
-
-          dibujarLineaSutura(
-            corte2,
-            alpha
-          );
-
-          dibujarLineaSutura(
-            corte3,
-            alpha
-          );
-
-          dibujarLineaSutura(
-            corteV,
-            alpha
-          );
-        }
-
-        function dibujarMitad(
-          banda,
-          mascara,
-          dx,
-          dy
-        ) {
-
-          ctx.save();
-
-          ctx.translate(
-            dx,
-            dy
-          );
-
-          trazarPoligono(
-            banda
-          );
-
-          ctx.clip();
-
-          trazarPoligono(
-            mascara
-          );
-
-          ctx.clip();
-
-          ctx.drawImage(
-            imagenMano,
-            0,
-            0,
-            ANCHO,
-            ALTO
-          );
-
-          ctx.restore();
         }
 
         function dibujarPieza(
@@ -2551,7 +3375,7 @@
           ctx.clip();
 
           ctx.drawImage(
-            imagenMano,
+            fuenteMano(),
             0,
             0,
             ANCHO,
@@ -2605,7 +3429,7 @@
           */
 
           ctx.drawImage(
-            imagenMano,
+            fuenteMano(),
             0,
             0,
             ANCHO,
@@ -2632,140 +3456,18 @@
           );
 
           /*
-            Cada franja (punta,
-            medio, base) se aleja
-            a lo largo del eje del
-            dedo, más la punta que
-            la base. Dentro de cada
-            franja, la mitad
-            izquierda y la derecha
-            además se separan entre
-            sí. 3 franjas x 2
-            mitades = 6 pedazos.
+            La franja del borde se
+            separa del resto del
+            dedo.
           */
 
-          const eje =
-            {
-              x: -0.586,
-              y: -0.810
-            };
-
-          function offsetFranja(
-            magnitud,
-            lado
-          ) {
-
-            const lejos =
-              magnitud *
-              separado;
-
-            const laterales =
-              (
-                lado === "izq" ?
-                -1 :
-                1
-              )
-              *
-              8
-              *
-              separado
-              *
-              (
-                magnitud / 44
-              );
-
-            return {
-              x:
-                eje.x *
-                lejos
-                +
-                laterales,
-
-              y:
-                eje.y *
-                lejos
-            };
-          }
-
-          const off =
-            {
-              puntaIzq:
-                offsetFranja(
-                  44,
-                  "izq"
-                ),
-
-              puntaDer:
-                offsetFranja(
-                  44,
-                  "der"
-                ),
-
-              medioIzq:
-                offsetFranja(
-                  30,
-                  "izq"
-                ),
-
-              medioDer:
-                offsetFranja(
-                  30,
-                  "der"
-                ),
-
-              baseIzq:
-                offsetFranja(
-                  16,
-                  "izq"
-                ),
-
-              baseDer:
-                offsetFranja(
-                  16,
-                  "der"
-                )
-            };
-
-          dibujarMitad(
-            piezaBase,
-            mascaraIzquierda,
-            off.baseIzq.x,
-            off.baseIzq.y
-          );
-
-          dibujarMitad(
-            piezaBase,
-            mascaraDerecha,
-            off.baseDer.x,
-            off.baseDer.y
-          );
-
-          dibujarMitad(
-            piezaMedia,
-            mascaraIzquierda,
-            off.medioIzq.x,
-            off.medioIzq.y
-          );
-
-          dibujarMitad(
-            piezaMedia,
-            mascaraDerecha,
-            off.medioDer.x,
-            off.medioDer.y
-          );
-
-          dibujarMitad(
-            piezaPunta,
-            mascaraIzquierda,
-            off.puntaIzq.x,
-            off.puntaIzq.y
-          );
-
-          dibujarMitad(
-            piezaPunta,
-            mascaraDerecha,
-            off.puntaDer.x,
-            off.puntaDer.y
+          dibujarPieza(
+            piezaBorde,
+            separacionBorde.x *
+            separado,
+            separacionBorde.y *
+            separado,
+            0
           );
 
           /*
@@ -2783,6 +3485,8 @@
           "load",
           function () {
 
+            prepararManoRecortada();
+
             renderizarMano(
               0,
               0
@@ -2795,6 +3499,8 @@
           &&
           imagenMano.naturalWidth
         ) {
+
+          prepararManoRecortada();
 
           renderizarMano(
             0,
@@ -2902,6 +3608,710 @@
 
         function iniciarEscenaMenique() {
 
+          /*
+            Ya no es una animación
+            automática: quien lee
+            hace la incisión con el
+            bisturí (arrastrando
+            sobre la guía) y luego
+            cierra la herida punto
+            por punto (tocando cada
+            marca), como una guía
+            fácil de cirugía.
+          */
+
+          const NUM_SUTURAS =
+            7;
+
+          const toleranciaCorte =
+            60;
+
+          const toleranciaSutura =
+            48;
+
+          let fase =
+            "corte";
+
+          let progresoCorte =
+            0;
+
+          let arrastrando =
+            false;
+
+          let suturasColocadas =
+            0;
+
+          const marcadoresSutura =
+            [];
+
+          for (
+            let i = 0;
+            i < NUM_SUTURAS;
+            i++
+          ) {
+
+            marcadoresSutura.push(
+              puntoEnCamino(
+                caminoCorte,
+                i / (NUM_SUTURAS - 1)
+              )
+            );
+          }
+
+          function trazarLinea(
+            puntos
+          ) {
+
+            ctx.beginPath();
+
+            ctx.moveTo(
+              puntos[0][0],
+              puntos[0][1]
+            );
+
+            for (
+              let i = 1;
+              i < puntos.length;
+              i++
+            ) {
+
+              ctx.lineTo(
+                puntos[i][0],
+                puntos[i][1]
+              );
+            }
+          }
+
+          /*
+            Bisturí: una hoja pequeña
+            orientada hacia donde va
+            el corte, con su mango
+            detrás, en vez de un
+            simple punto rojo.
+          */
+
+          function dibujarBisturi(
+            punto,
+            direccion
+          ) {
+
+            const dx = direccion[0];
+            const dy = direccion[1];
+            const px = -dy;
+            const py = dx;
+
+            ctx.save();
+
+            ctx.globalAlpha = 1;
+            ctx.lineCap = "round";
+
+            ctx.shadowColor = "rgba(0,0,0,0.75)";
+            ctx.shadowBlur = 6;
+
+            ctx.strokeStyle = "#9aa0a6";
+            ctx.lineWidth = 8;
+
+            ctx.beginPath();
+            ctx.moveTo(
+              punto[0] - dx * 21,
+              punto[1] - dy * 21
+            );
+            ctx.lineTo(
+              punto[0] - dx * 93,
+              punto[1] - dy * 93
+            );
+            ctx.stroke();
+
+            ctx.fillStyle = "#f5f8fa";
+            ctx.strokeStyle = "#1a1a1a";
+            ctx.lineWidth = 3;
+
+            ctx.beginPath();
+            ctx.moveTo(
+              punto[0] + dx * 26,
+              punto[1] + dy * 26
+            );
+            ctx.lineTo(
+              punto[0] - dx * 8 + px * 14,
+              punto[1] - dy * 8 + py * 14
+            );
+            ctx.lineTo(
+              punto[0] - dx * 30 + px * 6,
+              punto[1] - dy * 30 + py * 6
+            );
+            ctx.lineTo(
+              punto[0] - dx * 30 - px * 6,
+              punto[1] - dy * 30 - py * 6
+            );
+            ctx.lineTo(
+              punto[0] - dx * 8 - px * 14,
+              punto[1] - dy * 8 - py * 14
+            );
+            ctx.closePath();
+            ctx.fill();
+            ctx.stroke();
+
+            ctx.restore();
+          }
+
+          /*
+            Aguja de sutura: un arco
+            con hilo, sobre el
+            siguiente punto a cerrar.
+          */
+
+          function dibujarAguja(
+            punto
+          ) {
+
+            ctx.save();
+
+            /*
+              Aro rojo "toca aquí",
+              para que el punto
+              pendiente sea imposible
+              de pasar por alto.
+            */
+
+            ctx.globalAlpha = 0.9;
+            ctx.strokeStyle = "#ff2e2e";
+            ctx.lineWidth = 2.2;
+            ctx.setLineDash([4, 4]);
+
+            ctx.beginPath();
+            ctx.arc(
+              punto[0],
+              punto[1],
+              16,
+              0,
+              Math.PI * 2
+            );
+            ctx.stroke();
+
+            ctx.setLineDash([]);
+
+            ctx.globalAlpha = 1;
+            ctx.lineCap = "round";
+
+            ctx.shadowColor = "rgba(0,0,0,0.75)";
+            ctx.shadowBlur = 6;
+
+            ctx.strokeStyle = "#eef2f4";
+            ctx.lineWidth = 4.5;
+
+            ctx.beginPath();
+            ctx.arc(
+              punto[0],
+              punto[1] - 16,
+              19,
+              Math.PI * 0.05,
+              Math.PI * 1.55
+            );
+            ctx.stroke();
+
+            ctx.strokeStyle = "#e0b84f";
+            ctx.lineWidth = 2.2;
+
+            ctx.beginPath();
+            ctx.moveTo(punto[0] + 13, punto[1] - 30);
+            ctx.lineTo(punto[0] + 34, punto[1] - 9);
+            ctx.lineTo(punto[0] + 23, punto[1] + 17);
+            ctx.stroke();
+
+            ctx.restore();
+          }
+
+          function dibujarGuiaCorte() {
+
+            ctx.save();
+
+            ctx.lineCap =
+              "round";
+
+            ctx.lineJoin =
+              "round";
+
+            ctx.globalAlpha =
+              0.95;
+
+            ctx.strokeStyle =
+              "#ff2e2e";
+
+            ctx.lineWidth =
+              2.6;
+
+            ctx.setLineDash(
+              [7, 6]
+            );
+
+            trazarLinea(
+              corteBorde
+            );
+
+            ctx.stroke();
+
+            ctx.setLineDash(
+              []
+            );
+
+            if (
+              progresoCorte > 0.01
+            ) {
+
+              const parcial =
+                subCamino(
+                  caminoCorte,
+                  progresoCorte
+                );
+
+              ctx.globalAlpha =
+                1;
+
+              ctx.strokeStyle =
+                "#111111";
+
+              ctx.lineWidth =
+                3.4;
+
+              trazarLinea(
+                parcial
+              );
+
+              ctx.stroke();
+            }
+
+            const punta =
+              puntoEnCamino(
+                caminoCorte,
+                progresoCorte
+              );
+
+            const direccion =
+              direccionEnCamino(
+                caminoCorte,
+                progresoCorte
+              );
+
+            dibujarBisturi(
+              punta,
+              direccion
+            );
+
+            ctx.restore();
+          }
+
+          function dibujarEscenaCorte() {
+
+            renderizarMano(
+              progresoCorte,
+              progresoCorte,
+              0
+            );
+
+            dibujarGuiaCorte();
+          }
+
+          function dibujarEscenaSutura() {
+
+            renderizarMano(
+              1,
+              1,
+              0
+            );
+
+            ctx.save();
+
+            ctx.lineCap =
+              "round";
+
+            ctx.lineJoin =
+              "round";
+
+            ctx.globalAlpha =
+              0.4;
+
+            ctx.strokeStyle =
+              "#ffffff";
+
+            ctx.lineWidth =
+              1;
+
+            ctx.setLineDash(
+              [4, 6]
+            );
+
+            trazarLinea(
+              corteBorde
+            );
+
+            ctx.stroke();
+
+            ctx.setLineDash(
+              []
+            );
+
+            ctx.restore();
+
+            if (
+              suturasColocadas > 0
+            ) {
+
+              const t =
+                (suturasColocadas - 1) /
+                (NUM_SUTURAS - 1);
+
+              const parcial =
+                subCamino(
+                  caminoCorte,
+                  t
+                );
+
+              dibujarLineaSutura(
+                parcial,
+                1
+              );
+            }
+
+            ctx.save();
+
+            for (
+              let i = suturasColocadas;
+              i < NUM_SUTURAS;
+              i++
+            ) {
+
+              const p =
+                marcadoresSutura[i];
+
+              if (
+                i === suturasColocadas
+              ) {
+
+                dibujarAguja(
+                  p
+                );
+
+                continue;
+              }
+
+              ctx.beginPath();
+
+              ctx.arc(
+                p[0],
+                p[1],
+                5,
+                0,
+                Math.PI * 2
+              );
+
+              ctx.strokeStyle =
+                "rgba(255,255,255,0.5)";
+
+              ctx.lineWidth =
+                1.6;
+
+              ctx.stroke();
+            }
+
+            ctx.restore();
+          }
+
+          function coordenadasCanvas(
+            evento
+          ) {
+
+            const rect =
+              canvas.getBoundingClientRect();
+
+            return [
+              (evento.clientX - rect.left) /
+              rect.width * ANCHO,
+
+              (evento.clientY - rect.top) /
+              rect.height * ALTO
+            ];
+          }
+
+          function manejarCorte(
+            evento
+          ) {
+
+            const punto =
+              coordenadasCanvas(
+                evento
+              );
+
+            const proyeccion =
+              proyectarEnCamino(
+                caminoCorte,
+                punto[0],
+                punto[1]
+              );
+
+            if (
+              proyeccion.dist <=
+              toleranciaCorte
+            ) {
+
+              progresoCorte =
+                Math.max(
+                  progresoCorte,
+                  proyeccion.progreso
+                );
+            }
+
+            actualizarReloj(
+              7 * 60 +
+              120 * progresoCorte
+            );
+
+            dibujarEscenaCorte();
+
+            if (
+              progresoCorte >= 0.985
+            ) {
+
+              progresoCorte =
+                1;
+
+              terminarCorte();
+            }
+          }
+
+          function terminarCorte() {
+
+            fase =
+              "sutura";
+
+            arrastrando =
+              false;
+
+            dibujarEscenaSutura();
+
+            actualizarReloj(
+              9 * 60
+            );
+
+            instruccionMano.textContent =
+              "Ahora toma la aguja: toca cerca de la línea para cerrar cada punto.";
+
+            cambiarTexto(
+              "9 en punto: el colgajo queda libre, disecado sobre el borde cubital. Ahora hay que cerrar, punto por punto.",
+              false
+            );
+          }
+
+          function manejarSutura(
+            evento
+          ) {
+
+            const punto =
+              coordenadasCanvas(
+                evento
+              );
+
+            const proyeccion =
+              proyectarEnCamino(
+                caminoCorte,
+                punto[0],
+                punto[1]
+              );
+
+            if (
+              proyeccion.dist >
+              toleranciaSutura
+            ) {
+
+              return;
+            }
+
+            if (
+              suturasColocadas >=
+              NUM_SUTURAS
+            ) {
+
+              return;
+            }
+
+            suturasColocadas++;
+
+            dibujarEscenaSutura();
+
+            actualizarReloj(
+              9 * 60 +
+              120 *
+              (suturasColocadas / NUM_SUTURAS)
+            );
+
+            if (
+              suturasColocadas === 1
+            ) {
+
+              cambiarTexto(
+                "Sutura simple, 5-0. Uno a uno, los puntos van cerrando el borde.",
+                false
+              );
+            }
+
+            if (
+              suturasColocadas >=
+              NUM_SUTURAS
+            ) {
+
+              terminarSutura();
+            }
+          }
+
+          function terminarSutura() {
+
+            fase =
+              "hecho";
+
+            instruccionMano.textContent =
+              "";
+
+            quitarEscuchas();
+
+            const inicioTween =
+              performance.now();
+
+            const duracion =
+              1400;
+
+            function tween(
+              ahora
+            ) {
+
+              const p =
+                Math.min(
+                  1,
+                  (ahora - inicioTween) /
+                  duracion
+                );
+
+              const suave =
+                1 -
+                easeInOutCubic(
+                  p
+                );
+
+              renderizarMano(
+                suave,
+                suave,
+                1
+              );
+
+              actualizarReloj(
+                11 * 60
+              );
+
+              if (
+                p < 1
+              ) {
+
+                requestAnimationFrame(
+                  tween
+                );
+
+                return;
+              }
+
+              escenarioMano.classList.remove(
+                "zoom-incision"
+              );
+
+              cambiarTexto(
+                "A las 11 regresé de la anestesia con un dedo distinto: el mismo, pero mutante — cicatriz lineal, sensibilidad conservada.",
+                true
+              );
+
+              window.dispatchEvent(
+                new CustomEvent(
+                  "inicioAudios11"
+                )
+              );
+            }
+
+            requestAnimationFrame(
+              tween
+            );
+          }
+
+          function alPresionar(
+            evento
+          ) {
+
+            if (
+              fase === "corte"
+            ) {
+
+              arrastrando =
+                true;
+
+              manejarCorte(
+                evento
+              );
+
+            } else if (
+              fase === "sutura"
+            ) {
+
+              manejarSutura(
+                evento
+              );
+            }
+          }
+
+          function alMover(
+            evento
+          ) {
+
+            if (
+              fase === "corte"
+              &&
+              arrastrando
+            ) {
+
+              manejarCorte(
+                evento
+              );
+            }
+          }
+
+          function alSoltar() {
+
+            arrastrando =
+              false;
+          }
+
+          function quitarEscuchas() {
+
+            canvas.removeEventListener(
+              "pointerdown",
+              alPresionar
+            );
+
+            canvas.removeEventListener(
+              "pointermove",
+              alMover
+            );
+
+            canvas.removeEventListener(
+              "pointerup",
+              alSoltar
+            );
+
+            canvas.removeEventListener(
+              "pointerleave",
+              alSoltar
+            );
+
+            canvas.removeEventListener(
+              "pointercancel",
+              alSoltar
+            );
+          }
+
           function comenzar() {
 
             actualizarReloj(
@@ -2913,309 +4323,50 @@
               0
             );
 
+            /*
+              Zoom quirúrgico: se
+              acerca para que se
+              note el bisturí sobre
+              la incisión.
+            */
+
+            escenarioMano.classList.add(
+              "zoom-incision"
+            );
+
+            instruccionMano.textContent =
+              "Toma el bisturí: arrastra siguiendo la guía para hacer la incisión.";
+
             cambiarTexto(
-              "De 7 a 9 se desarma el meñique con el que nací.",
+              "De 7 a 9: incisión sobre el borde cubital, disección del colgajo. Así se desarma el meñique con el que nací.",
               false
             );
 
-            /*
-              7 → 8:
-              primero queda en dos.
-            */
-
-            const faseUno =
-              9000;
-
-            /*
-              8 → 9:
-              después queda en tres.
-            */
-
-            const faseDos =
-              9000;
-
-            /*
-              A las 9 permanece
-              separado un momento.
-            */
-
-            const pausa =
-              2500;
-
-            /*
-              9 → 11:
-              vuelve a unirse.
-
-              No corre demasiado rápido.
-            */
-
-            const rearme =
-              10000;
-
-            const inicio =
-              performance.now();
-
-            let textoActual =
-              0;
-
-            function animar(
-              ahora
-            ) {
-
-              const tiempo =
-                ahora -
-                inicio;
-
-              /* =====================
-                 7 → 8
-              ===================== */
-
-              if (
-                tiempo <=
-                faseUno
-              ) {
-
-                const p =
-                  tiempo /
-                  faseUno;
-
-                const suave =
-                  easeInOutCubic(
-                    p
-                  );
-
-                actualizarReloj(
-                  7 * 60 +
-                  60 * p
-                );
-
-                renderizarMano(
-                  suave,
-                  0
-                );
-
-                requestAnimationFrame(
-                  animar
-                );
-
-                return;
-              }
-
-              /* =====================
-                 8 → 9
-              ===================== */
-
-              const t2 =
-                tiempo -
-                faseUno;
-
-              if (
-                t2 <=
-                faseDos
-              ) {
-
-                const p =
-                  t2 /
-                  faseDos;
-
-                const suave =
-                  easeInOutCubic(
-                    p
-                  );
-
-                actualizarReloj(
-                  8 * 60 +
-                  60 * p
-                );
-
-                renderizarMano(
-                  1,
-                  suave
-                );
-
-                if (
-                  p > 0.2
-                  &&
-                  textoActual === 0
-                ) {
-
-                  textoActual =
-                    1;
-
-                  cambiarTexto(
-                    "Ahora tengo uno nuevo que todavía no conozco.",
-                    false
-                  );
-                }
-
-                if (
-                  p > 0.63
-                  &&
-                  textoActual === 1
-                ) {
-
-                  textoActual =
-                    2;
-
-                  cambiarTexto(
-                    "Me da miedo verlo.",
-                    false
-                  );
-                }
-
-                requestAnimationFrame(
-                  animar
-                );
-
-                return;
-              }
-
-              /* =====================
-                 PAUSA EN 9
-              ===================== */
-
-              const tp =
-                tiempo -
-                faseUno -
-                faseDos;
-
-              if (
-                tp <=
-                pausa
-              ) {
-
-                actualizarReloj(
-                  9 * 60
-                );
-
-                renderizarMano(
-                  1,
-                  1
-                );
-
-                requestAnimationFrame(
-                  animar
-                );
-
-                return;
-              }
-
-              /* =====================
-                 9 → 11
-                 REARME
-              ===================== */
-
-              const tr =
-                tiempo -
-                faseUno -
-                faseDos -
-                pausa;
-
-              if (
-                tr <=
-                rearme
-              ) {
-
-                const p =
-                  tr /
-                  rearme;
-
-                actualizarReloj(
-                  9 * 60 +
-                  120 * p
-                );
-
-                /*
-                  Primero regresa la punta
-                  al segmento medio.
-                */
-
-                let sep2 =
-                  1;
-
-                let sep1 =
-                  1;
-
-                if (
-                  p < 0.5
-                ) {
-
-                  sep2 =
-                    1 -
-                    easeInOutCubic(
-                      p * 2
-                    );
-
-                } else {
-
-                  sep2 =
-                    0;
-
-                  sep1 =
-                    1 -
-                    easeInOutCubic(
-                      (
-                        p -
-                        0.5
-                      ) *
-                      2
-                    );
-                }
-
-                const alphaSuturas =
-                  1 -
-                  Math.max(
-                    sep1,
-                    sep2
-                  );
-
-                renderizarMano(
-                  sep1,
-                  sep2,
-                  alphaSuturas
-                );
-
-                requestAnimationFrame(
-                  animar
-                );
-
-                return;
-              }
-
-              /* =====================
-                 11:00
-              ===================== */
-
-              actualizarReloj(
-                11 * 60
-              );
-
-              renderizarMano(
-                0,
-                0,
-                1
-              );
-
-              cambiarTexto(
-                "A las 11 regresé de la anestesia con un dedo distinto: el mismo, pero mutante.",
-                true
-              );
-
-              /*
-                Aquí queda preparada
-                la futura entrada
-                de los audios.
-              */
-
-              window.dispatchEvent(
-                new CustomEvent(
-                  "inicioAudios11"
-                )
-              );
-            }
-
-            requestAnimationFrame(
-              animar
+            dibujarEscenaCorte();
+
+            canvas.addEventListener(
+              "pointerdown",
+              alPresionar
+            );
+
+            canvas.addEventListener(
+              "pointermove",
+              alMover
+            );
+
+            canvas.addEventListener(
+              "pointerup",
+              alSoltar
+            );
+
+            canvas.addEventListener(
+              "pointerleave",
+              alSoltar
+            );
+
+            canvas.addEventListener(
+              "pointercancel",
+              alSoltar
             );
           }
 
@@ -3303,27 +4454,40 @@
           en orden cronológico.
         */
 
+        /*
+          Un contacto por audio,
+          nombrado como los
+          medicamentos y fluidos
+          que de verdad se usan
+          después de una operación:
+          analgésicos, antiinfla-
+          matorios, antibióticos,
+          sueros, antieméticos,
+          protección gástrica y
+          anestesia.
+        */
+
         const contactos = [
-          {
-            nombre: "Tramadol",
-            inicial: "TR",
-            audios: [0, 1, 2, 3]
-          },
-          {
-            nombre: "Diclofenaco",
-            inicial: "DI",
-            audios: [4, 5, 6, 7, 8, 9]
-          },
-          {
-            nombre: "Ketorolaco",
-            inicial: "KE",
-            audios: [10, 11, 12, 13, 14]
-          },
-          {
-            nombre: "Dexametasona",
-            inicial: "DX",
-            audios: [15, 16, 17, 18, 19]
-          }
+          { nombre: "Tramadol", inicial: "TR", audio: 0 },
+          { nombre: "Diclofenaco", inicial: "DI", audio: 1 },
+          { nombre: "Ketorolaco", inicial: "KE", audio: 2 },
+          { nombre: "Dexametasona", inicial: "DX", audio: 3 },
+          { nombre: "Paracetamol", inicial: "PC", audio: 4 },
+          { nombre: "Naproxeno", inicial: "NP", audio: 5 },
+          { nombre: "Ibuprofeno", inicial: "IB", audio: 6 },
+          { nombre: "Amoxicilina", inicial: "AM", audio: 7 },
+          { nombre: "Cefalexina", inicial: "CF", audio: 8 },
+          { nombre: "Ciprofloxacino", inicial: "CX", audio: 9 },
+          { nombre: "Clindamicina", inicial: "CL", audio: 10 },
+          { nombre: "Suero Fisiológico", inicial: "SF", audio: 11 },
+          { nombre: "Lactato de Ringer", inicial: "LR", audio: 12 },
+          { nombre: "Dextrosa", inicial: "DT", audio: 13 },
+          { nombre: "Ondansetrón", inicial: "ON", audio: 14 },
+          { nombre: "Metoclopramida", inicial: "MC", audio: 15 },
+          { nombre: "Omeprazol", inicial: "OM", audio: 16 },
+          { nombre: "Ranitidina", inicial: "RA", audio: 17 },
+          { nombre: "Midazolam", inicial: "MZ", audio: 18 },
+          { nombre: "Lidocaína", inicial: "LD", audio: 19 }
         ];
 
         /* =========================
@@ -3368,6 +4532,16 @@
         const botonVolverWa =
           document.getElementById(
             "volver-wa"
+          );
+
+        const compositorWa =
+          document.getElementById(
+            "compositor-wa"
+          );
+
+        const entradaWa =
+          document.getElementById(
+            "entrada-wa"
           );
 
         let audioSonando =
@@ -3472,6 +4646,17 @@
               nombreArchivo
             );
 
+          const check =
+            document.createElement(
+              "span"
+            );
+
+          check.className =
+            "check-burbuja";
+
+          check.textContent =
+            "✓✓";
+
           const audio =
             document.createElement(
               "audio"
@@ -3554,6 +4739,16 @@
 
             audioSonando =
               audio;
+
+            /*
+              Al darle play aparece
+              la transcripción, sin
+              tener que tocar nada
+              más.
+            */
+
+            parrafoTranscripcion.style.display =
+              "block";
           }
 
           boton.addEventListener(
@@ -3585,7 +4780,53 @@
             hora
           );
 
-          return burbuja;
+          burbuja.appendChild(
+            check
+          );
+
+          /*
+            Transcripción:
+
+            WhatsApp transcribe las
+            notas de voz, pero este
+            sitio no tiene forma de
+            transcribir el audio de
+            verdad, así que se avisa
+            en vez de inventar lo
+            que se dijo.
+          */
+
+          const contenedor =
+            document.createElement(
+              "div"
+            );
+
+          contenedor.className =
+            "pie-burbuja";
+
+          const parrafoTranscripcion =
+            document.createElement(
+              "p"
+            );
+
+          parrafoTranscripcion.className =
+            "transcripcion-wa";
+
+          parrafoTranscripcion.textContent =
+            "Transcripción automática no disponible: este sitio no puede transcribir el audio real.";
+
+          parrafoTranscripcion.style.display =
+            "none";
+
+          contenedor.appendChild(
+            burbuja
+          );
+
+          contenedor.appendChild(
+            parrafoTranscripcion
+          );
+
+          return contenedor;
         }
 
         function mostrarHilo(
@@ -3611,18 +4852,14 @@
           mensajesHilo.innerHTML =
             "";
 
-          contacto.audios.forEach(
-            function (
-              indiceAudio
-            ) {
-
-              mensajesHilo.appendChild(
-                crearBurbuja(
-                  indiceAudio
-                )
-              );
-            }
+          mensajesHilo.appendChild(
+            crearBurbuja(
+              contacto.audio
+            )
           );
+
+          entradaWa.value =
+            "";
 
           vistaChats.classList.remove(
             "vista-wa-activa"
@@ -3632,6 +4869,98 @@
             "vista-wa-activa"
           );
         }
+
+        /*
+          Responder: el mensaje se
+          agrega solo en esta
+          pantalla (no se envía a
+          ningún lado de verdad).
+        */
+
+        compositorWa.addEventListener(
+          "submit",
+          function (
+            evento
+          ) {
+
+            evento.preventDefault();
+
+            const texto =
+              entradaWa.value.trim();
+
+            if (
+              !texto
+            ) {
+
+              return;
+            }
+
+            const burbujaTexto =
+              document.createElement(
+                "div"
+              );
+
+            burbujaTexto.className =
+              "burbuja-texto";
+
+            const spanTexto =
+              document.createElement(
+                "span"
+              );
+
+            spanTexto.textContent =
+              texto;
+
+            const horaTexto =
+              document.createElement(
+                "span"
+              );
+
+            horaTexto.className =
+              "hora-burbuja";
+
+            const ahora =
+              new Date();
+
+            horaTexto.textContent =
+              String(ahora.getHours()).padStart(2, "0") +
+              ":" +
+              String(ahora.getMinutes()).padStart(2, "0");
+
+            const checkTexto =
+              document.createElement(
+                "span"
+              );
+
+            checkTexto.className =
+              "check-burbuja";
+
+            checkTexto.textContent =
+              "✓✓";
+
+            burbujaTexto.appendChild(
+              spanTexto
+            );
+
+            burbujaTexto.appendChild(
+              horaTexto
+            );
+
+            burbujaTexto.appendChild(
+              checkTexto
+            );
+
+            mensajesHilo.appendChild(
+              burbujaTexto
+            );
+
+            mensajesHilo.scrollTop =
+              mensajesHilo.scrollHeight;
+
+            entradaWa.value =
+              "";
+          }
+        );
 
         botonVolverWa.addEventListener(
           "click",
@@ -3729,16 +5058,10 @@
               hora.className =
                 "hora-chat";
 
-              const ultimoAudio =
-                contacto.audios[
-                  contacto.audios.length -
-                  1
-                ];
-
               hora.textContent =
                 horaDesdeArchivo(
                   archivosAudio[
-                    ultimoAudio
+                    contacto.audio
                   ]
                 );
 
@@ -3785,7 +5108,7 @@
                   escenaDrogas
                 );
               },
-              3600
+              8500
             );
           }
         );
