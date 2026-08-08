@@ -1877,19 +1877,12 @@
           true;
 
         /*
-          El tráfico suena sin
-          parar desde el Mapa hasta
-          Quirófano (nunca se pausa
-          en el camino). Si algún
-          día "preparación hospital"
-          se puede reproducir de
-          verdad, este aviso la deja
-          tomar el lugar del
-          tráfico; mientras tanto,
-          como siempre falla, el
-          tráfico sigue sonando y
-          Quirófano nunca queda en
-          silencio.
+          Al entrar a Quirófano el
+          tráfico se detiene y toma
+          su lugar "preparación
+          hospital". Este aviso
+          confirma que el audio
+          nuevo ya empezó a sonar.
         */
 
         audioPreparacion.addEventListener(
@@ -4221,7 +4214,7 @@
               );
 
               cambiarTexto(
-                "A las 11 regresé de la anestesia con un dedo distinto: el mismo, pero mutante — cicatriz lineal, sensibilidad conservada.",
+                "A las 11 regresé de la anestesia con un dedo distinto: el mismo, pero mutante.",
                 true
               );
 
